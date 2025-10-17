@@ -1,0 +1,32 @@
+# Linux, macOS
+.DS_Store
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Composer
+vendor/
+composer.lock
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+dist/
+
+# WordPress
+.htaccess
+wp-config.php
+wp-content/uploads/
+wp-content/plugins/
+wp-content/themes/*/node_modules/
+
+# Misc
+*.zip
+*.rar
+.env
+.env.local

@@ -1,0 +1,154 @@
+// Mixin za slide-up text animaciju
+@mixin btn-slide-up($bg-color, $hover-bg-color) {
+    position: relative;
+    overflow: hidden;
+
+    > span {
+        display: block;
+        position: relative;
+        z-index: 2;
+        transition:
+            transform 0.3s ease,
+            opacity 0.3s ease;
+    }
+
+    &::before {
+        content: attr(data-hover);
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $hover-bg-color;
+        opacity: 0;
+        transform: translateY(-100%);
+        transition: all 0.3s ease;
+        z-index: 1;
+    }
+
+    &:hover {
+        > span {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        &::before {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+// Primary button
+.btn-primary {
+    @include btn-slide-up($dark-blue, lighten($dark-blue, 10%));
+    background: $dark-blue;
+    color: $white;
+    font-family: $headings-font-family;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    display: inline-block;
+
+    &:hover {
+        color: $white;
+    }
+}
+
+// Secondary button
+.btn-secondary {
+    @include btn-slide-up($dark-gold, lighten($dark-gold, 8%));
+    background: $dark-gold;
+    color: $dark-blue;
+    font-family: $headings-font-family;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    display: inline-block;
+
+    &:hover {
+        color: $dark-blue;
+    }
+}
+
+// Header contact button - samo override veličine i fonta
+.btn-header-contact {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    padding: 0.4rem 0.6rem;
+    text-transform: lowercase;
+    // i {
+    //     margin-right: 0.4rem;
+    // }
+}
+.btn-business {
+    background: $dark-blue;
+    color: $light-gold;
+    padding: 1.125rem 2rem;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    box-shadow: 0 4px 16px rgba($dark-blue, 0.3);
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+    .btn-content {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        position: relative;
+        z-index: 2;
+        transition:
+            transform 0.3s ease,
+            opacity 0.3s ease;
+    }
+
+    &::before {
+        content: attr(data-hover) " \f061"; // Font Awesome arrow-right unicode
+        font-weight: 900;
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        background: $medium-blue;
+        opacity: 0;
+        transform: translateY(-100%);
+        transition: all 0.3s ease;
+        z-index: 1;
+        font-family: $headings-font-family;
+    }
+
+    &:hover {
+        box-shadow: 0 6px 20px rgba($dark-blue, 0.4);
+        color: $light-gold;
+
+        .btn-content {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        &::before {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}

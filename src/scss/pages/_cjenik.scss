@@ -1,0 +1,18 @@
+.cjenik {
+    &.basic-cjenik {
+        .card-header {
+            background-color: $dark-blue;
+            h6 {
+                color: $white;
+            }
+        }
+    }
+    &.deluxe-cjenik {
+        .card-header {
+            background-color: $dark-gold;
+            h6 {
+                color: $white;
+            }
+        }
+    }
+}

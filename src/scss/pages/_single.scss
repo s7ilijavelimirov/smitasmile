@@ -1,0 +1,36 @@
+.banner-post {
+    background-image: url('../img/post-banner.jpeg');
+}
+.post-list {
+    .inner {
+        background-color: $white;
+        border-radius: 4px;
+        overflow: hidden;
+        .entry-meta {
+            margin-bottom: 0.5rem;
+            .posted-on {
+                .updated {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.single-post {
+    .inner {
+        background-color: $white;
+        border-radius: 4px;
+        overflow: hidden;
+        .thumb {
+            img {
+                width: 100%;
+            }
+        }
+        p {
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

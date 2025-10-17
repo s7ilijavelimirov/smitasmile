@@ -1,0 +1,27 @@
+@media (min-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+    h2 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (min-width: 992px) {
+    h1 {
+        font-size: 3.5rem;
+    }
+}
+
+.color-white {
+    color: $white;
+}
+.color-medium-blue {
+    color: $medium-blue;
+}
+.color-dark-blue {
+    color: $dark-blue;
+}
+.color-dark-gold {
+    color: $dark-gold;
+}

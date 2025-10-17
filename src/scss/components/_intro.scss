@@ -1,0 +1,448 @@
+.intro {
+    p {
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+}
+// Business Inquiry Modal
+.modal {
+    &-content {
+        border: none;
+        border-radius: 10px;
+        background: $light-cream;
+    }
+
+    &-header {
+        padding: 1rem;
+        background: $light-gold;
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: $dark-blue;
+        }
+
+        .btn-close {
+            filter: none;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    &-body {
+        padding: 2rem;
+
+        .form-label {
+            font-weight: 500;
+            color: $medium-blue;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .form-control,
+        .form-select {
+            border: 1px solid rgba($medium-blue, 0.2);
+            border-radius: 0;
+            padding: 0.75rem 1rem;
+            background: $white;
+            color: $dark-blue;
+            transition: all 0.3s ease;
+            width: 100%;
+
+            &:focus {
+                border-color: $dark-gold;
+                box-shadow: 0 0 0 0.2rem rgba($dark-gold, 0.15);
+                background: $white;
+                outline: none;
+            }
+
+            &::placeholder {
+                color: rgba($medium-blue, 0.5);
+            }
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        // Input group for calendar
+        .input-group {
+            display: flex;
+            width: 100%;
+
+            .wpcf7-form-control-wrap {
+                flex: 1;
+                display: flex;
+            }
+
+            .form-control {
+                border-right: none;
+                cursor: pointer;
+                flex: 1;
+
+                &:focus {
+                    border-right: none;
+
+                    + .input-group-text {
+                        border-color: $dark-gold;
+                    }
+                }
+            }
+
+            .input-group-text {
+                background: $white;
+                border: 1px solid rgba($medium-blue, 0.2);
+                border-left: none;
+                color: $medium-blue;
+                padding: 0.75rem 1rem;
+                display: flex;
+                align-items: center;
+
+                i {
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        // Contact Form 7 wrappers
+        .wpcf7-form-control-wrap {
+            display: block;
+            width: 100%;
+        }
+
+        .wpcf7-submit {
+            background: $dark-blue;
+            color: $white;
+            border: none;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            width: 100%;
+            cursor: pointer;
+
+            &:hover {
+                background: $medium-blue;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba($dark-blue, 0.2);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+        }
+
+        // CF7 validation
+        .wpcf7-not-valid-tip {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: block;
+        }
+
+        .wpcf7-response-output {
+            border: none;
+            padding: 1rem;
+            margin: 1rem 0 0;
+            border-radius: 0;
+
+            &.wpcf7-validation-errors {
+                background: #f8d7da;
+                color: #721c24;
+                border: 1px solid #f5c6cb;
+            }
+
+            &.wpcf7-mail-sent-ok {
+                background: #d4edda;
+                color: #155724;
+                border: 1px solid #c3e6cb;
+            }
+        }
+
+        // Form spacing
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .row {
+            margin-left: -0.5rem;
+            margin-right: -0.5rem;
+
+            > [class*="col-"] {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+        }
+    }
+}
+
+// Responsive
+@media (max-width: 991px) {
+    .modal {
+        &-dialog {
+            margin: 1rem;
+        }
+
+        &-body {
+            padding: 1.5rem;
+
+            .form-label {
+                font-size: 0.85rem;
+            }
+
+            .form-control,
+            .form-select {
+                padding: 0.65rem 0.85rem;
+                font-size: 0.95rem;
+            }
+
+            .wpcf7-submit {
+                padding: 0.875rem 1.5rem;
+            }
+        }
+
+        &-header {
+            padding: 1.5rem 1.5rem 1rem;
+
+            .modal-title {
+                font-size: 1.25rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .modal {
+        &-dialog {
+            margin: 0.5rem;
+            max-width: calc(100% - 1rem);
+        }
+
+        &-body {
+            padding: 1rem;
+
+            .row {
+                margin-left: 0;
+                margin-right: 0;
+
+                > [class*="col-"] {
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+            }
+
+            .form-group {
+                margin-bottom: 0.875rem;
+            }
+
+            .form-label {
+                font-size: 0.8rem;
+                margin-bottom: 0.375rem;
+            }
+
+            .form-control,
+            .form-select {
+                padding: 0.6rem 0.75rem;
+                font-size: 0.9rem;
+            }
+
+            .input-group-text {
+                padding: 0.6rem 0.75rem;
+
+                i {
+                    font-size: 0.9rem;
+                }
+            }
+
+            textarea.form-control {
+                min-height: 100px;
+            }
+
+            .wpcf7-submit {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        &-header {
+            padding: 1rem 1rem 0.75rem;
+
+            .modal-title {
+                font-size: 1.1rem;
+            }
+
+            .btn-close {
+                font-size: 0.875rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .modal {
+        &-dialog {
+            margin: 0;
+            max-width: 100%;
+            height: 100vh;
+        }
+
+        &-content {
+            height: 100%;
+            border-radius: 0;
+            overflow-y: auto;
+        }
+
+        &-body {
+            padding: 1rem 0.75rem;
+
+            // Na malim ekranima - sva polja full width
+            .col-lg-6 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+    }
+}
+.business-cta-section {
+    padding: 5rem 0;
+    //background: $white;
+
+    .business-cta-card {
+        background: $light-gold;
+        border-radius: 1.5rem;
+        padding: 3rem;
+        box-shadow: 0 10px 40px rgba($dark-blue, 0.15);
+        position: relative;
+        overflow: hidden;
+
+        // Decorative element
+        &::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba($white, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .business-cta-content {
+            position: relative;
+            z-index: 1;
+
+            .business-cta-title {
+                font-size: clamp(1.5rem, 3vw, 2rem);
+                font-weight: 700;
+                color: $dark-blue;
+                margin-bottom: 1rem;
+                line-height: 1.3;
+            }
+
+            .business-cta-text {
+                font-size: 1.0625rem;
+                color: rgba($dark-blue, 1);
+                line-height: 1.7;
+                margin-bottom: 0;
+            }
+        }
+
+        .business-cta-action {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+
+            .btn-business {
+                background: $dark-blue;
+                color: white;
+                padding: 1.125rem 2rem;
+                border-radius: 0.75rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                font-size: 0.9375rem;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.75rem;
+                transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 4px 16px rgba($dark-blue, 0.3);
+                white-space: nowrap;
+
+                i {
+                    transition: transform 0.3s ease;
+                }
+
+                &:hover {
+                    background: $dark-blue;
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 20px rgba($dark-blue, 0.4);
+                    color: white;
+
+                    i {
+                        transform: translateX(4px);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Responsive
+@media (max-width: 991px) {
+    .business-cta-section {
+        padding: 3rem 0;
+
+        .business-cta-card {
+            padding: 2.5rem;
+
+            .business-cta-content {
+                margin-bottom: 2rem;
+            }
+
+            .business-cta-action {
+                justify-content: flex-start;
+
+                .btn-business {
+                    width: 100%;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .business-cta-section {
+        padding: 2.5rem 0;
+
+        .business-cta-card {
+            padding: 2rem 1.5rem;
+
+            .business-cta-content {
+                .business-cta-title {
+                    font-size: 1.375rem;
+                }
+
+                .business-cta-text {
+                    font-size: 1rem;
+                }
+            }
+
+            .business-cta-action .btn-business {
+                padding: 1rem 1.5rem;
+                font-size: 0.7rem;
+            }
+        }
+    }
+}

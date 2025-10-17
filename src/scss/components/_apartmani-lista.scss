@@ -1,0 +1,114 @@
+.apartmani-lista {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: translateX(-50%); // pomeranje nazad za pola širine
+    width: 100%; // opcionalno, ako želiš da zauzima punu širinu
+    text-align: center; // centriranje unutrašnjeg sadržaja
+    &.aparments-page {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        padding: 3rem 0rem;
+    }
+    background: transparent;
+    .section-subtitle {
+        display: inline-block;
+        font-size: 0.875rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: $dark-gold;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid $dark-gold;
+    }
+
+    .section-title {
+        font-size: clamp(1.875rem, 4vw, 2.5rem);
+        font-weight: 700;
+        color: $dark-blue;
+        margin-bottom: 1rem;
+    }
+
+    .section-text {
+        color: $medium-blue;
+        font-size: 1rem;
+        line-height: 1.7;
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    // Widget wrapper
+    .apartmani-widgets {
+        .apartment-widget {
+            margin-bottom: 1.5rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+    .apartmani-placeholder {
+        padding: 3rem 2rem;
+        background: $light-gold;
+        border: 2px dashed rgba($dark-blue, 0.9);
+        border-radius: 5px;
+        text-align: center;
+
+        .placeholder-content {
+            max-width: 500px;
+            margin: 0 auto;
+
+            i {
+                font-size: 3rem;
+                color: $dark-gold;
+                //margin-bottom: 1.5rem;
+                opacity: 0.6;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: $dark-blue;
+                margin-bottom: 1rem;
+            }
+
+            p {
+                color: $medium-blue;
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 0.5rem;
+            }
+
+            .placeholder-note {
+                font-size: 0.875rem;
+                color: $dark-blue;
+                margin-top: 1rem;
+
+                strong {
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}
+
+// Responsive
+@media (max-width: 991px) {
+    .apartmani-lista {
+        padding: 3rem 0;
+        bottom: 0rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .apartmani-lista {
+        padding: 2.5rem 0;
+        bottom: -1rem;
+    }
+}

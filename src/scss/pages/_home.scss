@@ -1,0 +1,532 @@
+.home-intro {
+  padding-bottom: 80px; // ✅ Padding gore i dole
+
+  .intro-wrapper {
+    background: $white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  }
+  .intro-gallery-lightbox {
+    display: none !important;
+  }
+
+  .intro-content {
+    padding: 3rem 2rem;
+
+    .intro-subtitle {
+      display: inline-block;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: $dark-gold;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+
+      &.animate-in {
+        animation: fadeInUp 0.6s ease forwards;
+      }
+    }
+
+    .intro-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 500;
+      color: black;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      opacity: 0;
+      transform: translateY(20px);
+
+      &.animate-in {
+        animation: fadeInUp 0.6s ease 0.1s forwards;
+      }
+    }
+
+    .intro-text {
+      color: black;
+      line-height: 1.7;
+      opacity: 0;
+      transform: translateY(20px);
+
+      &.animate-in {
+        animation: fadeInUp 0.6s ease 0.2s forwards;
+      }
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // ✅ Ukloni margin bottom od slick-a
+  .slick-dotted.slick-slider {
+    margin-bottom: 0;
+  }
+
+  // Slider wrapper
+  .intro-gallery-slider {
+    position: relative;
+    padding: 2rem 1.5rem 3rem; // ✅ Više padding-a
+    overflow: hidden; // ✅ KLJUČNO - sprečava ispad
+
+    .slick-dots {
+      bottom: -35px;
+
+      li {
+        margin: 0 4px;
+
+        button:before {
+          font-size: 12px;
+          color: $dark-gold;
+          opacity: 0.5;
+          transition: opacity 0.3s ease;
+        }
+
+        &.slick-active button:before {
+          opacity: 1;
+        }
+
+        &:hover button:before {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
+  // ✅ Grid wrapper - KLJUČNO za hover
+  .slide-item {
+    padding: 0 0.5rem; // ✅ Horizontalni padding za scale
+  }
+
+  // Grid layout
+  .intro-gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  // Glavna slika
+  .gallery-main {
+    grid-column: 1 / -1;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: block;
+    position: relative;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.01); // ✅ Minimalni scale
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.08); // ✅ Zoomira se UNUTAR
+    }
+  }
+
+  // Thumbnails container
+  .gallery-thumbnails {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 0rem 1rem 1rem 1rem;
+  }
+
+  // Thumbnail slike
+  .gallery-thumb {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: block;
+    position: relative;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.01); // ✅ Minimalni scale
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.08); // ✅ Zoomira se UNUTAR
+    }
+  }
+}
+
+// ========================================
+// RESPONSIVE
+// ========================================
+
+// Mobile (do 576px)
+@media (max-width: 575px) {
+  .home-intro {
+    padding: 3rem 0;
+
+    .intro-content {
+      padding: 2rem 1rem;
+    }
+
+    .intro-gallery-slider {
+      padding: 1.5rem 1rem 2.5rem;
+
+      .slick-dots {
+        bottom: -30px;
+
+        li button:before {
+          font-size: 10px;
+        }
+      }
+    }
+
+    .slide-item {
+      padding: 0 0.25rem;
+    }
+
+    .intro-gallery-grid {
+      gap: 0.75rem;
+    }
+
+    .gallery-thumbnails {
+      gap: 0.75rem;
+    }
+  }
+}
+
+// Tablet (576px - 991px)
+@media (min-width: 576px) and (max-width: 991px) {
+  .home-intro {
+    padding: 4rem 0;
+
+    .intro-content {
+      padding: 2.5rem 1.5rem;
+    }
+
+    .intro-gallery-slider {
+      padding: 1.75rem 1.25rem 2.75rem;
+
+      .slick-dots {
+        bottom: -32px;
+      }
+    }
+
+    .slide-item {
+      padding: 0 0.35rem;
+    }
+
+    .intro-gallery-grid {
+      gap: 0.875rem;
+    }
+
+    .gallery-thumbnails {
+      gap: 0.875rem;
+    }
+  }
+}
+
+// Desktop (992px+)
+@media (min-width: 992px) {
+  .home-intro {
+    padding-bottom: 80px;
+
+    .intro-content {
+      padding: 4rem 3rem;
+    }
+
+    .intro-gallery-slider {
+      padding: 2.5rem 2rem 3.5rem;
+    }
+
+    .slide-item {
+      padding: 0 0.5rem;
+    }
+
+    .intro-gallery-grid {
+      gap: 1.25rem;
+    }
+
+    .gallery-thumbnails {
+      gap: 1.25rem;
+    }
+  }
+}
+
+// Large Desktop (1200px+)
+@media (min-width: 1200px) {
+  .home-intro {
+   
+    .intro-content {
+      padding: 5rem 4rem;
+    }
+
+    .intro-gallery-slider {
+      padding: 3rem 2.5rem 4rem;
+    }
+
+    .slide-item {
+      padding: 0 0.6rem;
+    }
+
+    .intro-gallery-grid {
+      gap: 1.5rem;
+    }
+
+    .gallery-thumbnails {
+      gap: 1.5rem;
+      padding: 0 0.6rem;
+    }
+  }
+}
+// ========================================
+// SLICK LIGHTBOX - CUSTOM ARROWS
+// ========================================
+
+.slick-lightbox {
+  .slick-prev,
+  .slick-next {
+    width: 60px !important;
+    height: 60px !important;
+    z-index: 9999 !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 50% !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+
+    &:hover {
+      background: #fff !important;
+      transform: translate(0, -50%) scale(1.1) !important;
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    &:before {
+      font-family: inherit !important;
+      font-size: 0 !important;
+      content: "" !important;
+      display: block !important;
+      width: 100% !important;
+      height: 100% !important;
+      position: relative !important;
+    }
+
+    // ✅ Custom arrow sa border
+    &:after {
+      content: "" !important;
+      display: block !important;
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      width: 12px !important;
+      height: 12px !important;
+      border-top: 3px solid #333 !important;
+      border-right: 3px solid #333 !important;
+      transition: border-color 0.3s ease !important;
+    }
+
+    &:hover:after {
+      border-color: $dark-gold !important;
+    }
+  }
+
+  .slick-prev {
+    left: 40px !important;
+
+    &:after {
+      transform: translate(-30%, -50%) rotate(-135deg) !important;
+    }
+  }
+
+  .slick-next {
+    right: 40px !important;
+
+    &:after {
+      transform: translate(-70%, -50%) rotate(45deg) !important;
+    }
+  }
+
+  // Close button
+  .slick-lightbox-close {
+    width: 60px !important;
+    height: 60px !important;
+    top: 20px !important;
+    right: 20px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 50% !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    display: flex !important; // ✅ Flex za centriranje
+    align-items: center !important;
+    justify-content: center !important;
+
+    &:hover {
+      background: #fff !important;
+      transform: scale(1.1) !important; // ✅ Samo scale, bez rotate na buttonu
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    &:before {
+      content: "×" !important;
+      font-size: 40px !important;
+      color: #333 !important;
+      line-height: normal !important; // ✅ Line-height 1
+      display: block !important;
+      transition: all 0.3s ease !important; // ✅ Transform i color
+      font-weight: 800;
+    }
+
+    &:hover:before {
+      color: $dark-gold !important;
+      transform: rotate(90deg) !important; // ✅ Rotate samo na :before
+    }
+  }
+}
+
+// ========================================
+// RESPONSIVE
+// ========================================
+
+@media (max-width: 767px) {
+  .slick-lightbox {
+    .slick-prev,
+    .slick-next {
+      width: 50px !important;
+      height: 50px !important;
+
+      &:after {
+        width: 10px !important;
+        height: 10px !important;
+        border-width: 2.5px !important;
+      }
+    }
+
+    .slick-prev {
+      left: 15px !important;
+    }
+
+    .slick-next {
+      right: 15px !important;
+    }
+
+    .slick-lightbox-close {
+      width: 50px !important;
+      height: 50px !important;
+      top: 15px !important;
+      right: 15px !important;
+
+      &:before {
+        font-size: 34px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .slick-lightbox {
+    .slick-prev,
+    .slick-next {
+      width: 45px !important;
+      height: 45px !important;
+    }
+
+    .slick-prev {
+      left: 10px !important;
+    }
+
+    .slick-next {
+      right: 10px !important;
+    }
+
+    .slick-lightbox-close {
+      width: 45px !important;
+      height: 45px !important;
+      top: 10px !important;
+      right: 10px !important;
+
+      &:before {
+        font-size: 30px !important;
+      }
+    }
+  }
+}
+// ========================================
+// SCROLL ANIMATIONS
+// ========================================
+
+.apartment-slider {
+  position: relative;
+}
+
+[data-scroll] {
+  opacity: 0;
+  transition: all 0.8s ease;
+
+  &.animate-in {
+    opacity: 1;
+  }
+}
+
+.fade-up {
+  transform: translateY(50px);
+  &.animate-in {
+    transform: translateY(0);
+  }
+}
+
+.fade-down {
+  transform: translateY(-50px);
+  &.animate-in {
+    transform: translateY(0);
+  }
+}
+
+.fade-left {
+  transform: translateX(50px);
+  &.animate-in {
+    transform: translateX(0);
+  }
+}
+
+.fade-right {
+  transform: translateX(-50px);
+  &.animate-in {
+    transform: translateX(0);
+  }
+}
+
+.delay-100 {
+  transition-delay: 0.1s;
+}
+.delay-200 {
+  transition-delay: 0.2s;
+}
+.delay-300 {
+  transition-delay: 0.3s;
+}
+.delay-400 {
+  transition-delay: 0.4s;
+}
+.delay-500 {
+  transition-delay: 0.5s;
+}
