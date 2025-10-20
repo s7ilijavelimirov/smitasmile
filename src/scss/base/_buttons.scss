@@ -1,154 +1,159 @@
-// Mixin za slide-up text animaciju
-@mixin btn-slide-up($bg-color, $hover-bg-color) {
-    position: relative;
-    overflow: hidden;
+// ============================================
+// BUTTON STYLES - SMITASMILE
+// ============================================
 
-    > span {
-        display: block;
-        position: relative;
-        z-index: 2;
-        transition:
-            transform 0.3s ease,
-            opacity 0.3s ease;
+// Base button styles
+.btn {
+    display: inline-block;
+    padding: 0.875rem 1.75rem;
+    font-family: $font-family-body;
+    font-weight: 400;
+    font-size: $font-size-base;
+    line-height: normal;
+    border-radius: $border-radius;
+    border: 2px solid;
+    transition: $transition-base;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-font-smoothing: antialiased;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
     }
 
-    &::before {
-        content: attr(data-hover);
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: $hover-bg-color;
-        opacity: 0;
-        transform: translateY(-100%);
-        transition: all 0.3s ease;
-        z-index: 1;
-    }
-
-    &:hover {
-        > span {
-            transform: translateY(100%);
-            opacity: 0;
-        }
-
-        &::before {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
     }
 }
 
-// Primary button
+// ============================================
+// PRIMARY BUTTON
+// ============================================
 .btn-primary {
-    @include btn-slide-up($dark-blue, lighten($dark-blue, 10%));
-    background: $dark-blue;
-    color: $white;
-    font-family: $headings-font-family;
-    font-weight: 700;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 1rem 2rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    display: inline-block;
+    background-color: $primary;
+    border-color: $primary;
+    color: $secondary;
 
-    &:hover {
-        color: $white;
+    &:hover,
+    &:focus {
+        background-color: $accent;
+        border-color: $accent;
+        color: $secondary;
+    }
+
+    &:active {
+        background-color: darken($primary, 10%);
+        border-color: darken($primary, 10%);
     }
 }
 
-// Secondary button
-.btn-secondary {
-    @include btn-slide-up($dark-gold, lighten($dark-gold, 8%));
-    background: $dark-gold;
-    color: $dark-blue;
-    font-family: $headings-font-family;
-    font-weight: 700;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 1rem 2rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    display: inline-block;
+// ============================================
+// SECONDARY BUTTON - Outline
+// ============================================
+.btn-secondary,
+.btn-outline-light {
+    background-color: transparent;
+    border-color: $secondary;
+    color: $secondary;
 
-    &:hover {
-        color: $dark-blue;
+    &:hover,
+    &:focus {
+        background-color: $secondary;
+        border-color: $secondary;
+        color: $primary;
+    }
+
+    &:active {
+        background-color: darken($secondary, 5%);
+        border-color: darken($secondary, 5%);
+        color: $primary;
     }
 }
 
-// Header contact button - samo override veličine i fonta
-.btn-header-contact {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    padding: 0.4rem 0.6rem;
-    text-transform: lowercase;
-    // i {
-    //     margin-right: 0.4rem;
-    // }
+// ============================================
+// TERTIARY BUTTON - Text only
+// ============================================
+.btn-tertiary,
+.btn-link {
+    background-color: transparent;
+    border-color: transparent;
+    color: $primary;
+    padding: 0.5rem 0;
+
+    &:hover,
+    &:focus {
+        color: $accent;
+        text-decoration: underline;
+    }
+
+    &:active {
+        color: $accent;
+    }
 }
-.btn-business {
-    background: $dark-blue;
-    color: $light-gold;
-    padding: 1.125rem 2rem;
-    border-radius: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-size: 0.9375rem;
-    text-decoration: none;
-    display: inline-flex;
+
+// ============================================
+// BUTTON SIZES
+// ============================================
+.btn-sm {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+}
+
+.btn-lg {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+// ============================================
+// BUTTON BLOCKS
+// ============================================
+.btn-block {
+    width: 100%;
+    display: block;
+}
+
+// ============================================
+// BUTTON GROUPS
+// ============================================
+.btn-group {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+
+    @media (max-width: $breakpoint-sm) {
+        flex-direction: column;
+
+        .btn {
+            width: 100%;
+        }
+    }
+}
+
+// ============================================
+// BUTTON STATES
+// ============================================
+.btn:focus-visible {
+    outline: 2px solid $accent;
+    outline-offset: 2px;
+}
+
+// Loading state
+.btn.loading {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+// ============================================
+// ICON BUTTONS (if needed)
+// ============================================
+.btn-icon {
+    padding: 0.75rem;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
-    box-shadow: 0 4px 16px rgba($dark-blue, 0.3);
-    white-space: nowrap;
-    position: relative;
-    overflow: hidden;
-    transition: box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-
-    .btn-content {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        position: relative;
-        z-index: 2;
-        transition:
-            transform 0.3s ease,
-            opacity 0.3s ease;
-    }
-
-    &::before {
-        content: attr(data-hover) " \f061"; // Font Awesome arrow-right unicode
-        font-weight: 900;
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.75rem;
-        background: $medium-blue;
-        opacity: 0;
-        transform: translateY(-100%);
-        transition: all 0.3s ease;
-        z-index: 1;
-        font-family: $headings-font-family;
-    }
-
-    &:hover {
-        box-shadow: 0 6px 20px rgba($dark-blue, 0.4);
-        color: $light-gold;
-
-        .btn-content {
-            transform: translateY(100%);
-            opacity: 0;
-        }
-
-        &::before {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
 }

@@ -11,7 +11,9 @@
 <head>
 	<meta charset="<?php bloginfo('charset'); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="<?php bloginfo('description'); ?>">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<link rel="icon" type="image/webp" href="<?php echo esc_url(get_template_directory_uri() . '/dist/img/favicon.webp'); ?>">
 	<?php wp_head(); ?>
 </head>
 
@@ -19,36 +21,39 @@
 	<?php wp_body_open(); ?>
 
 	<div id="page" class="site">
-		<!-- Skip to content -->
+		<!-- Skip to content - A11y -->
 		<a class="visually-hidden-focusable skip-link" href="#primary">
 			<?php esc_html_e('Skip to content', 'mytheme'); ?>
 		</a>
 
-		<!-- Header -->
-		<header id="masthead" class="site-header sticky-top">
-			<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-				<div class="container-lg">
+		<!-- Header - Transparent with Dark Overlay + Sticky Hide/Show -->
+		<header id="masthead" class="site-header sticky-header">
+			<nav class="navbar navbar-expand-lg navbar-dark" role="navigation" aria-label="<?php esc_attr_e('Main Navigation', 'mytheme'); ?>" data-sticky="true">
+				<div class="container-fluid header-container">
 					<!-- Logo / Brand -->
 					<div class="navbar-brand-wrapper">
 						<?php
 						if (has_custom_logo()) {
 							$custom_logo_id = get_theme_mod('custom_logo');
-							$logo_desktop   = wp_get_attachment_image_src($custom_logo_id, 'full');
+							$logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+							$site_title = get_bloginfo('name');
 						?>
-							<a class="navbar-brand d-flex align-items-center" href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+							<a class="navbar-brand d-flex align-items-center flex-column" href="<?php echo esc_url(home_url('/')); ?>" rel="home" aria-label="<?php echo esc_attr($site_title); ?>">
 								<img
-									src="<?php echo esc_url($logo_desktop[0]); ?>"
-									alt="<?php bloginfo('name'); ?>"
+									src="<?php echo esc_url($logo[0]); ?>"
+									alt="<?php echo esc_attr($site_title); ?>"
 									class="logo-desktop"
-									height="50"
+									width="auto"
+									height="64"
 									loading="eager"
 									decoding="async">
 							</a>
 						<?php
 						} else {
 						?>
-							<a class="navbar-brand fw-bold" href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-								<?php bloginfo('name'); ?>
+							<a class="navbar-brand fw-bold text-white" href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+								<span class="d-block">SMITA</span>
+								<small class="d-block text-uppercase">Advanced Smile Design</small>
 							</a>
 						<?php
 						}
@@ -67,29 +72,30 @@
 						<span class="navbar-toggler-icon"></span>
 					</button>
 
-					<!-- Navigation Menu -->
-					<div class="collapse navbar-collapse" id="navbarNavigation">
+					<!-- Navigation Menu - Centered -->
+					<div class="collapse navbar-collapse justify-content-center" id="navbarNavigation">
 						<?php
 						wp_nav_menu(
 							array(
 								'theme_location'  => 'primary',
 								'depth'           => 2,
 								'container'       => false,
-								'menu_class'      => 'navbar-nav ms-auto',
+								'menu_class'      => 'navbar-nav gap-3',
 								'fallback_cb'     => 'wp_page_menu',
 								'walker'          => new WP_Bootstrap_NavWalker(),
+								'aria_label'      => __('Main navigation', 'mytheme'),
 							)
 						);
 						?>
 					</div>
 
-					<!-- CTA Button -->
-					<div class="header-cta ms-auto ms-lg-3">
+					<!-- CTA Button - Right Side -->
+					<div class="ms-lg-auto">
 						<a
 							href="<?php echo esc_url(home_url('/book-appointment')); ?>"
-							class="btn btn-primary btn-sm"
-							target="_self">
-							<?php esc_html_e('Book Appointment', 'mytheme'); ?>
+							class="btn btn-outline-light btn-sm fw-600"
+							aria-label="<?php esc_attr_e('Book Your Appointment', 'mytheme'); ?>">
+							<?php esc_html_e('Book Your Appointment', 'mytheme'); ?>
 						</a>
 					</div>
 				</div>
@@ -97,4 +103,4 @@
 		</header><!-- #masthead -->
 
 		<!-- Main Content Wrapper -->
-		<main id="primary" class="site-main">
+		<main id="primary" class="site-main" style="min-height:300vh;">

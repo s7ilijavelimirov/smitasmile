@@ -1,93 +1,106 @@
-$white: #ffffff !default;
+// ============================================
+// TIPOGRAFIJA - FONTOVI (PRE BOOTSTRAPA)
+// ============================================
+$font-family-heading: "Lora", serif;
+$font-family-body: "Poppins", sans-serif;
+$font-family-base: $font-family-body;
+$font-family-body: 1rem;
+$font-family-base: 1rem;
 
-$light-cream: #fffcf7 !default;      // Almost white warm
+$font-size-base: 1rem;
+$font-size-h1: 4rem;
+$font-size-h2: 2.8rem;
+$font-size-h3: 2.2rem;
+$font-size-h4: 1.6rem;
+$font-size-large: 1.4rem;
+$font-size-base: 1rem;
+$font-size-small: 0.9rem;
 
-$light-gold: #f3e6d1 !default;       // Very light champagne
-$dark-gold: #f4d175 !default;        // Soft golden yellow
+$line-height-heading: 1.2em;
+$line-height-body: 1.5em;
+$line-height-base: 1.5;
 
-$light-blue: #9faeb8 !default;       // Muted gray-blue
-$medium-blue: #4a5b65 !default;      // Tamna siva sa blagim plavim tonom
-$dark-blue: #1c252b !default;        // Skoro crna sa primesom plave (charcoal)
+// ============================================
+// BOOTSTRAP OVERRIDE - FONTOVI
+// ============================================
+$body-font-family: $font-family-body;
+$body-font-size: $font-size-base;
+$body-font-weight: 400;
+$body-line-height: $line-height-body;
 
-$dark: $dark-blue !default;
+// ============================================
+// BOJE - SMITASMILE (Minimalist Dark/Light)
+// ============================================
+$primary: #000000; // Crna - tekst na svetlom
+$secondary: #ffffff; // Bela - tekst na tamnom
+$accent: #1f1f1f; // Tamno siva - hover/active stanja
+$light-accent: #e7e7e7; // Svetla siva - borders, backgrounds
+$gray: #999999; // Medium siva
+$light-gray: #f5f5f5; // Velmi svetla siva - backgrounds
 
-$primary: $dark-blue !default;
-$secondary: $dark-gold !default;
-$success: $medium-blue !default;
+// ============================================
+// TIPOGRAFIJA - FONTOVI
+// ============================================
+$font-family-heading: "Lora", serif;
+$font-family-body: "Poppins", sans-serif;
+$font-family-base: $font-family-body;
 
-// Spacing
-$spacer: 1rem !default;
-$spacers: () !default;
-$spacers: (
-  0: 0,
-  1: (
-    $spacer * 0.25
-  ),
-  2: (
-    $spacer * 0.5
-  ),
-  3: $spacer,
-  4: (
-    $spacer * 1.5
-  ),
-  5: (
-    $spacer * 2
-  ),
-  6: (
-    $spacer * 2.5
-  ),
-  7: (
-    $spacer * 3
-  ),
-  8: (
-    $spacer * 4
-  ),
-  9: (
-    $spacer * 5
-  )
-);
+// ============================================
+// FONT SIZES
+// ============================================
+$font-size-h1: 4rem;
+$font-size-h2: 2.8rem;
+$font-size-h3: 2.2rem;
+$font-size-h4: 1.6rem;
+$font-size-large: 1.4rem;
+$font-size-base: 1rem;
+$font-size-small: 0.9rem;
 
-// Body
-$body-bg: $light-cream !default;
+// ============================================
+// LINE HEIGHT
+// ============================================
+$line-height-heading: 1.2em;
+$line-height-body: 1.5em;
+$line-height-base: 1.5;
 
-// Typography
-$font-family-sans-serif:
-  "Jost",
-  -apple-system,
-  BlinkMacSystemFont,
-  sans-serif !default;
+// ============================================
+// SPACING
+// ============================================
+$spacer: 1rem;
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-2xl: 3rem;
+$spacing-3xl: 4rem;
 
-$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+// ============================================
+// BORDER & RADIUS
+// ============================================
+$border-radius: 10px;
+$border-radius-lg: 8px;
+$border-radius-sm: 2px;
+$border-width: 1px;
 
-$line-height-base: 1.4 !default;
+// ============================================
+// SHADOW
+// ============================================
+$box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+$box-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
 
-$h1-font-size: $font-size-base * 2.5 !default;
-$h2-font-size: $font-size-base * 2 !default;
-$h3-font-size: $font-size-base * 1.75 !default;
-$h4-font-size: $font-size-base * 1.5 !default;
-$h5-font-size: $font-size-base * 1.25 !default;
-$h6-font-size: $font-size-base !default;
+// ============================================
+// TRANSITIONS
+// ============================================
+$transition-base: all 0.3s ease-in-out;
+$transition-fade: opacity 0.3s ease-in-out;
 
-$headings-margin-bottom: $spacer * 0.5 !default;
-$headings-font-family:
-  "Jost",
-  -apple-system,
-  BlinkMacSystemFont,
-  sans-serif !default;
-$headings-font-weight: 700 !default;
-$headings-line-height: 1.2 !default;
-$headings-color: null !default;
-
-// Buttons
-$btn-font-family: $headings-font-family !default;
-$btn-font-size: 1rem !default;
-
-// Navbar
-$navbar-toggler-border-radius: 0 !default;
-
-$navbar-dark-color: rgba($dark-gold, 1) !default;
-$navbar-dark-hover-color: rgba($white, 1) !default;
-$navbar-dark-active-color: $white !default;
-$navbar-dark-disabled-color: rgba($white, 0.25) !default;
-$navbar-dark-toggler-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'><path stroke='#{$navbar-dark-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>") !default;
-$navbar-dark-toggler-border-color: rgba($dark-gold, 1) !default;
+// ============================================
+// BREAKPOINTS
+// ============================================
+$breakpoint-xs: 320px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-2xl: 1400px;

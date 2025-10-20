@@ -1,53 +1,26 @@
+// Fontovi - PRVI
 @import "base/fonts";
 
-// Overrides
+// Varijable - DRUGI (defines sve boje, fontove, spacing)
 @import "overrides/variables";
 
-// Bootstrap Core
-@import "../../node_modules/bootstrap/scss/bootstrap";
-
-// Base
+// Base stilovi - TREĆI
 @import "base/misc";
 @import "base/type";
 @import "base/buttons";
 
-// Components
+// Komponente
 @import "components/hero-banner";
-@import "components/booking-form";
-@import "components/apartmani-lista";
-@import "components/sadrzaji";
-@import "components/cta";
-@import "components/intro";
-@import "components/copy";
 
 // Layout
 @import "layout/header";
 @import "layout/footer";
 
-// Pages
+// Stranice
 @import "pages/home";
-@import "pages/about";
-@import "pages/apartmani";
-@import "pages/faq";
-@import "pages/cjenik";
-@import "pages/apartman";
-@import "pages/kontakt";
 @import "pages/single";
 
-// Vendors
-@import "vendors/slick";
-@import "vendors/slick-theme";
-@import "vendors/lity";
-@import "vendors/bootstrap-datepicker3";
-@import "vendors/slick-lightbox";
-
-body {
-    background-color: red;
-    background-size: contain;
-}
-@media (min-width: 1200px) {
-    body {
-        background-color: red;
-        background-size: red;
-    }
+// Custom
+div#page {
+        background-color: black;
 }

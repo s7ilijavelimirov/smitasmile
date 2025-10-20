@@ -1,26 +1,23 @@
 {
   "name": "smitasmile-theme",
   "version": "1.0.0",
-  "description": "WordPress Theme",
+  "description": "SmitaSmile WordPress Theme",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "gulp",
-    "watch": "gulp watch",
-    "dev": "gulp dev",
+    "watch": "gulp sass --watch",
     "serve": "gulp serve",
-    "build": "gulp build"
+    "build": "gulp sass && gulp js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^10.4.21",
     "browser-sync": "^2.27.5",
-    "cssnano": "^7.1.1",
     "gulp": "^4.0.2",
-    "gulp-postcss": "^10.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.0.0",
     "gulp-uglify": "^3.0.2",
-    "postcss": "^8.5.6",
-    "sass": "^1.69.5"
+    "sass": "^1.49.0"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",

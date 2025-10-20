@@ -29,7 +29,7 @@ function theme_setup()
 		'flex-width'  => true,
 	));
 
-	// Meiji
+	// Meni
 	register_nav_menus(array(
 		'primary'   => __('Glavni meni', 'mytheme'),
 		'secondary' => __('Sekundarni meni', 'mytheme'),
@@ -42,17 +42,42 @@ function theme_setup()
 	add_image_size('square', 400, 400, true);
 }
 add_action('after_setup_theme', 'theme_setup');
+// Disable Gutenberg (Block Editor) - koristi Classic Editor
+add_filter('use_block_editor_for_post', '__return_false');
+add_filter('use_block_editor_for_post_type', '__return_false');
 
+// Disable Gutenberg styles
+add_action('wp_enqueue_scripts', function () {
+	wp_dequeue_style('wp-block-library');
+	wp_dequeue_style('wp-block-library-theme');
+});
+// Logo + Favicon
+function theme_custom_logo_setup()
+{
+	// Custom logo
+	$custom_logo_id = get_theme_mod('custom_logo');
+	$logo_url = wp_get_attachment_image_src($custom_logo_id, 'full');
+
+	// Favicon
+	$favicon_id = get_theme_mod('custom_favicon');
+	if ($favicon_id) {
+		$favicon_url = wp_get_attachment_url($favicon_id);
+		echo '<link rel="icon" type="image/png" href="' . esc_url($favicon_url) . '">';
+	}
+}
+add_action('wp_head', 'theme_custom_logo_setup');
 // Uključi CSS i JS
 function theme_enqueue_scripts()
 {
-	// CSS
+	// CSS - Redosled je bitan: Bootstrap → Swiper → Tvoj custom style
+	wp_enqueue_style('bootstrap-css', get_template_directory_uri() . '/dist/css/bootstrap.min.css', array(), _S_VERSION);
+	wp_enqueue_style('swiper-css', get_template_directory_uri() . '/dist/css/swiper-bundle.min.css', array(), _S_VERSION);
 	wp_enqueue_style('mytheme-style', get_template_directory_uri() . '/dist/css/style.min.css', array(), _S_VERSION);
-	wp_enqueue_style('bootstrap-style', get_template_directory_uri() . '/dist/css/bootstrap.min.css', array(), _S_VERSION);
 
 	// JS
 	wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/dist/js/bootstrap.bundle.min.js', array(), _S_VERSION, true);
-	wp_enqueue_script('mytheme-main', get_template_directory_uri() . '/dist/js/main.min.js', array(), _S_VERSION, true);
+	wp_enqueue_script('swiper-js', get_template_directory_uri() . '/dist/js/swiper-bundle.min.js', array(), _S_VERSION, true);
+	wp_enqueue_script('mytheme-main', get_template_directory_uri() . '/dist/js/main.min.js', array('swiper-js'), _S_VERSION, true);
 
 	wp_localize_script('mytheme-main', 'mythemeAjax', array(
 		'ajaxurl' => admin_url('admin-ajax.php'),
@@ -90,6 +115,15 @@ function theme_widgets_init()
 	register_sidebar(array(
 		'name'          => __('Footer zona 2', 'mytheme'),
 		'id'            => 'footer-2',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	));
+
+	register_sidebar(array(
+		'name'          => __('Footer zona 3', 'mytheme'),
+		'id'            => 'footer-3',
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h3 class="widget-title">',

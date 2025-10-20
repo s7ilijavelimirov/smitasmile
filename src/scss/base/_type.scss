@@ -1,27 +1,43 @@
-@media (min-width: 768px) {
-    h1 {
-        font-size: 3rem;
-    }
-    h2 {
-        font-size: 2.2rem;
+body {
+    font-family: $font-family-body;
+    font-size: $font-size-base;
+    font-weight: 400;
+    line-height: $line-height-body;
+    color: $primary;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-family-heading;
+    font-weight: 700;
+    line-height: $line-height-heading;
+    margin-bottom: $spacing-lg;
+}
+
+h1 { font-size: $font-size-h1; }
+h2 { font-size: $font-size-h2; }
+h3 { font-size: $font-size-h3; }
+h4 { font-size: $font-size-h4; }
+h5 { font-size: $font-size-large; }
+h6 { font-size: $font-size-base; }
+
+p {
+    font-family: $font-family-body;
+    font-size: $font-size-base;
+    line-height: $line-height-body;
+    margin-bottom: $spacing-md;
+}
+
+a {
+    color: $primary;
+    text-decoration: none;
+    transition: $transition-base;
+    
+    &:hover {
+        text-decoration: underline;
     }
 }
 
-@media (min-width: 992px) {
-    h1 {
-        font-size: 3.5rem;
-    }
-}
-
-.color-white {
-    color: $white;
-}
-.color-medium-blue {
-    color: $medium-blue;
-}
-.color-dark-blue {
-    color: $dark-blue;
-}
-.color-dark-gold {
-    color: $dark-gold;
+button, .btn {
+    font-family: $font-family-body;
+    font-weight: 600;
 }
