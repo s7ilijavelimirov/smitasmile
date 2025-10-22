@@ -1,0 +1,264 @@
+// ============================================
+// TREATMENTS SECTION - ACCORDION
+// ============================================
+
+.treatments-section {
+    background-color: $primary; // #000000
+    color: $secondary; // #ffffff
+    padding: $spacing-3xl 0;
+
+    @media (max-width: $breakpoint-md) {
+        padding: $spacing-2xl 0;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        padding: $spacing-xl 0;
+    }
+    .container {
+        .row {
+            background-color: $dark-accent; // #111111 - border okolo
+            border-radius: $border-radius-lg; // 10px
+            border: 2px solid $accent; // #e7e7e7
+            padding: $spacing-3xl;
+            @media (max-width: $breakpoint-lg) {
+                padding: $spacing-xl;
+            }
+
+            @media (max-width: $breakpoint-sm) {
+                padding: $spacing-sm;
+            }
+        }
+    }
+}
+
+// ============================================
+// SECTION HEADER
+// ============================================
+
+.treatments-header {
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+
+    @media (max-width: $breakpoint-md) {
+        margin-bottom: $spacing-2xl;
+    }
+}
+
+.treatments-title {
+    font-family: $font-family-heading;
+    font-size: $font-size-h2;
+    font-weight: 400;
+    line-height: $line-height-heading;
+    color: $secondary;
+    margin-bottom: $spacing-lg;
+
+    @media (max-width: $breakpoint-md) {
+        font-size: $font-size-h3;
+        margin-bottom: $spacing-md;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: $font-size-h4;
+    }
+}
+
+.treatments-subtitle {
+    font-family: $font-family-body;
+    font-size: $font-size-base;
+    color: $secondary;
+    opacity: 0.85;
+    margin-bottom: 0;
+    line-height: $line-height-body;
+
+    @media (max-width: $breakpoint-md) {
+        font-size: 0.95rem;
+    }
+}
+
+// ============================================
+// TREATMENTS BOX - Single container
+// ============================================
+
+.treatments-box {
+    overflow: hidden;
+    background-color: transparent;
+    transition: $transition-base;
+    &:hover {
+        border-color: $accent; // #1f1f1f
+    }
+}
+
+// ============================================
+// ACCORDION STYLES
+// ============================================
+
+.treatments-accordion {
+    border: none;
+    background-color: transparent;
+
+    .accordion-item {
+        background-color: transparent;
+        border: none;
+        margin-bottom: 0;
+        overflow: visible;
+
+        // Add divider line between items
+        &.with-divider {
+            border-bottom: 2px solid $accent;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    .accordion-header {
+        padding: 0;
+        background-color: transparent;
+        border: none;
+    }
+
+    .accordion-button {
+        padding: $spacing-md 0;
+        background-color: transparent;
+        color: $secondary;
+        font-size: $font-size-medium;
+        font-weight: 400;
+        line-height: $line-height-body;
+        border: none;
+        transition: $transition-base;
+        box-shadow: none;
+        @media (max-width: $breakpoint-md) {
+            font-size: $font-size-base;
+        }
+        @media (max-width: $breakpoint-xl) {
+            font-size: $font-size-base;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            right: $spacing-lg;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            border-radius: 5px;
+            height: 2px;
+            background-color: $secondary;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+            @media (max-width: $breakpoint-sm) {
+                width: 18px;
+            }
+        }
+
+        // Vertical line (::after)
+        &::after {
+            content: "";
+            position: absolute;
+            right: calc($spacing-lg + 7px);
+            border-radius: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 16px;
+            background-color: $secondary;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+            @media (max-width: $breakpoint-sm) {
+                height: 18px;
+            }
+        }
+
+        // Open state - vertical line rotates to horizontal (becomes minus)
+        &:not(.collapsed) {
+            &::before {
+                background-color: $light-accent;
+            }
+
+            &::after {
+                background-color: $light-accent;
+                transform: translateY(-50%) rotate(90deg);
+            }
+        }
+
+        // Hover state
+        &:hover {
+            &::before,
+            &::after {
+                background-color: $light-accent;
+            }
+        }
+
+        &:focus-visible {
+            outline: 2px solid $light-accent;
+            outline-offset: -2px;
+        }
+    }
+
+    .accordion-title-text {
+        flex: 1;
+        padding-right: $spacing-xl;
+        word-break: break-word;
+    }
+
+    .accordion-collapse {
+        border: none;
+    }
+
+    .accordion-body {
+        padding: 0 0 $spacing-lg 0;
+        background-color: transparent;
+        color: $secondary;
+        border: none;
+
+        @media (max-width: $breakpoint-sm) {
+            padding: 0 $spacing-lg $spacing-md $spacing-lg;
+        }
+    }
+}
+
+// ============================================
+// TREATMENT DESCRIPTION & LINK
+// ============================================
+
+.treatment-description {
+    font-family: $font-family-body;
+    font-size: $font-size-base;
+    line-height: $line-height-body;
+    color: $secondary;
+    opacity: 0.9;
+    margin-bottom: $spacing-sm;
+    max-width: 370px;
+    @media (max-width: $breakpoint-sm) {
+        font-size: 0.95rem;
+        margin-bottom: $spacing-md;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.treatment-link {
+    display: inline-block;
+    color: $light-accent;
+    text-decoration: none;
+    border-bottom: 2px solid white;
+    line-height: normal;
+    font-family: $font-family-body;
+    font-size: $font-size-base;
+    font-weight: 500;
+    transition: $transition-base;
+    position: relative;
+    padding-bottom: 2px;
+    &:hover,
+    &:focus {
+        color: $secondary;
+    }
+
+    &:focus-visible {
+        outline: 2px solid $light-accent;
+        outline-offset: 2px;
+    }
+}

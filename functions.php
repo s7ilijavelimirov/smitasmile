@@ -7,18 +7,19 @@
 if (! defined('_S_VERSION')) {
 	define('_S_VERSION', '1.0.0');
 }
+// ============================================
+// TEAM CPT
+// ============================================
+require_once get_template_directory() . '/inc/smitateam.php';
 // Theme Support
 function theme_setup()
 {
-	// Text domain za prevode
 	load_theme_textdomain('smitasmile', get_template_directory() . '/languages');
 
 	// Osnovna podrška
 	add_theme_support('title-tag');
 	add_theme_support('post-thumbnails');
-	add_theme_support('post-formats', array('aside', 'gallery', 'video'));
 	add_theme_support('html5', array('search-form', 'comment-form', 'comment-list', 'gallery', 'caption'));
-	add_theme_support('wp-block-styles');
 	add_theme_support('responsive-embeds');
 
 	// Logo
@@ -32,14 +33,11 @@ function theme_setup()
 	// Meni
 	register_nav_menus(array(
 		'primary'   => __('Glavni meni', 'smitasmile'),
-		'secondary' => __('Sekundarni meni', 'smitasmile'),
 		'footer'    => __('Footer meni', 'smitasmile'),
 	));
 
-	// Slike
+	// Samo default featured image
 	set_post_thumbnail_size(1200, 800, true);
-	add_image_size('featured', 1200, 675, true);
-	add_image_size('square', 400, 400, true);
 }
 add_action('after_setup_theme', 'theme_setup');
 // Disable Gutenberg (Block Editor) - koristi Classic Editor

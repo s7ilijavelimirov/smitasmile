@@ -18,11 +18,11 @@ get_header(); ?>
 
 <!-- Smile Makeovers Section -->
 <?php get_template_part('template-parts/homepage/smile-makeovers'); ?>
-<div class="container">
+<!-- <div class="container">
     <iframe src="https://www.theasys.io/viewer/88wSAFPya9fyuaQGmfB2ZTLdwWqJf3/"
         width="100%" height="800" frameborder="0" allow="fullscreen">
     </iframe>
-</div>
+</div> -->
 <!-- Treatments / FAQ Section -->
 <?php get_template_part('template-parts/homepage/treatments'); ?>
 

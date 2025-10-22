@@ -1,0 +1,346 @@
+// ============================================
+// TEAM PAGE SECTION
+// ============================================
+
+.team-section {
+    background-color: $primary;
+    color: $secondary;
+    padding: $spacing-3xl 0;
+
+    @media (max-width: $breakpoint-md) {
+        padding: $spacing-2xl 0;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        padding: $spacing-xl 0;
+    }
+}
+
+// ============================================
+// PAGE HEADER
+// ============================================
+
+.team-page-header {
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+
+    @media (max-width: $breakpoint-md) {
+        margin-bottom: $spacing-2xl;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        margin-bottom: $spacing-xl;
+    }
+}
+
+.team-page-title {
+    font-family: $font-family-heading;
+    font-size: $font-size-h2;
+    font-weight: 400;
+    line-height: $line-height-heading;
+    color: $secondary;
+    margin-bottom: $spacing-lg;
+
+    @media (max-width: $breakpoint-md) {
+        font-size: $font-size-h3;
+        margin-bottom: $spacing-md;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: $font-size-h4;
+    }
+}
+
+.team-page-description {
+    font-family: $font-family-body;
+    font-size: $font-size-base;
+    color: $secondary;
+    opacity: 0.85;
+    margin-bottom: 0;
+    line-height: $line-height-body;
+
+    @media (max-width: $breakpoint-md) {
+        font-size: 0.95rem;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: 0.9rem;
+    }
+}
+
+.team-page-content {
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+
+    @media (max-width: $breakpoint-md) {
+        margin-bottom: $spacing-2xl;
+    }
+
+    p {
+        font-size: $font-size-base;
+        line-height: $line-height-body;
+        color: $secondary;
+        opacity: 0.9;
+        margin-bottom: $spacing-md;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+// ============================================
+// TEAM GRID - 3 COLUMNS
+// ============================================
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-3xl;
+    margin-bottom: $spacing-3xl;
+
+    @media (max-width: $breakpoint-lg) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: $spacing-2xl;
+    }
+
+    @media (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr;
+        gap: $spacing-2xl;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        gap: $spacing-lg;
+    }
+}
+
+// ============================================
+// TEAM CARD
+// ============================================
+
+.team-card {
+    background-color: $dark-accent;
+    border: 2px solid $light-accent;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    transition: $transition-base;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &:hover {
+        border-color: $accent;
+        background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        border-radius: $border-radius;
+        border-width: 1px;
+    }
+}
+
+// ============================================
+// TEAM CARD IMAGE
+// ============================================
+
+.team-card-image {
+    width: 100%;
+    aspect-ratio: 1 / 1.2;
+    overflow: hidden;
+    background-color: $accent;
+    position: relative;
+
+    @media (max-width: $breakpoint-sm) {
+        aspect-ratio: 1 / 1;
+    }
+}
+
+.team-member-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: $transition-base;
+
+    @media (max-width: $breakpoint-sm) {
+        object-position: center;
+    }
+}
+
+.team-card:hover .team-member-photo {
+    transform: scale(1.05);
+}
+
+.team-no-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $accent;
+    color: $secondary;
+    font-size: $font-size-base;
+}
+
+// ============================================
+// TEAM CARD CONTENT
+// ============================================
+
+.team-card-content {
+    padding: $spacing-2xl;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    @media (max-width: $breakpoint-md) {
+        padding: $spacing-xl;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        padding: $spacing-lg;
+    }
+}
+
+.team-member-name {
+    font-family: $font-family-heading;
+    font-size: $font-size-h4;
+    font-weight: 400;
+    line-height: $line-height-heading;
+    color: $secondary;
+    margin-bottom: $spacing-md;
+
+    a {
+        color: $secondary;
+        text-decoration: none;
+        transition: $transition-base;
+
+        &:hover {
+            color: $light-accent;
+        }
+    }
+
+    @media (max-width: $breakpoint-md) {
+        font-size: 1.3rem;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: 1.1rem;
+        margin-bottom: $spacing-sm;
+    }
+}
+
+.team-member-position {
+    font-family: $font-family-body;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: $light-accent;
+    margin-bottom: $spacing-sm;
+    line-height: $line-height-body;
+
+    @media (max-width: $breakpoint-md) {
+        font-size: 1rem;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: 0.95rem;
+    }
+}
+
+.team-member-specialization {
+    font-family: $font-family-body;
+    font-size: $font-size-base;
+    color: $secondary;
+    opacity: 0.85;
+    margin-bottom: $spacing-lg;
+    line-height: $line-height-body;
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: 0.9rem;
+        margin-bottom: $spacing-md;
+    }
+}
+
+.team-member-bio {
+    font-family: $font-family-body;
+    font-size: $font-size-base;
+    line-height: $line-height-body;
+    color: $secondary;
+    opacity: 0.9;
+    margin-bottom: $spacing-lg;
+    flex-grow: 1;
+
+    p {
+        margin-bottom: $spacing-sm;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: 0.9rem;
+        margin-bottom: $spacing-md;
+    }
+}
+
+// ============================================
+// TEAM READ MORE LINK
+// ============================================
+
+.team-read-more {
+    display: inline-block;
+    color: $light-accent;
+    text-decoration: none;
+    font-family: $font-family-body;
+    font-size: $font-size-base;
+    font-weight: 500;
+    transition: $transition-base;
+    position: relative;
+    padding-bottom: $spacing-xs;
+    align-self: flex-start;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background-color: $light-accent;
+        transition: width 0.3s ease;
+    }
+
+    &:hover {
+        color: $secondary;
+
+        &::after {
+            width: 100%;
+        }
+    }
+
+    &:focus-visible {
+        outline: 2px solid $light-accent;
+        outline-offset: 2px;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: 0.9rem;
+    }
+}
+
+// ============================================
+// NO RESULTS
+// ============================================
+
+.team-no-results {
+    text-align: center;
+    padding: $spacing-3xl 0;
+
+    p {
+        font-family: $font-family-body;
+        font-size: $font-size-base;
+        color: $secondary;
+        opacity: 0.8;
+    }
+}

@@ -13,6 +13,8 @@
 @import "components/hero-banner";
 @import "components/founter";
 @import "components/smile-makeovers";
+@import "components/treatments";
+@import "components/partners";
 
 // Layout
 @import "layout/header";
@@ -21,6 +23,7 @@
 // Stranice
 @import "pages/home";
 @import "pages/single";
+@import "pages/team-page";
 
 // Custom
 div#page {

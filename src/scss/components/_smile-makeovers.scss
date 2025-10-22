@@ -164,7 +164,7 @@
     left: 0;
     right: 0;
     top: 50%;
-    height: 3px;
+    height: 1px;
     cursor: row-resize;
     background: linear-gradient(to right, rgba(255, 255, 255, 0.5), $secondary, rgba(255, 255, 255, 0.5));
     z-index: 10;
@@ -183,7 +183,7 @@
         height: 60px;
         border-radius: 50%;
         background: rgba(0, 0, 0, 0.75);
-        border: 2px solid $secondary;
+        border: 1px solid $secondary;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(6px);
         z-index: -1;
@@ -209,10 +209,10 @@
     }
 
     &:hover {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+      
 
         &::before {
-            box-shadow: 0 0 28px rgba(255, 255, 255, 0.6);
+          
             background: rgba(0, 0, 0, 0.85);
         }
     }
