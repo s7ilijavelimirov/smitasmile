@@ -1,16 +1,17 @@
 /*
 Theme Name: Smitasmile
-Theme URI: http://underscores.me/
+Theme URI: https://smitasmile.com/
 Author: S7Code&Design
 Author URI: https://www.s7codedesign.com/
-Description: Custom built WP theme for Smitasmile
+Description: Custom built WP theme for Smitasmile - Clinic
 Version: 1.0.0
-Tested up to: 5.4
-Requires PHP: 5.6
+Tested up to: 6.4
+Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: LICENSE
-Text Domain: Smitasmile
-Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+Text Domain: smitasmile
+Domain Path: /languages
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, responsive-layout, accessibility-ready
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned.
@@ -21,3 +22,14 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 Normalizing styles have been helped along thanks to the fine work of
 Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 */
+
+/* ============================================
+   SMITASMILE THEME - Main Stylesheet
+   ============================================
+   
+   This file should import all SCSS compiled files.
+   Main SCSS compilation should output to dist/css/main.css
+   
+   @import 'dist/css/main.css';
+   
+   ============================================ */

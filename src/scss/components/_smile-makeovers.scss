@@ -1,0 +1,248 @@
+// ============================================
+// SMILE MAKEOVERS - BEFORE/AFTER SLIDER
+// ============================================
+
+.smile-makeovers {
+    background: $primary;
+    padding: 3rem 0;
+
+    @media (max-width: $breakpoint-md) {
+        padding: 2rem 0;
+    }
+
+    &__title {
+        font-size: $font-size-h2;
+        color: $secondary;
+        text-align: center;
+        font-weight: 400;
+
+        @media (max-width: $breakpoint-md) {
+            font-size: $font-size-h3;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: $font-size-h4;
+            margin-bottom: 1.5rem;
+        }
+    }
+}
+
+// ============================================
+// MAKEOVER CARD
+// ============================================
+
+.makeover-card {
+    background: $dark-accent;
+    border: 2px solid $accent;
+    border-radius: 20px;
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: $transition-base;
+
+    @media (max-width: $breakpoint-sm) {
+        padding: 1rem;
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+
+    &__title {
+        color: $secondary;
+        font-size: $font-size-base;
+        font-family: $font-family-body;
+        font-weight: 400;
+        text-align: center;
+        margin: 0 0 1.5rem 0;
+        line-height: $line-height-heading;
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+// ============================================
+// BEFORE/AFTER SLIDER CONTAINER
+// ============================================
+
+.ttw-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 12px;
+    background: #000;
+    user-select: none;
+    touch-action: none;
+    flex-grow: 1;
+
+    @media (max-width: $breakpoint-md) {
+        aspect-ratio: 1.1;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        aspect-ratio: 1.2;
+    }
+}
+
+// ============================================
+// LAYERS
+// ============================================
+
+.ttw-layer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        user-select: none;
+        pointer-events: none;
+    }
+
+    // Before/After Badge
+    &::before {
+        content: attr(data-label);
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: rgba(0, 0, 0, 0.8);
+        color: $secondary;
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        border-radius: 6px;
+        z-index: 20;
+        backdrop-filter: blur(4px);
+        text-transform: uppercase;
+
+        @media (max-width: $breakpoint-sm) {
+            top: 10px;
+            left: 10px;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.65rem;
+        }
+    }
+}
+
+.ttw-after {
+    z-index: 1;
+
+    &::before {
+        content: "After";
+    }
+}
+
+.ttw-before {
+    z-index: 2 !important;
+    --ttw-pct: 50%; // ← Dodaj ovu liniju
+    clip-path: polygon(0 0, 100% 0, 100% var(--ttw-pct), 0 var(--ttw-pct));
+
+    &::before {
+        content: "Before";
+    }
+}
+
+// ============================================
+// HANDLE / SLIDER
+// ============================================
+
+.ttw-handle {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 3px;
+    cursor: row-resize;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.5), $secondary, rgba(255, 255, 255, 0.5));
+    z-index: 10;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.2s ease;
+    transform: translateY(-50%);
+
+    // Circle background with arrows
+    &::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.75);
+        border: 2px solid $secondary;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(6px);
+        z-index: -1;
+        transition: all 0.2s ease;
+
+        @media (max-width: $breakpoint-sm) {
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    // Arrow icon SVG
+    &::after {
+        content: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 9l5-5 5 5M7 15l5 5 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 24px;
+        height: 24px;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    &:hover {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+
+        &::before {
+            box-shadow: 0 0 28px rgba(255, 255, 255, 0.6);
+            background: rgba(0, 0, 0, 0.85);
+        }
+    }
+
+    &:active,
+    &.ttw-dragging {
+        box-shadow: 0 0 25px rgba(255, 255, 255, 1);
+
+        &::before {
+            box-shadow: 0 0 32px rgba(255, 255, 255, 0.8);
+        }
+    }
+}
+
+// ============================================
+// RESPONSIVE ADJUSTMENTS
+// ============================================
+
+@media (max-width: $breakpoint-sm) {
+    .ttw-handle {
+        height: 2px;
+
+        &::before {
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    .ttw-layer::before {
+        font-size: 0.6rem;
+        padding: 0.3rem 0.6rem;
+    }
+}

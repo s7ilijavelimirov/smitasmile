@@ -6,19 +6,36 @@ body {
     color: $primary;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: $font-family-heading;
     font-weight: 700;
     line-height: $line-height-heading;
     margin-bottom: $spacing-lg;
 }
 
-h1 { font-size: $font-size-h1; }
-h2 { font-size: $font-size-h2; }
-h3 { font-size: $font-size-h3; }
-h4 { font-size: $font-size-h4; }
-h5 { font-size: $font-size-large; }
-h6 { font-size: $font-size-base; }
+h1 {
+    font-size: $font-size-h1;
+}
+h2 {
+    font-size: $font-size-h2;
+}
+h3 {
+    font-size: $font-size-h3;
+}
+h4 {
+    font-size: $font-size-h4;
+}
+h5 {
+    font-size: $font-size-large;
+}
+h6 {
+    font-size: $font-size-base;
+}
 
 p {
     font-family: $font-family-body;
@@ -31,13 +48,14 @@ a {
     color: $primary;
     text-decoration: none;
     transition: $transition-base;
-    
-    &:hover {
-        text-decoration: underline;
-    }
+
+    // &:hover {
+    //     text-decoration: underline;
+    // }
 }
 
-button, .btn {
+button,
+.btn {
     font-family: $font-family-body;
     font-weight: 600;
 }

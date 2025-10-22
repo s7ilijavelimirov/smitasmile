@@ -1,44 +1,4 @@
 // ============================================
-// TIPOGRAFIJA - FONTOVI (PRE BOOTSTRAPA)
-// ============================================
-$font-family-heading: "Lora", serif;
-$font-family-body: "Poppins", sans-serif;
-$font-family-base: $font-family-body;
-$font-family-body: 1rem;
-$font-family-base: 1rem;
-
-$font-size-base: 1rem;
-$font-size-h1: 4rem;
-$font-size-h2: 2.8rem;
-$font-size-h3: 2.2rem;
-$font-size-h4: 1.6rem;
-$font-size-large: 1.4rem;
-$font-size-base: 1rem;
-$font-size-small: 0.9rem;
-
-$line-height-heading: 1.2em;
-$line-height-body: 1.5em;
-$line-height-base: 1.5;
-
-// ============================================
-// BOOTSTRAP OVERRIDE - FONTOVI
-// ============================================
-$body-font-family: $font-family-body;
-$body-font-size: $font-size-base;
-$body-font-weight: 400;
-$body-line-height: $line-height-body;
-
-// ============================================
-// BOJE - SMITASMILE (Minimalist Dark/Light)
-// ============================================
-$primary: #000000; // Crna - tekst na svetlom
-$secondary: #ffffff; // Bela - tekst na tamnom
-$accent: #1f1f1f; // Tamno siva - hover/active stanja
-$light-accent: #e7e7e7; // Svetla siva - borders, backgrounds
-$gray: #999999; // Medium siva
-$light-gray: #f5f5f5; // Velmi svetla siva - backgrounds
-
-// ============================================
 // TIPOGRAFIJA - FONTOVI
 // ============================================
 $font-family-heading: "Lora", serif;
@@ -52,7 +12,7 @@ $font-size-h1: 4rem;
 $font-size-h2: 2.8rem;
 $font-size-h3: 2.2rem;
 $font-size-h4: 1.6rem;
-$font-size-large: 1.4rem;
+$font-size-large: 1.6rem;
 $font-size-base: 1rem;
 $font-size-small: 0.9rem;
 
@@ -62,6 +22,17 @@ $font-size-small: 0.9rem;
 $line-height-heading: 1.2em;
 $line-height-body: 1.5em;
 $line-height-base: 1.5;
+
+// ============================================
+// BOJE - SMITASMILE (Minimalist Dark/Light)
+// ============================================
+$primary: #000000; // Crna - tekst na svetlom
+$secondary: #ffffff; // Bela - tekst na tamnom
+$accent: #1f1f1f; // Tamno siva - hover/active stanja
+$dark-accent: #111111;
+$light-accent: #e7e7e7; // Svetla siva - borders, backgrounds
+$gray: #999999; // Medium siva
+$light-gray: #f5f5f5; // Vrlo svetla siva - backgrounds
 
 // ============================================
 // SPACING
@@ -79,7 +50,7 @@ $spacing-3xl: 4rem;
 // BORDER & RADIUS
 // ============================================
 $border-radius: 10px;
-$border-radius-lg: 8px;
+$border-radius-lg: 20px;
 $border-radius-sm: 2px;
 $border-width: 1px;
 
@@ -104,3 +75,73 @@ $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
 $breakpoint-2xl: 1400px;
+
+// ============================================
+// BOOTSTRAP OVERRIDES
+// ============================================
+$body-font-family: $font-family-body;
+$body-font-size: $font-size-base;
+$body-font-weight: 400;
+$body-line-height: $line-height-body;
+
+// ============================================
+// BODY & TEXT COLORS
+// ============================================
+
+$body-color: $secondary; // #ffffff - bela
+$body-bg: $primary; // #000000 - crna pozadina
+
+// Paragraf boja
+$text-color: $secondary; // #ffffff
+// ============================================
+// BOOTSTRAP CONTAINER OVERRIDES
+// ============================================
+
+// Preispravi Bootstrap container max-widths
+$container-max-widths: (
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1200px,
+    xxl: 1400px
+);
+
+// Custom container XL - 1520px
+$container-xl-custom: 1620px;
+
+// ============================================
+// CUSTOM CONTAINER CLASS
+// ============================================
+
+.container-xl-custom {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @media (min-width: 576px) {
+        max-width: 540px;
+    }
+
+    @media (min-width: 768px) {
+        max-width: 720px;
+    }
+
+    @media (min-width: 992px) {
+        max-width: 960px;
+    }
+
+    @media (min-width: 1200px) {
+        max-width: 1200px;
+    }
+
+    @media (min-width: 1400px) {
+        max-width: $container-xl-custom; // 1520px
+    }
+}
+
+// Alternativa - manje typing: .container-xxl
+.container-xxl {
+    max-width: $container-xl-custom !important;
+}

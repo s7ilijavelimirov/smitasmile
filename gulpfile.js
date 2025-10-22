@@ -71,7 +71,7 @@ gulp.task('copy-fonts', function () {
 // Development server
 gulp.task('serve', gulp.series('sass', 'copy-bootstrap-css', 'copy-bootstrap-js', 'copy-swiper-css', 'copy-swiper-js', function () {
   browserSync.init({
-    proxy: "http://smitasmile.locals7codesign",
+    proxy: "http://smitasmile.locals7codesign/",
     port: 3000,
     open: true,
     notify: false

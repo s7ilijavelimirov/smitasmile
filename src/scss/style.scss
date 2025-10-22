@@ -11,6 +11,8 @@
 
 // Komponente
 @import "components/hero-banner";
+@import "components/founter";
+@import "components/smile-makeovers";
 
 // Layout
 @import "layout/header";
@@ -22,5 +24,8 @@
 
 // Custom
 div#page {
-        background-color: black;
+    background-color: black;
+}
+p {
+    color: $text-color;
 }

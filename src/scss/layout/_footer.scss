@@ -1,9 +1,42 @@
+// ============================================
+// CUSTOM FOOTER CONTAINER (1520px)
+// ============================================
+.footer-wrapper {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+
+    @media (max-width: $breakpoint-xl) {
+        padding: 0 1.5rem;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        padding: 0 1rem;
+    }
+}
+
+// ============================================
+// SITE FOOTER - MAIN STYLES
+// ============================================
 .site-footer {
     background-color: #111;
     color: $secondary;
-    padding-top: 3rem;
-    padding-bottom: 2rem;
+    padding-top: 3.3vmax;
+    padding-bottom: 3.3vmax;
     margin-top: 5rem;
+
+    @media (max-width: $breakpoint-md) {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+        margin-top: 3rem;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        margin-top: 2rem;
+    }
 
     a {
         color: $secondary;
@@ -16,38 +49,77 @@
     }
 }
 
+// ============================================
+// FOOTER CONTAINER - GRID LAYOUT
+// ============================================
 .footer-container {
-    padding-left: 3vw;
-    padding-right: 3vw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+
+    @media (max-width: $breakpoint-lg) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr;
+    }
 }
 
-.footer-content {
-    padding-bottom: 2rem;
-    border-bottom: 1px solid $light-accent;
-}
-
+// ============================================
+// FOOTER COLUMNS
+// ============================================
 .footer-col {
-    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        margin-top: 0;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+// ============================================
+// LOGO SECTION
+// ============================================
+.footer-logo-section {
+    display: flex;
+    flex-direction: column;
 }
 
 .footer-logo {
     display: inline-block;
+    margin-bottom: 1.5rem;
 
     img {
-        height: 60px;
+        height: 65px;
         width: auto;
+        display: block;
+
+        @media (max-width: $breakpoint-md) {
+            height: 75px;
+        }
     }
 }
 
 .footer-logo-text {
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: $font-size-large;
     display: block;
+    margin-bottom: 1.5rem;
+    font-family: $font-family-heading;
 }
 
+// ============================================
+// SOCIAL LINKS
+// ============================================
 .footer-social {
     display: flex;
     gap: 1rem;
+    margin-top: 1rem;
 
     .social-link {
         display: inline-flex;
@@ -59,6 +131,7 @@
         background-color: rgba(255, 255, 255, 0.1);
         color: $secondary;
         transition: $transition-base;
+        flex-shrink: 0;
 
         svg {
             width: 20px;
@@ -68,14 +141,27 @@
         &:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
+
+        &:focus-visible {
+            outline: 2px solid $secondary;
+            outline-offset: 2px;
+        }
     }
 }
 
+// ============================================
+// FOOTER TITLES & CONTENT
+// ============================================
 .footer-title {
     font-size: $font-size-large;
-    font-weight: 700;
-    margin-bottom: 1rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
     font-family: $font-family-heading;
+    color: $secondary;
+
+    @media (max-width: $breakpoint-md) {
+        margin-bottom: 1.5rem;
+    }
 }
 
 .footer-contact-list {
@@ -84,45 +170,76 @@
     margin: 0;
 
     li {
-        margin-bottom: 0.75rem;
+        margin-bottom: 1rem;
 
         a {
             display: block;
+            color: $secondary;
+            text-decoration: none;
+
+            &:hover {
+                opacity: 0.8;
+                text-decoration: underline;
+            }
         }
     }
 }
 
 .footer-address {
     font-style: normal;
-    line-height: 1.8;
+    line-height: $line-height-body;
+    color: $secondary;
+    display: flex;
+    flex-direction: column;
 }
 
-.footer-bottom {
-    padding-top: 2rem;
-    font-size: 0.9rem;
+// ============================================
+// GOOGLE MAPS WIDGET
+// ============================================
+.footer-maps-widget {
+    iframe {
+        width: 100%;
+        height: 165px;
+        border: none;
+        border-radius: $border-radius-sm;
+        display: block;
 
-    .footer-copyright {
-        margin: 0;
-    }
-
-    .footer-menu {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        gap: 2rem;
-        justify-content: flex-end;
-        flex-wrap: wrap;
-
-        li {
-            display: inline-block;
+        @media (max-width: $breakpoint-md) {
+            height: 180px;
         }
     }
 }
 
-@media (max-width: $breakpoint-md) {
-    .footer-bottom .footer-menu {
-        justify-content: flex-start;
-        margin-top: 1rem;
+// ============================================
+// WIDGET SPECIFIC STYLING
+// ============================================
+.site-footer {
+    .widget {
+        margin-bottom: 0;
+
+        .widget-title {
+            @extend .footer-title;
+        }
+    }
+
+    .widget ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin-bottom: 0.75rem;
+
+            a {
+                color: $secondary;
+                text-decoration: none;
+                transition: $transition-base;
+
+                &:hover {
+                    opacity: 0.8;
+                    text-decoration: underline;
+                }
+            }
+        }
     }
 }

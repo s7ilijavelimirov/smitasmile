@@ -124,13 +124,13 @@
             padding: 0.75rem 0 !important;
         }
 
-        &:hover {
-            color: $accent !important;
-        }
+        // &:hover {
+        //     color: $accent !important;
+        // }
 
-        &.active {
-            color: $accent !important;
-        }
+        // &.active {
+        //     color: $accent !important;
+        // }
     }
 }
 
@@ -147,13 +147,13 @@
 
     .dropdown-arrow {
         display: inline-block;
-        width: 6px;
-        height: 6px;
+        width: 8px;
+        height: 8px;
         border-right: 2px solid currentColor;
         border-bottom: 2px solid currentColor;
         transform: rotate(45deg);
         margin-left: 0.5rem;
-        vertical-align: -2px;
+        vertical-align: 1px;
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 }
@@ -173,7 +173,7 @@
         }
 
         &:hover > .nav-link {
-            color: $accent !important;
+            // color: $accent !important;
 
             .dropdown-arrow {
                 transform: rotate(225deg) translateY(-2px);
@@ -203,19 +203,20 @@
     top: 100%;
     left: 0;
     z-index: 1000;
-    background-color: $secondary;
+    background-color: $accent;
     border: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border-radius: $border-radius;
-    padding: 0.75rem 0;
+    padding: 0;
     min-width: 220px;
     margin-top: 0.5rem;
+    overflow: hidden;
     list-style: none;
     margin: 0;
 
     @media (max-width: 992px) {
         position: static;
-        background-color: rgba(255, 255, 255, 0.08);
+        background-color: $accent;
         box-shadow: none;
         padding: 0.5rem 0 0.5rem 1.5rem;
         margin-top: 0.5rem;
@@ -241,9 +242,9 @@
         list-style: none;
 
         .nav-link {
-            color: $primary !important;
-            padding: 0.75rem 1.5rem;
-            font-weight: 500;
+            color: $secondary !important;
+            padding: 0.8rem;
+            font-weight: 400;
             display: block;
             white-space: nowrap;
             transition: $transition-base;
@@ -257,7 +258,7 @@
             &:hover {
                 background-color: $light-gray;
                 color: $accent !important;
-                padding-left: 1.75rem;
+                padding-left: 1rem;
 
                 @media (max-width: 992px) {
                     background-color: transparent;
@@ -267,7 +268,7 @@
 
             &.active {
                 background-color: $light-accent;
-                color: $accent !important;
+                color: $primary !important;
             }
         }
     }
@@ -287,11 +288,11 @@
     .btn-outline-light {
         border-color: $secondary;
         color: $secondary;
-        border-width: 2px;
-        padding: 0.6rem 1.5rem;
-        font-weight: 600;
+        border-width: 1px;
+        padding: 1rem 1.3rem;
+        font-weight: 400;
         transition: $transition-base;
-
+        font-size: 1rem;
         @media (max-width: 991px) {
             width: 100%;
             text-align: center;
@@ -322,21 +323,5 @@
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-// ============================================
-// MAIN CONTENT PADDING
-// ============================================
-
-#primary {
-    padding-top: 150px;
-
-    @media (max-width: 991px) {
-        padding-top: 180px;
-    }
-
-    @media (max-width: 576px) {
-        padding-top: 130px;
     }
 }

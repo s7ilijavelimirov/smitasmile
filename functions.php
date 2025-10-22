@@ -11,7 +11,7 @@ if (! defined('_S_VERSION')) {
 function theme_setup()
 {
 	// Text domain za prevode
-	load_theme_textdomain('mytheme', get_template_directory() . '/languages');
+	load_theme_textdomain('smitasmile', get_template_directory() . '/languages');
 
 	// Osnovna podrška
 	add_theme_support('title-tag');
@@ -31,9 +31,9 @@ function theme_setup()
 
 	// Meni
 	register_nav_menus(array(
-		'primary'   => __('Glavni meni', 'mytheme'),
-		'secondary' => __('Sekundarni meni', 'mytheme'),
-		'footer'    => __('Footer meni', 'mytheme'),
+		'primary'   => __('Glavni meni', 'smitasmile'),
+		'secondary' => __('Sekundarni meni', 'smitasmile'),
+		'footer'    => __('Footer meni', 'smitasmile'),
 	));
 
 	// Slike
@@ -45,6 +45,10 @@ add_action('after_setup_theme', 'theme_setup');
 // Disable Gutenberg (Block Editor) - koristi Classic Editor
 add_filter('use_block_editor_for_post', '__return_false');
 add_filter('use_block_editor_for_post_type', '__return_false');
+
+// Disable Block Widgets - koristi Classic Widget Editor
+add_filter('gutenberg_use_widgets_block_editor', '__return_false');
+add_filter('use_widgets_block_editor', '__return_false');
 
 // Disable Gutenberg styles
 add_action('wp_enqueue_scripts', function () {
@@ -72,16 +76,16 @@ function theme_enqueue_scripts()
 	// CSS - Redosled je bitan: Bootstrap → Swiper → Tvoj custom style
 	wp_enqueue_style('bootstrap-css', get_template_directory_uri() . '/dist/css/bootstrap.min.css', array(), _S_VERSION);
 	wp_enqueue_style('swiper-css', get_template_directory_uri() . '/dist/css/swiper-bundle.min.css', array(), _S_VERSION);
-	wp_enqueue_style('mytheme-style', get_template_directory_uri() . '/dist/css/style.min.css', array(), _S_VERSION);
+	wp_enqueue_style('smitasmile-style', get_template_directory_uri() . '/dist/css/style.min.css', array(), _S_VERSION);
 
 	// JS
 	wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/dist/js/bootstrap.bundle.min.js', array(), _S_VERSION, true);
 	wp_enqueue_script('swiper-js', get_template_directory_uri() . '/dist/js/swiper-bundle.min.js', array(), _S_VERSION, true);
-	wp_enqueue_script('mytheme-main', get_template_directory_uri() . '/dist/js/main.min.js', array('swiper-js'), _S_VERSION, true);
+	wp_enqueue_script('smitasmile-main', get_template_directory_uri() . '/dist/js/main.min.js', array('swiper-js'), _S_VERSION, true);
 
-	wp_localize_script('mytheme-main', 'mythemeAjax', array(
+	wp_localize_script('smitasmile-main', 'smitasmileAjax', array(
 		'ajaxurl' => admin_url('admin-ajax.php'),
-		'nonce'   => wp_create_nonce('mytheme_nonce'),
+		'nonce'   => wp_create_nonce('smitasmile_nonce'),
 	));
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -94,40 +98,49 @@ add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
 function theme_widgets_init()
 {
 	register_sidebar(array(
-		'name'          => __('Primarna sidebara', 'mytheme'),
+		'name'          => __('Primarna sidebara', 'smitasmile'),
 		'id'            => 'primary-sidebar',
-		'description'   => __('Glavna sidebara', 'mytheme'),
+		'description'   => __('Glavna sidebara', 'smitasmile'),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
 	));
 
+	// Widget 1: Logo & Social (ostaje hardkodiran, slike se menjaju iz Customizer-a)
 	register_sidebar(array(
-		'name'          => __('Footer zona 1', 'mytheme'),
-		'id'            => 'footer-1',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'name'          => esc_html__('Footer - Logo & Social', 'smitasmile'),
+		'id'            => 'footer-logo-social',
+		'before_widget' => '<div id="%1$s" class="footer-widget %2$s">',
 		'after_widget'  => '</div>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
 	));
 
+	// Widget 2: Contact Info (tekstualni sadržaj - za prevode)
 	register_sidebar(array(
-		'name'          => __('Footer zona 2', 'mytheme'),
-		'id'            => 'footer-2',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'name'          => esc_html__('Footer - Contact Info', 'smitasmile'),
+		'id'            => 'footer-contact',
+		'before_widget' => '<div id="%1$s" class="footer-widget %2$s">',
 		'after_widget'  => '</div>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
+		'before_title'  => '<h4 class="footer-title">',
+		'after_title'   => '</h4>',
 	));
 
+	// Widget 3: Address (tekstualni - za prevode)
 	register_sidebar(array(
-		'name'          => __('Footer zona 3', 'mytheme'),
-		'id'            => 'footer-3',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'name'          => esc_html__('Footer - Address', 'smitasmile'),
+		'id'            => 'footer-address',
+		'before_widget' => '<div id="%1$s" class="footer-widget %2$s">',
 		'after_widget'  => '</div>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
+		'before_title'  => '<h4 class="footer-title">',
+		'after_title'   => '</h4>',
+	));
+
+	// Widget 4: Google Maps (zakucan iframe)
+	register_sidebar(array(
+		'name'          => esc_html__('Footer - Google Maps', 'smitasmile'),
+		'id'            => 'footer-maps',
+		'before_widget' => '<div id="%1$s" class="footer-widget footer-maps-widget %2$s">',
+		'after_widget'  => '</div>',
 	));
 }
 add_action('widgets_init', 'theme_widgets_init');
@@ -142,7 +155,7 @@ add_filter('excerpt_length', 'theme_custom_excerpt_length');
 // Prilagođeni excerpt više
 function theme_custom_excerpt_more()
 {
-	return ' ... <a href="' . get_permalink() . '">' . __('Pročitaj više', 'mytheme') . '</a>';
+	return ' ... <a href="' . get_permalink() . '">' . __('Pročitaj više', 'smitasmile') . '</a>';
 }
 add_filter('excerpt_more', 'theme_custom_excerpt_more');
 

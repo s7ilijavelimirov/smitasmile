@@ -1,0 +1,338 @@
+// ============================================
+// HERO SECTION - HOMEPAGE WITH SWIPER
+// ============================================
+
+.hero-section {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	width: 100%;
+
+	@media (max-width: $breakpoint-lg) {
+		min-height: 90vh;
+	}
+
+	@media (max-width: $breakpoint-md) {
+		min-height: 80vh;
+	}
+
+	@media (max-width: $breakpoint-sm) {
+		min-height: 70vh;
+	}
+}
+
+// ============================================
+// VIDEO BACKGROUND
+// ============================================
+
+.hero-video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	z-index: 0;
+}
+
+// ============================================
+// SWIPER SLIDER
+// ============================================
+
+.hero-swiper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+}
+
+.hero-slide {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.hero-slide-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+// ============================================
+// HERO OVERLAY
+// ============================================
+
+.hero-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 100%);
+	z-index: 1;
+	pointer-events: none;
+}
+
+// ============================================
+// HERO CONTENT
+// ============================================
+
+.hero-content {
+	position: relative;
+	z-index: 2;
+	text-align: center;
+	animation: fadeInUp 1s ease-in-out;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 30vh;
+	.container {
+		max-width: 700px;
+		padding: $spacing-xl;
+
+		@media (max-width: $breakpoint-md) {
+			padding: $spacing-lg;
+		}
+
+		@media (max-width: $breakpoint-sm) {
+			padding: $spacing-md;
+		}
+	}
+}
+
+// ============================================
+// HERO HEADLINE
+// ============================================
+
+.hero-headline {
+	font-family: $font-family-heading;
+	font-size: $font-size-h2;
+	font-weight: 400;
+	line-height: $line-height-heading;
+	color: $secondary;
+	letter-spacing: -0.5px;
+	text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	word-spacing: 2px;
+	margin-bottom: $spacing-lg;
+
+	@media (max-width: $breakpoint-lg) {
+		font-size: 3rem;
+	}
+
+	@media (max-width: $breakpoint-md) {
+		font-size: 2.2rem;
+		margin-bottom: $spacing-md;
+	}
+
+	@media (max-width: $breakpoint-sm) {
+		font-size: 1.8rem;
+	}
+}
+
+// ============================================
+// HERO SUBHEADLINE
+// ============================================
+
+.hero-subheadline {
+	font-family: $font-family-body;
+	font-size: $font-size-base;
+	font-weight: 300;
+	line-height: $line-height-body;
+	color: $secondary;
+	opacity: 0.95;
+	text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+	margin-bottom: $spacing-lg;
+
+	@media (max-width: $breakpoint-md) {
+		font-size: $font-size-base;
+		margin-bottom: $spacing-md;
+	}
+
+	@media (max-width: $breakpoint-sm) {
+		font-size: 0.95rem;
+	}
+}
+
+// ============================================
+// HERO SECONDARY TEXT
+// ============================================
+
+.hero-secondary {
+	font-family: $font-family-body;
+	font-size: $font-size-base;
+	font-weight: 500;
+	color: $secondary;
+	opacity: 0.9;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+	letter-spacing: 0.5px;
+	margin-bottom: $spacing-xl;
+
+	@media (max-width: $breakpoint-md) {
+		font-size: 0.9rem;
+		margin-bottom: $spacing-lg;
+	}
+}
+
+// ============================================
+// HERO CTA BUTTON
+// ============================================
+
+.hero-content .btn-outline-light {
+	font-size: $font-size-base;
+	font-weight: 400;
+	background-color: $light-accent;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	transition: $transition-base;
+	color: $accent;
+	&:hover,
+	&:focus {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+	}
+
+	&:active {
+		transform: translateY(0);
+	}
+
+	@media (max-width: $breakpoint-md) {
+		padding: 0.6rem 1.2rem;
+		font-size: 0.9rem;
+	}
+}
+
+// ============================================
+// SWIPER PAGINATION (DOTS) - OVERRIDE DEFAULT
+// ============================================
+
+.hero-pagination.swiper-pagination {
+	position: absolute !important;
+	bottom: $spacing-2xl !important;
+	left: 50% !important;
+	right: auto !important;
+	transform: translateX(-50%) !important;
+	z-index: 3 !important;
+	width: auto !important;
+	display: flex !important;
+	gap: $spacing-md !important;
+	justify-content: center !important;
+	padding: 0 !important;
+
+	@media (max-width: $breakpoint-md) {
+		bottom: $spacing-lg !important;
+		gap: $spacing-sm !important;
+	}
+}
+
+.hero-pagination .swiper-pagination-bullet {
+	width: 12px !important;
+	height: 12px !important;
+	background-color: transparent !important;
+	border: 1px solid $secondary !important;
+	border-radius: 50% !important;
+	margin: 0 !important;
+	cursor: pointer !important;
+	transition: $transition-base !important;
+	opacity: 1 !important;
+	flex-shrink: 0;
+	&:hover {
+		background-color: rgba(255, 255, 255, 0.7) !important;
+	}
+
+	@media (max-width: $breakpoint-md) {
+		width: 10px !important;
+		height: 10px !important;
+	}
+}
+
+.hero-pagination .swiper-pagination-bullet-active {
+	background-color: white !important;
+	width: 35px !important;
+	border-radius: 6px !important;
+
+	@media (max-width: $breakpoint-md) {
+		width: 30px !important;
+	}
+}
+
+// ============================================
+// SWIPER FADE EFFECT
+// ============================================
+
+.swiper-fade .swiper-slide {
+	opacity: 0;
+	transition-property: opacity;
+}
+
+.swiper-fade .swiper-slide-active {
+	opacity: 1;
+}
+
+// ============================================
+// ANIMATIONS
+// ============================================
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+// ============================================
+// SPACING AFTER HERO
+// ============================================
+
+.hero-section {
+	& + section {
+		margin-top: $spacing-2xl;
+
+		@media (max-width: $breakpoint-md) {
+			margin-top: $spacing-xl;
+		}
+	}
+}
+
+.language-pickers li {
+	list-style: none;
+
+	&::marker {
+		display: none;
+	}
+
+	a {
+		display: inline-flex;
+		align-items: center;
+		transition: all 0.25s ease;
+
+		img {
+			width: 32px;
+			height: 22px;
+			border-radius: 3px;
+			transition: all 0.25s ease;
+		}
+
+		// Hover - Subtle scale + opacity
+		&:hover img {
+			transform: scale(1.08);
+			opacity: 0.8;
+			filter: brightness(1.05);
+		}
+
+		// Focus - Accessibility
+		&:focus-visible {
+			outline: 1px solid rgba(255, 255, 255, 0.5);
+			outline-offset: 2px;
+		}
+	}
+}

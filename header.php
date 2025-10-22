@@ -2,7 +2,7 @@
 
 /**
  * The header for our theme
- * @package mytheme
+ * @package smitasmile
  */
 ?>
 <!doctype html>
@@ -23,12 +23,12 @@
 	<div id="page" class="site">
 		<!-- Skip to content - A11y -->
 		<a class="visually-hidden-focusable skip-link" href="#primary">
-			<?php esc_html_e('Skip to content', 'mytheme'); ?>
+			<?php esc_html_e('Skip to content', 'smitasmile'); ?>
 		</a>
 
 		<!-- Header - Transparent with Dark Overlay + Sticky Hide/Show -->
 		<header id="masthead" class="site-header sticky-header">
-			<nav class="navbar navbar-expand-lg navbar-dark" role="navigation" aria-label="<?php esc_attr_e('Main Navigation', 'mytheme'); ?>" data-sticky="true">
+			<nav class="navbar navbar-expand-lg navbar-dark" role="navigation" aria-label="<?php esc_attr_e('Main Navigation', 'smitasmile'); ?>" data-sticky="true">
 				<div class="container-fluid header-container">
 					<!-- Logo / Brand -->
 					<div class="navbar-brand-wrapper">
@@ -68,7 +68,7 @@
 						data-bs-target="#navbarNavigation"
 						aria-controls="navbarNavigation"
 						aria-expanded="false"
-						aria-label="<?php esc_attr_e('Toggle navigation', 'mytheme'); ?>">
+						aria-label="<?php esc_attr_e('Toggle navigation', 'smitasmile'); ?>">
 						<span class="navbar-toggler-icon"></span>
 					</button>
 
@@ -83,7 +83,7 @@
 								'menu_class'      => 'navbar-nav gap-3',
 								'fallback_cb'     => 'wp_page_menu',
 								'walker'          => new WP_Bootstrap_NavWalker(),
-								'aria_label'      => __('Main navigation', 'mytheme'),
+								'aria_label'      => __('Main navigation', 'smitasmile'),
 							)
 						);
 						?>
@@ -94,8 +94,8 @@
 						<a
 							href="<?php echo esc_url(home_url('/book-appointment')); ?>"
 							class="btn btn-outline-light btn-sm fw-600"
-							aria-label="<?php esc_attr_e('Book Your Appointment', 'mytheme'); ?>">
-							<?php esc_html_e('Book Your Appointment', 'mytheme'); ?>
+							aria-label="<?php esc_attr_e('Book Your Appointment', 'smitasmile'); ?>">
+							<?php esc_html_e('Book Your Appointment', 'smitasmile'); ?>
 						</a>
 					</div>
 				</div>
@@ -103,4 +103,4 @@
 		</header><!-- #masthead -->
 
 		<!-- Main Content Wrapper -->
-		<main id="primary" class="site-main" style="min-height:300vh;">
+		<main id="primary" class="site-main" style="min-height:100vh;">
