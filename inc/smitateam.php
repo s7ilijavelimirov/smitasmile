@@ -89,3 +89,43 @@ function smitasmile_register_team_taxonomy() {
     register_taxonomy('team_category', array('smita_team'), $args);
 }
 add_action('init', 'smitasmile_register_team_taxonomy');
+
+// ============================================
+// CUSTOM COLUMNS - Admin List
+// ============================================
+
+function smitasmile_team_columns( $columns ) {
+    // Photo kolona na kraju
+    $thumbnail = isset($columns['thumbnail']) ? $columns['thumbnail'] : __('Photo', 'smitasmile');
+    unset($columns['thumbnail']);
+    $columns['thumbnail'] = $thumbnail;
+    return $columns;
+}
+add_filter('manage_smita_team_posts_columns', 'smitasmile_team_columns');
+
+// ============================================
+// DISPLAY THUMBNAIL IN COLUMN
+// ============================================
+
+function smitasmile_team_column_content( $column, $post_id ) {
+    if ($column === 'thumbnail') {
+        if (has_post_thumbnail($post_id)) {
+            echo get_the_post_thumbnail($post_id, array(60, 60), array(
+                'style' => 'width: 150px; height: 150px; object-fit: cover; border-radius: 4px;'
+            ));
+        } else {
+            echo '<span style="color: #999; font-size: 12px;">' . esc_html__('No image', 'smitasmile') . '</span>';
+        }
+    }
+}
+add_action('manage_smita_team_posts_custom_column', 'smitasmile_team_column_content', 10, 2);
+
+// ============================================
+// MAKE COLUMN SORTABLE (optional)
+// ============================================
+
+function smitasmile_team_sortable_columns( $sortable_columns ) {
+    $sortable_columns['thumbnail'] = 'thumbnail';
+    return $sortable_columns;
+}
+add_filter('manage_edit-smita_team_sortable_columns', 'smitasmile_team_sortable_columns');
