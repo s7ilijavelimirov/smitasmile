@@ -169,3 +169,8 @@ remove_action('wp_head', 'wp_generator');
 remove_action('wp_head', 'rest_output_link_wp_head', 10);
 remove_action('wp_head', 'wp_shortlink_wp_head', 10);
 require_once get_template_directory() . '/inc/template-tags.php';
+function smitasmile_register_pll_strings()
+{
+	pll_register_string('treatments_faq', __('FAQ', 'smitasmile'), 'Treatments');
+}
+add_action('init', 'smitasmile_register_pll_strings');

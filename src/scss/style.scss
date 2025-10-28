@@ -11,10 +11,12 @@
 
 // Komponente
 @import "components/hero-banner";
+@import "components/intro";
 @import "components/founter";
 @import "components/smile-makeovers";
 @import "components/treatments";
 @import "components/partners";
+@import "components/team";
 
 // Layout
 @import "layout/header";
@@ -24,6 +26,7 @@
 @import "pages/home";
 @import "pages/single";
 @import "pages/team-page";
+@import "pages/treatments-page";
 
 // Custom
 div#page {

@@ -12,6 +12,9 @@
 	<meta charset="<?php bloginfo('charset'); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="<?php bloginfo('description'); ?>">
+	<?php if (is_singular('page')) : ?>
+		<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+	<?php endif; ?>
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<link rel="icon" type="image/webp" href="<?php echo esc_url(get_template_directory_uri() . '/dist/img/favicon.webp'); ?>">
 	<?php wp_head(); ?>
