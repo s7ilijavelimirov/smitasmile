@@ -63,7 +63,7 @@ get_header();
 				$is_even = ($counter % 2) === 0;
 		?>
 
-				<div class="row align-items-start smita-box">
+				<div class="row align-items-start smita-box mb-7 mb-md-8 mb-xl-9">
 
 					<!-- LEFT: Content -->
 					<div class="col-lg-7 mt-0 <?php echo $is_even ? 'order-lg-2' : ''; ?>">

@@ -1,5 +1,5 @@
 // ============================================
-// SITE HEADER - STICKY WITH TRANSPARENT/BLACK
+// SITE HEADER - STICKY
 // ============================================
 
 .site-header {
@@ -32,6 +32,30 @@
         padding-bottom: 1.2vw;
         padding-left: 3vw;
         padding-right: 3vw;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        @media (max-width: $breakpoint-lg) {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        @media (max-width: $breakpoint-md) {
+            padding-top: 0.875rem;
+            padding-bottom: 0.875rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        @media (max-width: $breakpoint-sm) {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            padding-left: 0.875rem;
+            padding-right: 0.875rem;
+        }
     }
 }
 
@@ -42,16 +66,37 @@
 .navbar-brand-wrapper {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .navbar-brand {
     color: $secondary !important;
     margin: 0;
     padding: 0;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: $transition-base;
 
     img {
         height: 64px;
         width: auto;
+        display: block;
+        transition: $transition-base;
+        @media (max-width: $breakpoint-2xl) {
+            height: 55px;
+        }
+        @media (max-width: $breakpoint-lg) {
+            height: 50px;
+        }
+
+        @media (max-width: $breakpoint-md) {
+            height: 45px;
+        }
+
+        @media (max-width: $breakpoint-sm) {
+            height: 40px;
+        }
     }
 
     small {
@@ -59,51 +104,44 @@
         letter-spacing: 0.05em;
     }
 
-    @media (max-width: $breakpoint-lg) {
-        img {
-            height: 50px;
-        }
-    }
-
-    @media (max-width: $breakpoint-md) {
-        img {
-            height: 40px;
-        }
+    &:hover {
+        opacity: 0.8;
     }
 }
 
 // ============================================
-// MOBILE TOGGLER
+// DESKTOP NAVIGATION
 // ============================================
 
-.navbar-toggler {
-    border-color: $secondary;
+.navbar-nav-desktop {
+    display: none;
+    flex: 1;
+    justify-content: center;
 
-    .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23fff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    }
-
-    &:focus {
-        box-shadow: none;
+    @media (min-width: 993px) {
+        display: flex;
     }
 }
-
-// ============================================
-// NAVBAR NAVIGATION
-// ============================================
 
 .navbar-nav {
     gap: 1.5rem;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
-    @media (max-width: $breakpoint-lg) {
+    @media (max-width: 992px) {
         flex-direction: column;
         gap: 0;
+        width: 100%;
     }
 
     .nav-item {
         position: relative;
+        width: auto;
+        list-style: none;
 
-        @media (max-width: $breakpoint-lg) {
+        @media (max-width: 992px) {
             width: 100%;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
@@ -115,83 +153,161 @@
 
     .nav-link {
         color: $secondary !important;
-        font-weight: 500;
+        font-weight: 400;
         transition: $transition-base;
-        padding: 0.5rem 0;
-
-        @media (max-width: $breakpoint-lg) {
+        text-decoration: none;
+        position: relative;
+        @media (max-width: 992px) {
             display: block;
-            padding: 0.75rem 0 !important;
+            padding: 1rem 1.5rem !important;
+            font-size: 1rem;
+            border-bottom: none;
+        }
+        // @media (max-width: $breakpoint-2xl) {
+        //     padding: 5px !important;
+        //     font-size: 0.95rem;
+        // }
+        @media (max-width: $breakpoint-xl) {
+            font-size: 0.95rem;
+            padding-right: 4px;
+            padding-left: 4px;
+        }
+        @media (max-width: $breakpoint-md) {
+            padding: 0.875rem 1.25rem !important;
         }
 
-        // &:hover {
-        //     color: $accent !important;
-        // }
-
-        // &.active {
-        //     color: $accent !important;
-        // }
+        @media (max-width: $breakpoint-sm) {
+            padding: 0.875rem 1.1rem !important;
+        }
+    }
+    a.nav-link.active {
+        @media (max-width: $breakpoint-lg) {
+            color: $primary !important;
+            background-color: $secondary;
+        }
     }
 }
 
 // ============================================
-// DROPDOWN TOGGLE - CUSTOM ARROW
+// DROPDOWN TOGGLE - PLUS TO MINUS ANIMATION
 // ============================================
 
 .dropdown-toggle {
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0rem;
+    position: relative;
 
-    &::after {
-        display: none;
+    // Horizontalna linija (ostaje uvek vidljiva)
+    &::before {
+        content: "";
+        position: absolute;
+        right: -9px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 12px;
+        height: 2px;
+        background-color: $secondary;
+        border-radius: 2px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        @media (max-width: 992px) {
+            right: 1rem;
+        }
     }
 
-    .dropdown-arrow {
-        display: inline-block;
-        width: 8px;
-        height: 8px;
-        border-right: 2px solid currentColor;
-        border-bottom: 2px solid currentColor;
-        transform: rotate(45deg);
-        margin-left: 0.5rem;
-        vertical-align: 1px;
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    // Vertikalna linija - rotira se u minus
+    &::after {
+        content: "" !important;
+        position: absolute !important;
+        right: -4px;
+        top: 50% !important;
+        transform: translateY(-50%) rotate(0deg) !important;
+        width: 2px !important;
+        height: 12px !important;
+        background-color: $secondary !important;
+        border-radius: 2px !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        vertical-align: 0 !important;
+
+        @media (max-width: 992px) {
+            right: 1.3rem;
+        }
+    }
+
+    // Desktop - hover state
+    @media (min-width: 993px) {
+        &:hover {
+            &::before,
+            &::after {
+                background-color: $accent;
+            }
+
+            &::after {
+                transform: translateY(-50%) rotate(90deg) !important;
+            }
+        }
+    }
+
+    // Kada je dropdown otvoren - svi browseri
+    &[aria-expanded="true"] {
+        &::before {
+        }
+
+        &::after {
+            transform: translateY(-50%) rotate(90deg) !important;
+        }
     }
 }
 
 // ============================================
-// DROPDOWN STYLES
+// DROPDOWN MENU
 // ============================================
 
 .dropdown {
     position: relative;
 
-    // Desktop - hover
+    // Desktop - hover trigger
     @media (min-width: 993px) {
         &:hover > .dropdown-menu {
-            display: block;
+            display: block !important;
             animation: slideDown 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         &:hover > .nav-link {
-            // color: $accent !important;
+            &::before,
+            &::after {
+                background-color: $accent;
+            }
 
-            .dropdown-arrow {
-                transform: rotate(225deg) translateY(-2px);
+            &::after {
+                transform: translateY(-50%) rotate(90deg) !important;
             }
         }
     }
 
-    // Mobile - click
+    // Mobile - Bootstrap .show class
     @media (max-width: 992px) {
         &.show > .dropdown-menu {
-            display: block;
+            display: block !important;
+            max-height: 500px !important;
+            opacity: 1;
         }
 
         &.show > .nav-link {
-            color: $accent !important;
+            color: $secondary !important;
 
-            .dropdown-arrow {
-                transform: rotate(225deg);
+            &::before,
+            &::after {
+                background-color: $accent;
+            }
+
+            &::after {
+                transform: translateY(-50%) rotate(90deg) !important;
             }
         }
     }
@@ -215,27 +331,23 @@
     margin: 0;
 
     @media (max-width: 992px) {
-        position: static;
-        background-color: $accent;
+        display: block !important;
+        position: static !important;
+        background-color: transparent;
         box-shadow: none;
-        padding: 0.5rem 0 0.5rem 1.5rem;
-        margin-top: 0.5rem;
+        padding: 0;
+        margin: 0 !important;
         border-radius: 0;
         min-width: 100%;
-    }
-
-    &.submenu {
-        left: 100%;
-        top: 0;
-        margin-left: 0.5rem;
-
-        @media (max-width: 992px) {
-            left: 0;
-            background-color: transparent;
-            padding-left: 1.5rem;
-            margin-left: 0;
-            margin-top: 0.25rem;
-        }
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        inset: auto !important;
+        transform: none !important;
     }
 
     .nav-item {
@@ -248,11 +360,17 @@
             display: block;
             white-space: nowrap;
             transition: $transition-base;
+            font-size: 0.95rem;
 
             @media (max-width: 992px) {
                 color: $secondary !important;
-                padding: 0.5rem 0;
+                padding: 0.75rem 1.5rem !important;
                 white-space: normal;
+                font-size: 0.9rem;
+            }
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: 0.9rem;
             }
 
             &:hover {
@@ -262,55 +380,175 @@
 
                 @media (max-width: 992px) {
                     background-color: transparent;
-                    padding-left: 0;
+                    padding-left: 1.5rem !important;
+                    color: $accent !important;
                 }
-            }
-
-            &.active {
-                background-color: $light-accent;
-                color: $primary !important;
             }
         }
     }
 }
 
 // ============================================
-// CTA BUTTON
+// MOBILE HAMBURGER
 // ============================================
 
-.ms-lg-auto {
-    @media (max-width: 991px) {
-        width: 100%;
-        padding: 1rem 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+.navbar-toggler {
+    border: none;
+    padding: 0.25rem 0;
+    transition: $transition-base;
+    margin-left: auto;
+
+    &:focus {
+        box-shadow: none;
+        outline: 2px solid $secondary;
+        outline-offset: 2px;
     }
 
-    .btn-outline-light {
-        border-color: $secondary;
-        color: $secondary;
-        border-width: 1px;
-        padding: 1rem 1.3rem;
-        font-weight: 400;
-        transition: $transition-base;
-        font-size: 1rem;
-        @media (max-width: 991px) {
+    // .navbar-toggler-icon {
+    //     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23fff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    //     width: 24px;
+    //     height: 24px;
+    //     background-size: contain;
+    //     background-repeat: no-repeat;
+    //     display: block;
+
+    //     @media (max-width: $breakpoint-sm) {
+    //         width: 20px;
+    //         height: 20px;
+    //     }
+    // }
+}
+
+// ============================================
+// OFFCANVAS MOBILE MENU
+// ============================================
+
+.offcanvas-mobile {
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.98) 0%, rgba(10, 10, 10, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    width: 100% !important;
+
+    @media (min-width: 993px) {
+        display: none !important;
+    }
+
+    .offcanvas-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1rem 1.5rem;
+
+        @media (max-width: $breakpoint-sm) {
+            padding: 0.875rem 1rem;
+        }
+
+        .btn-close {
+            width: 24px;
+            height: 24px;
+            background-color: transparent;
+            border: none;
+            opacity: 1;
+
+            &:focus {
+                box-shadow: none;
+                outline: 2px solid $secondary;
+                outline-offset: 2px;
+            }
+
+            &::after {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%23fff' d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+            }
+        }
+    }
+
+    .offcanvas-body {
+        padding: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        .navbar-nav {
             width: 100%;
-            text-align: center;
+            gap: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        // Kada se dropdown otvori sa .show klasa
+        .dropdown-menu.show {
+            display: block !important;
+            max-height: 500px !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 1;
+        }
+    }
+
+    .navbar-brand-offcanvas {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        transition: $transition-base;
+
+        img {
+            height: 50px;
+            width: auto;
+            display: block;
         }
 
         &:hover {
-            background-color: $secondary;
-            color: $primary;
-            border-color: $secondary;
-        }
-
-        &:focus {
-            outline: 2px solid $secondary;
-            outline-offset: 2px;
+            opacity: 0.8;
         }
     }
 }
 
+.offcanvas-cta {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 1rem;
+
+    @media (max-width: $breakpoint-sm) {
+        padding: 1rem;
+    }
+
+    .btn {
+        padding: 0.875rem 1rem;
+        font-size: 0.95rem;
+        width: 100%;
+
+        @media (max-width: $breakpoint-sm) {
+            padding: 0.75rem 0.875rem;
+            font-size: 0.85rem;
+        }
+    }
+}
+
+// ============================================
+// CTA BUTTON - DESKTOP
+// ============================================
+.header-container {
+    .btn-outline-light {
+        @media (max-width: $breakpoint-2xl) {
+            padding: $spacer;
+            font-size: $font-size-small;
+        }
+        &.phone {
+            background-color: $light-accent;
+            svg {
+                scale: 2;
+                width: 1rem;
+                height: auto;
+                &:hover {
+                    animation: tilt-shaking 0.5s;
+                    animation-iteration-count: infinite;
+                }
+            }
+        }
+    }
+}
+@keyframes tilt-shaking {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0eg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
 // ============================================
 // ANIMATIONS
 // ============================================

@@ -1,0 +1,455 @@
+// ============================================
+// GALLERY CONTENT - SPACING ISPOD FIXED HEADERA
+// ============================================
+
+.gallery-content {
+    padding-top: 150px;
+    padding-bottom: 60px;
+
+    @media (max-width: $breakpoint-lg) {
+        padding-top: 130px;
+    }
+
+    @media (max-width: $breakpoint-md) {
+        padding-top: 110px;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        padding-top: 90px;
+    }
+}
+
+// ============================================
+// CTA SECTION - GALLERY
+// ============================================
+
+.gallery-cta-section {
+    margin-bottom: 3rem;
+
+    @media (max-width: $breakpoint-md) {
+        margin-bottom: 2.5rem;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        margin-bottom: 2rem;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem 1.5rem;
+
+        @media (max-width: $breakpoint-md) {
+            padding: 0.875rem 1.25rem;
+            gap: 0.6rem;
+        }
+
+        @media (max-width: $breakpoint-sm) {
+            width: 100%;
+            justify-content: center;
+            max-width: 300px;
+        }
+
+        svg {
+            flex-shrink: 0;
+        }
+
+        span {
+            font-weight: 400;
+            white-space: nowrap;
+
+            @media (max-width: $breakpoint-sm) {
+                white-space: normal;
+            }
+        }
+    }
+}
+// ============================================
+// GALLERY PAGE - MASONRY LAYOUT
+// ============================================
+
+.gallery-masonry-wrapper {
+    width: 100%;
+}
+
+.gallery-header {
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+
+    .gallery-title {
+        font-size: $font-size-h1;
+        font-weight: 700;
+        margin-bottom: $spacing-lg;
+        color: $secondary;
+        line-height: $line-height-heading;
+
+        @media (max-width: $breakpoint-md) {
+            font-size: $font-size-h2;
+        }
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: $font-size-h3;
+        }
+    }
+
+    .gallery-description {
+        font-size: $font-size-large;
+        color: $gray;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: $line-height-body;
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: $font-size-base;
+        }
+    }
+}
+
+// ============================================
+// MASONRY GRID - HIDE DO LAYOUT
+// ============================================
+
+.gallery-masonry {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+
+.gallery-masonry.ready {
+    opacity: 1;
+}
+
+// ============================================
+// GALLERY ITEMS
+// ============================================
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: $transition-base;
+    flex: 0 0 auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+        filter: brightness(0.9);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+        .gallery-image {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            opacity: 1;
+        }
+    }
+}
+
+.gallery-figure {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease-out;
+    display: block;
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: $spacing-lg;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+.gallery-image-title {
+    color: $secondary;
+    font-weight: 400;
+    margin: 0;
+    line-height: $line-height-body;
+    word-wrap: break-word;
+    font-size: $font-size-base;
+}
+
+.gallery-placeholder {
+    padding: $spacing-3xl $spacing-lg;
+    text-align: center;
+    background: $light-gray;
+    border: 2px dashed $light-accent;
+
+    p {
+        color: $gray;
+        font-size: $font-size-base;
+        margin: $spacing-sm 0;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+// ============================================
+// LIGHTBOX MODAL
+// ============================================
+
+.gallery-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.3s ease-out,
+        visibility 0.3s ease-out;
+    padding: $spacing-lg;
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.lightbox-container {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    max-width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: slideInLightbox 0.3s ease-out;
+
+    @media (max-width: $breakpoint-md) {
+        height: 85vh;
+        max-height: 85vh;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        height: 80vh;
+        max-height: 80vh;
+        padding: 0;
+    }
+}
+
+@keyframes slideInLightbox {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.lightbox-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-lg;
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center;
+    width: auto;
+    height: auto;
+}
+
+.lightbox-title {
+    color: $secondary;
+    font-weight: 400;
+    text-align: center;
+    font-size: $font-size-large;
+    max-width: 90%;
+    margin: 0;
+    word-wrap: break-word;
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: $font-size-base;
+    }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease-out;
+    z-index: 10000;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        width: 24px;
+        height: 2px;
+        background: $secondary;
+        transition: background 0.2s ease-out;
+    }
+
+    &::before {
+        transform: rotate(45deg);
+    }
+
+    &::after {
+        transform: rotate(-45deg);
+    }
+
+    &:hover {
+        transform: scale(1.2);
+
+        &::before,
+        &::after {
+            background: rgba($secondary, 0.8);
+        }
+    }
+
+    @media (max-width: $breakpoint-md) {
+        top: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+
+        &::before,
+        &::after {
+            width: 20px;
+        }
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        top: 8px;
+        right: 8px;
+
+        &::before,
+        &::after {
+            width: 18px;
+        }
+    }
+}
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: $secondary;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: $spacing-lg;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: $transition-base;
+    z-index: 9998;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.4);
+    }
+
+    @media (max-width: $breakpoint-md) {
+        width: 40px;
+        height: 40px;
+        padding: $spacing-md;
+        font-size: 1.2rem;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        width: 35px;
+        height: 35px;
+        padding: $spacing-sm;
+        font-size: 1rem;
+    }
+}
+
+.lightbox-prev {
+    left: 20px;
+
+    @media (max-width: $breakpoint-md) {
+        left: 10px;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        left: 5px;
+    }
+}
+
+.lightbox-next {
+    right: 20px;
+
+    @media (max-width: $breakpoint-md) {
+        right: 10px;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        right: 5px;
+    }
+}
+
+.lightbox-counter {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: $secondary;
+    font-size: $font-size-small;
+    background: rgba(0, 0, 0, 0.5);
+    padding: $spacing-sm $spacing-lg;
+    z-index: 9998;
+
+    @media (max-width: $breakpoint-sm) {
+        bottom: 10px;
+        padding: $spacing-xs ($spacing-sm);
+        font-size: 0.85rem;
+    }
+}

@@ -29,10 +29,11 @@
 			<?php esc_html_e('Skip to content', 'smitasmile'); ?>
 		</a>
 
-		<!-- Header - Transparent with Dark Overlay + Sticky Hide/Show -->
+		<!-- Header - Sticky -->
 		<header id="masthead" class="site-header sticky-header">
 			<nav class="navbar navbar-expand-lg navbar-dark" role="navigation" aria-label="<?php esc_attr_e('Main Navigation', 'smitasmile'); ?>" data-sticky="true">
 				<div class="container-fluid header-container">
+
 					<!-- Logo / Brand -->
 					<div class="navbar-brand-wrapper">
 						<?php
@@ -41,7 +42,7 @@
 							$logo = wp_get_attachment_image_src($custom_logo_id, 'full');
 							$site_title = get_bloginfo('name');
 						?>
-							<a class="navbar-brand d-flex align-items-center flex-column" href="<?php echo esc_url(home_url('/')); ?>" rel="home" aria-label="<?php echo esc_attr($site_title); ?>">
+							<a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>" rel="home" aria-label="<?php echo esc_attr($site_title); ?>">
 								<img
 									src="<?php echo esc_url($logo[0]); ?>"
 									alt="<?php echo esc_attr($site_title); ?>"
@@ -63,27 +64,15 @@
 						?>
 					</div>
 
-					<!-- Mobile Toggler -->
-					<button
-						class="navbar-toggler"
-						type="button"
-						data-bs-toggle="collapse"
-						data-bs-target="#navbarNavigation"
-						aria-controls="navbarNavigation"
-						aria-expanded="false"
-						aria-label="<?php esc_attr_e('Toggle navigation', 'smitasmile'); ?>">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-
-					<!-- Navigation Menu - Centered -->
-					<div class="collapse navbar-collapse justify-content-center" id="navbarNavigation">
+					<!-- Desktop Navigation - Centered -->
+					<div class="navbar-nav-desktop">
 						<?php
 						wp_nav_menu(
 							array(
 								'theme_location'  => 'primary',
 								'depth'           => 2,
 								'container'       => false,
-								'menu_class'      => 'navbar-nav gap-3',
+								'menu_class'      => 'navbar-nav gap-lg-1 gap-xl-3',
 								'fallback_cb'     => 'wp_page_menu',
 								'walker'          => new WP_Bootstrap_NavWalker(),
 								'aria_label'      => __('Main navigation', 'smitasmile'),
@@ -92,18 +81,113 @@
 						?>
 					</div>
 
-					<!-- CTA Button - Right Side -->
-					<div class="ms-lg-auto">
+					<!-- CTA Button - Desktop -->
+					<div class="d-none d-lg-flex gap-1">
 						<a
 							href="<?php echo esc_url(home_url('/book-appointment')); ?>"
-							class="btn btn-outline-light btn-sm fw-600"
+							class="btn btn-outline-light phone"
+							aria-label="<?php esc_attr_e('Book Your Appointment', 'smitasmile'); ?>">
+							<?php
+							$svg_path = get_template_directory() . '/dist/img/phone.svg';
+							if (file_exists($svg_path)) {
+								echo file_get_contents($svg_path);
+							}
+							?>
+						</a>
+						<a
+							href="<?php echo esc_url(home_url('/book-appointment')); ?>"
+							class="btn btn-outline-light"
 							aria-label="<?php esc_attr_e('Book Your Appointment', 'smitasmile'); ?>">
 							<?php esc_html_e('Book Your Appointment', 'smitasmile'); ?>
 						</a>
 					</div>
+
+					<!-- Mobile Offcanvas Toggle -->
+					<button
+						class="navbar-toggler d-lg-none"
+						type="button"
+						data-bs-toggle="offcanvas"
+						data-bs-target="#offcanvasNavbar"
+						aria-controls="offcanvasNavbar"
+						aria-label="<?php esc_attr_e('Toggle navigation', 'smitasmile'); ?>">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
 				</div>
 			</nav>
 		</header><!-- #masthead -->
+
+		<!-- Offcanvas Mobile Menu -->
+		<div class="offcanvas offcanvas-start offcanvas-mobile" data-bs-scroll="true" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+
+			<!-- Offcanvas Header -->
+			<div class="offcanvas-header">
+				<?php
+				if (has_custom_logo()) {
+					$custom_logo_id = get_theme_mod('custom_logo');
+					$logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+					$site_title = get_bloginfo('name');
+				?>
+					<a class="navbar-brand-offcanvas" href="<?php echo esc_url(home_url('/')); ?>" rel="home" aria-label="<?php echo esc_attr($site_title); ?>">
+						<img
+							src="<?php echo esc_url($logo[0]); ?>"
+							alt="<?php echo esc_attr($site_title); ?>"
+							width="auto"
+							height="50"
+							loading="eager"
+							decoding="async">
+					</a>
+				<?php
+				} else {
+				?>
+					<a class="navbar-brand fw-bold text-white" href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+						SMITA
+					</a>
+				<?php
+				}
+				?>
+				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
+
+			<!-- Offcanvas Body -->
+			<div class="offcanvas-body">
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location'  => 'primary',
+						'depth'           => 2,
+						'container'       => false,
+						'menu_class'      => 'navbar-nav flex-column gap-0',
+						'fallback_cb'     => 'wp_page_menu',
+						'walker'          => new WP_Bootstrap_NavWalker(),
+						'aria_label'      => __('Main navigation', 'smitasmile'),
+					)
+				);
+				?>
+
+				<!-- CTA Button in Offcanvas -->
+				<div class="offcanvas-cta mt-4 pt-3 border-top border-secondary-subtle">
+					<a
+						href="<?php echo esc_url(home_url('/book-appointment')); ?>"
+						class="btn btn-outline-light"
+						aria-label="<?php esc_attr_e('Book Your Appointment', 'smitasmile'); ?>"
+						data-bs-dismiss="offcanvas">
+						<?php esc_html_e('Book Your Appointment', 'smitasmile'); ?>
+					</a>
+				</div>
+
+			</div>
+			<div class="offcanvas-footer py-3 border-top border-secondary-subtle">
+				<div class="socials d-flex justify-content-center">
+					<?php
+					if (is_active_sidebar('footer-logo-social')):
+						dynamic_sidebar('footer-logo-social');
+					endif;
+					?>
+				</div>
+			</div>
+
+		</div>
 
 		<!-- Main Content Wrapper -->
 		<main id="primary" class="site-main" style="min-height:100vh;">

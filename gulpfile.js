@@ -7,7 +7,7 @@ const browserSync = require('browser-sync').create();
 // Development SASS task
 gulp.task('sass', function () {
   return gulp
-    .src('src/scss/**/*.scss')
+    .src('src/scss/style.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('./dist/css/'))
@@ -17,16 +17,16 @@ gulp.task('sass', function () {
 // Production SASS task (compressed)
 gulp.task('sass-prod', function () {
   return gulp
-    .src('src/scss/**/*.scss')
+    .src('src/scss/style.scss')
     .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('./dist/css/'));
 });
 
-// JavaScript task
+// JavaScript task - MAIN
 gulp.task('js', function () {
   return gulp
-    .src('src/js/*.js')
+    .src('src/js/main.js')
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('./dist/js/'))
@@ -69,7 +69,7 @@ gulp.task('copy-fonts', function () {
 });
 
 // Development server
-gulp.task('serve', gulp.series('sass', 'copy-bootstrap-css', 'copy-bootstrap-js', 'copy-swiper-css', 'copy-swiper-js', function () {
+gulp.task('serve', gulp.series('sass', 'js', 'copy-bootstrap-css', 'copy-bootstrap-js', 'copy-swiper-css', 'copy-swiper-js', function () {
   browserSync.init({
     proxy: "http://smitasmile.locals7codesign/",
     port: 3000,
@@ -83,7 +83,7 @@ gulp.task('serve', gulp.series('sass', 'copy-bootstrap-css', 'copy-bootstrap-js'
 }));
 
 // Production build
-gulp.task('build', gulp.series('sass-prod', 'js', 'copy-bootstrap-css', 'copy-bootstrap-js', 'copy-swiper-css', 'copy-swiper-js'));
+gulp.task('build', gulp.series('sass-prod', 'js', 'copy-bootstrap-css', 'copy-bootstrap-js', 'copy-swiper-css', 'copy-swiper-js', 'copy-fonts'));
 
 // Default task (development)
 gulp.task('default', gulp.series('sass', 'js', 'serve'));

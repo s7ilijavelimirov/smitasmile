@@ -33,25 +33,32 @@
         console.log('SmitaSmile - Hero Swiper initialized');
     }
 
-    // ============================================
-    // STICKY HEADER - Hide/Show on Scroll
-    // ============================================
-    const header = document.getElementById('masthead');
+    /**
+  * Sticky Header - Hide/Show on Scroll sa Transparent Top
+  */
+    (function () {
+        'use strict';
 
-    if (header) {
+        const header = document.getElementById('masthead');
+
+        if (!header) return;
+
         let lastScrollTop = 0;
         let scrollDirection = 'up';
         let scrollDistance = 0;
         const scrollThreshold = 150;
 
-        window.addEventListener('scroll', function () {
+        /**
+         * Handle scroll event
+         */
+        function handleScroll() {
             const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
-            // Promeni boju - transparent na vrhu (scrollTop < 50), crna kada se skroluje
+            // Background color - transparent na vrhu, crna nakon skrolovanja
             if (scrollTop < 50) {
-                header.style.background = 'rgba(0, 0, 0, 0)'; // Transparent
+                header.style.background = 'rgba(0, 0, 0, 0)';
             } else {
-                header.style.background = 'rgba(0, 0, 0, 0.9)'; // Crna
+                header.style.background = 'rgba(0, 0, 0, 0.9)';
             }
 
             // Detektuj smer skrolovanja
@@ -63,7 +70,7 @@
                 scrollDistance += lastScrollTop - scrollTop;
             }
 
-            // Primeni hide/show nakon threshold-a
+            // Hide/Show header nakon threshold-a
             if (scrollDistance > scrollThreshold) {
                 if (scrollDirection === 'down' && scrollTop > 100) {
                     header.classList.add('header-hidden');
@@ -76,29 +83,41 @@
             }
 
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-        }, false);
-    }
-
-    // ============================================
-    // DROPDOWN HOVER (ako trebate bez data-bs-toggle)
-    // ============================================
-    const dropdownItems = document.querySelectorAll('.navbar-nav .dropdown');
-
-    dropdownItems.forEach(function (item) {
-        const toggle = item.querySelector('.dropdown-toggle');
-        const menu = item.querySelector('.dropdown-menu');
-
-        if (toggle && menu) {
-            // Desktop - hover
-            item.addEventListener('mouseenter', function () {
-                menu.classList.add('show');
-            });
-
-            item.addEventListener('mouseleave', function () {
-                menu.classList.remove('show');
-            });
         }
-    });
+
+        /**
+         * Throttle scroll events za bolju performansu
+         */
+        let ticking = false;
+        function requestScroll() {
+            if (!ticking) {
+                window.requestAnimationFrame(handleScroll);
+                ticking = true;
+                setTimeout(() => { ticking = false; }, 100);
+            }
+        }
+
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+
+        window.addEventListener('scroll', requestScroll, { passive: true });
+
+        // Initial check - VAŽNO: resetuj na vrhu
+        handleScroll();
+
+        // Dodatni listener za preciznost na vrhu
+        window.addEventListener('scroll', () => {
+            if (window.scrollY === 0) {
+                header.style.background = 'rgba(0, 0, 0, 0)';
+                header.classList.remove('header-hidden');
+                header.classList.add('header-visible');
+            }
+        }, { passive: true });
+
+        console.log('SmitaSmile - Header Sticky Script Loaded');
+
+    })();
 
     // ============================================
     // SMOOTH SCROLL (opciono)
@@ -133,7 +152,7 @@
  * @package smitasmile
  */
 
-(function() {
+(function () {
     'use strict';
 
     /**
@@ -233,7 +252,7 @@
          */
         function onContainerClick(e) {
             if (state.isActive) return;
-            
+
             // Skip if clicking handle
             if (e.target === handle || handle.contains(e.target)) return;
 

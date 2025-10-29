@@ -11,7 +11,7 @@
     font-size: $font-size-base;
     line-height: normal;
     border-radius: $border-radius;
-    border: 2px solid;
+    border: 1px solid;
     transition: $transition-base;
     text-decoration: none;
     cursor: pointer;
@@ -35,7 +35,7 @@
     background-color: $primary;
     border-color: $primary;
     color: $secondary;
-
+    border-width: 1px;
     &:hover,
     &:focus {
         background-color: $accent;
@@ -57,7 +57,7 @@
     background-color: transparent;
     border-color: $secondary;
     color: $secondary;
-
+    padding: $spacer 1.25rem;
     &:hover,
     &:focus {
         background-color: $secondary;
@@ -69,6 +69,23 @@
         background-color: darken($secondary, 5%);
         border-color: darken($secondary, 5%);
         color: $primary;
+    }
+    &.tour {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        width: fit-content;
+        gap: 0.5rem;
+        svg {
+            width: 3rem;
+            scale: 1.1;
+        }
+        &:hover,
+        &:focus {
+            background-color: $gray;
+            border-color: $gray;
+            color: $secondary;
+        }
     }
 }
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * WP Bootstrap NavWalker za Bootstrap 5.3.8
- * Sa hover dropdown podrskom
+ * Sa offcanvas dropdown toggle podrskom
  * @package smitasmile
  */
 
@@ -53,8 +53,8 @@ class WP_Bootstrap_NavWalker extends Walker_Nav_Menu {
 
 		if ( $has_children ) {
 			$link_class .= ' dropdown-toggle';
-			// Za hover, ne trebamo data-bs-toggle
-			// $link_attrs = ' data-bs-toggle="dropdown" aria-expanded="false"';
+			// Bootstrap 5 dropdown - radi na svim nivoima
+			$link_attrs = ' data-bs-toggle="dropdown" aria-expanded="false" role="button"';
 		}
 
 		// Active link
@@ -67,9 +67,6 @@ class WP_Bootstrap_NavWalker extends Walker_Nav_Menu {
 
 		$output .= '<a class="' . esc_attr( $link_class ) . '" href="' . esc_url( $item->url ) . '"' . $link_attrs . '>';
 		$output .= $title;
-		if ( $has_children ) {
-			$output .= '<span class="dropdown-arrow"></span>';
-		}
 		$output .= '</a>';
 	}
 

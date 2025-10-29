@@ -10,20 +10,42 @@
 get_header();
 ?>
 
-<!-- Intro Section -->
-<?php get_template_part('template-parts/intro-section'); ?>
-
 <!-- Gallery Content -->
-<section class="gallery-content mt-7 mt-md-8 mt-xl-9">
-    <div class="container">
+<section class="gallery-content container-fluid">
+    <div class="container container-xxl">
         <div class="row">
             <div class="col-12">
-                <div class="gallery-placeholder">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
+                <?php
+                $gallery_cta_link = get_field('gallery_cta_link');
+                $gallery_images = get_field('gallery_images');
+                ?>
+
+                <!-- CTA Button -->
+                <?php if ($gallery_cta_link): ?>
+                    <div class="gallery-cta-section text-center mb-5">
+                        <a href="<?php echo esc_url($gallery_cta_link['url']); ?>"
+                            class="btn btn-outline-light tour"
+                            target="<?php echo esc_attr($gallery_cta_link['target'] ?: '_self'); ?>"
+                            rel="<?php echo esc_attr($gallery_cta_link['target'] === '_blank' ? 'noopener noreferrer' : ''); ?>">
+                            <?php
+                            $svg_path = get_template_directory() . '/dist/img/360.svg';
+                            if (file_exists($svg_path)) {
+                                echo file_get_contents($svg_path);
+                            }
+                            ?>
+                            <span><?php echo esc_html($gallery_cta_link['title']); ?></span>
+                        </a>
+                    </div>
+                <?php endif; ?>
+
+                <!-- Gallery Masonry Template Part -->
+                <?php get_template_part('template-parts/gallery-masonry'); ?>
             </div>
         </div>
+    </div>
+    <div class="container container-xxl">
+        <h1>Instagram Feed</h1>
+        <?php echo do_shortcode('[instagram-feed feed=1]'); ?>
     </div>
 </section>
 
