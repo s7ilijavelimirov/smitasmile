@@ -153,7 +153,7 @@ add_filter('excerpt_length', 'theme_custom_excerpt_length');
 // Prilagođeni excerpt više
 function theme_custom_excerpt_more()
 {
-	return ' ... <a href="' . get_permalink() . '">' . __('Pročitaj više', 'smitasmile') . '</a>';
+	return ' ... <a href="' . get_permalink() . '">' . __('Read more', 'smitasmile') . '</a>';
 }
 add_filter('excerpt_more', 'theme_custom_excerpt_more');
 
@@ -172,5 +172,8 @@ require_once get_template_directory() . '/inc/template-tags.php';
 function smitasmile_register_pll_strings()
 {
 	pll_register_string('treatments_faq', __('FAQ', 'smitasmile'), 'Treatments');
+	pll_register_string('book_appointment_btn', __('Book Your Appointment', 'smitasmile'), 'Buttons');
 }
 add_action('init', 'smitasmile_register_pll_strings');
+
+

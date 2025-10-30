@@ -82,7 +82,7 @@
 					</div>
 
 					<!-- CTA Button - Desktop -->
-					<div class="d-none d-lg-flex gap-1">
+					<div class="d-none d-lg-flex gap-1 justify-content-end">
 						<a
 							href="<?php echo esc_url(home_url('/book-appointment')); ?>"
 							class="btn btn-outline-light phone"
@@ -97,8 +97,8 @@
 						<a
 							href="<?php echo esc_url(home_url('/book-appointment')); ?>"
 							class="btn btn-outline-light"
-							aria-label="<?php esc_attr_e('Book Your Appointment', 'smitasmile'); ?>">
-							<?php esc_html_e('Book Your Appointment', 'smitasmile'); ?>
+							aria-label="<?php echo esc_attr(pll__('Book Your Appointment')); ?>">
+							<?php echo esc_html(pll__('Book Your Appointment')); ?>
 						</a>
 					</div>
 

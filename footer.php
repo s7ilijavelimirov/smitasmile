@@ -73,9 +73,9 @@
 			<!-- Column 4: Google Maps Widget -->
 			<div class="footer-col footer-col-4">
 				<?php
-				// if ( is_active_sidebar( 'footer-maps' ) ) {
-				// 	dynamic_sidebar( 'footer-maps' );
-				// }
+				if ( is_active_sidebar( 'footer-maps' ) ) {
+					dynamic_sidebar( 'footer-maps' );
+				}
 				?>
 			</div>
 

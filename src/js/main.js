@@ -178,12 +178,11 @@
 
         // Get elements
         const beforeLayer = container.querySelector('.ttw-before');
-        const afterLayer = container.querySelector('.ttw-after');
         const handle = container.querySelector('.ttw-handle');
 
         // Validate
-        if (!beforeLayer || !afterLayer || !handle) {
-            console.warn('Invalid slider structure');
+        if (!beforeLayer || !handle) {
+            console.warn('TTW: Invalid slider structure');
             return;
         }
 
@@ -204,33 +203,39 @@
         }
 
         /**
-         * Get bounds
+         * Get container bounds
          */
         function getBounds() {
             state.bounds = container.getBoundingClientRect();
         }
 
         /**
-         * Convert client position to percentage
+         * Convert client Y position to percentage
          */
         function posToPercent(clientY) {
             if (!state.bounds) getBounds();
             const y = clientY - state.bounds.top;
-            return (y / state.bounds.height) * 100;
+            const height = state.bounds.height;
+            return Math.max(0, Math.min(100, (y / height) * 100));
         }
 
         /**
-         * Start dragging
+         * Start dragging - može se krenuti sa bilo kog dela kontejnera
          */
         function startDrag(e) {
             e.preventDefault();
             state.isActive = true;
             getBounds();
             container.classList.add('ttw-dragging');
+            handle.classList.add('active');
+
+            // Odmah pozicioni na klik
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            updateClip(posToPercent(clientY));
         }
 
         /**
-         * Move handle
+         * Move - kontinuiran drag
          */
         function onMove(e) {
             if (!state.isActive) return;
@@ -245,44 +250,28 @@
         function endDrag() {
             state.isActive = false;
             container.classList.remove('ttw-dragging');
-        }
-
-        /**
-         * Click on container
-         */
-        function onContainerClick(e) {
-            if (state.isActive) return;
-
-            // Skip if clicking handle
-            if (e.target === handle || handle.contains(e.target)) return;
-
-            getBounds();
-            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-            updateClip(posToPercent(clientY));
+            handle.classList.remove('active');
         }
 
         // ============================================
         // EVENT LISTENERS
         // ============================================
 
-        // Mouse
-        handle.addEventListener('mousedown', startDrag);
+        // Mouse events - na ceo kontejner
+        container.addEventListener('mousedown', startDrag);
         window.addEventListener('mousemove', onMove);
         window.addEventListener('mouseup', endDrag);
 
-        // Touch
-        handle.addEventListener('touchstart', startDrag, { passive: false });
+        // Touch events - na ceo kontejner
+        container.addEventListener('touchstart', startDrag, { passive: false });
         window.addEventListener('touchmove', onMove, { passive: false });
         window.addEventListener('touchend', endDrag);
-
-        // Click to set position
-        container.addEventListener('click', onContainerClick);
 
         // ============================================
         // OBSERVERS
         // ============================================
 
-        // Resize observer - update bounds
+        // Resize observer - update bounds kada se menja veličina
         if (window.ResizeObserver) {
             const ro = new ResizeObserver(() => {
                 getBounds();
@@ -290,7 +279,7 @@
             ro.observe(container);
         }
 
-        // Intersection observer - init when visible
+        // Intersection observer - lazy init kada je vidljivo
         if (window.IntersectionObserver) {
             const io = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
@@ -307,7 +296,7 @@
         // INIT
         // ============================================
 
-        // Get starting position from data attribute
+        // Get starting position from data attribute (default 50%)
         const startPct = parseFloat(container.dataset.ttwStart) || 50;
         getBounds();
         updateClip(startPct);
