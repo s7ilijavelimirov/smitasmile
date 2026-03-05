@@ -102,9 +102,9 @@ $smile_makeovers = get_field('smile_makeovers');
 $smile_cta_link = get_field('smile_cta_link');
 
 // Polylang translations
-$text_after = function_exists('pll__') ? pll__('After') : 'After';
-$text_before = function_exists('pll__') ? pll__('Before') : 'Before';
-$text_tap = function_exists('pll__') ? pll__('Tap') : 'Tap';
+$text_after = function_exists('pll__') ? pll__('After') : __( 'After', 'smitasmile' );
+$text_before = function_exists('pll__') ? pll__('Before') : __( 'Before', 'smitasmile' );
+$text_tap = function_exists('pll__') ? pll__('Tap') : __( 'Tap', 'smitasmile' );
 
 if ($smile_makeovers && is_array($smile_makeovers)) :
 ?>

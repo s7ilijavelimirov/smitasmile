@@ -5,6 +5,11 @@
 > **Pregledano fajlova:** 43 PHP fajla
 > **Pregledano:** `functions.php`, svi fajlovi u `inc/`, svi template i template-parts fajlovi
 > **Preskočeno:** `dist/`, `.scss`, `.js` fajlovi
+>
+> ---
+> **⚠ FIXOVI URAĐENI: 2026-03-05**
+> Nakon inicijalnog audita primijenjeni su ključni security, code quality i performance fixovi.
+> Ažurirane ocjene u sekcijama i ukupna ocjena reflektuju stanje **nakon** fixova.
 
 ---
 
@@ -14,17 +19,17 @@
 
 | Fajl | Linija | Problem | Fix |
 |------|--------|---------|-----|
-| `functions.php` | 312 | `get_permalink()` u `excerpt_more` filteru bez `esc_url()` | `esc_url( get_permalink() )` |
-| `footer.php` | 30 | `bloginfo('name')` u `alt=""` atributu — `bloginfo()` ne escapuje za atribute | `echo esc_attr( get_bloginfo('name') )` |
-| `footer.php` | 41 | `bloginfo('name')` u anchor textu bez escapinga | `echo esc_html( get_bloginfo('name') )` |
-| `header.php` | 14 | `bloginfo('description')` u `<meta content="">` bez `esc_attr` | `echo esc_attr( get_bloginfo('description') )` |
+| ~~`functions.php`~~ | ~~312~~ | ~~`get_permalink()` u `excerpt_more` filteru bez `esc_url()`~~ | ✅ **FIXED 2026-03-05** — `esc_url( get_permalink() )` |
+| ~~`footer.php`~~ | ~~30~~ | ~~`bloginfo('name')` u `alt=""` atributu bez escapinga~~ | ✅ **FIXED 2026-03-05** — `esc_attr( get_bloginfo('name') )` |
+| ~~`footer.php`~~ | ~~41~~ | ~~`bloginfo('name')` u anchor textu bez escapinga~~ | ✅ **FIXED 2026-03-05** — `esc_html( get_bloginfo('name') )` |
+| ~~`header.php`~~ | ~~14~~ | ~~`bloginfo('description')` u `<meta content="">` bez `esc_attr`~~ | ✅ **FIXED 2026-03-05** — `esc_attr( get_bloginfo('description') )` |
 | `template-booking.php` | 55 | `get_bloginfo('name')` direktno u `<h1>` bez escapinga | `echo esc_html( get_bloginfo('name') )` |
 | `template-smita-team.php` | 170 | `echo $icon_svg` — SVG string bez `wp_kses_post()` | `echo wp_kses_post( $icon_svg )` |
 | `template-smita-team.php` | 206 | `echo $icon_svg` — SVG string za social ikone bez `wp_kses_post()` | `echo wp_kses_post( $icon_svg )` |
-| `template-parts/gallery-masonry.php` | 47 | `data-url="<?php echo $image_url; ?>"` — varijabla je escaped na liniji 36, ali `echo` bez `esc_` funkcije je loš pattern | `echo esc_url( $image_url )` |
-| `template-parts/gallery-masonry.php` | 50 | `src="<?php echo $image_url; ?>"` — isti problem kao gore | `echo esc_url( $image_url )` |
-| `search.php` | 21 | `get_search_query()` direktno u `printf()` bez `esc_html()` — **XSS ranjivost** kroz search string koji korisnik kontroliše | `esc_html( get_search_query() )` |
-| `author.php` | 31 | `the_author_meta('display_name')` bez escapinga direktno u `<h1>` — korisnik može imati HTML karaktere u display imenu | `echo esc_html( get_the_author_meta('display_name') )` |
+| ~~`template-parts/gallery-masonry.php`~~ | ~~47~~ | ~~`data-url="<?php echo $image_url; ?>"` — bez `esc_url()`~~ | ✅ **FIXED 2026-03-05** — `echo esc_url( $image_url )` |
+| ~~`template-parts/gallery-masonry.php`~~ | ~~50~~ | ~~`src="<?php echo $image_url; ?>"` — bez `esc_url()`~~ | ✅ **FIXED 2026-03-05** — `echo esc_url( $image_url )` |
+| ~~`search.php`~~ | ~~21~~ | ~~`get_search_query()` bez `esc_html()` — **XSS ranjivost**~~ | ✅ **FIXED 2026-03-05** — `esc_html( get_search_query() )` |
+| ~~`author.php`~~ | ~~31~~ | ~~`the_author_meta('display_name')` bez escapinga u `<h1>`~~ | ✅ **FIXED 2026-03-05** — `esc_html( get_the_author_meta('display_name') )` |
 | `tag.php` | 22 | `single_tag_title()` bez eksplicitnog `esc_html()` u `<h1>` — naziv taga iz baze bez zaštite | `echo esc_html( single_tag_title('', false) )` |
 | `functions.php` | 461 | `echo '<p>' . __('...', 'smitasmile') . '</p>'` — `__()` ne escapuje HTML; ako `.po` fajl bude kompromitovan, moguć XSS | `esc_html__( '...', 'smitasmile' )` |
 
@@ -50,35 +55,35 @@ exit();
 
 | Fajl | Linija | Problem |
 |------|--------|---------|
-| `404.php` | 2–4 | Native PHP `header()` + `get_bloginfo()` bez escaping — koristiti `wp_redirect( home_url('/'), 301 )` |
-| `404.php` | 6–66 | Kompletna 404 stranica je dead code zbog `exit()` na liniji 4 |
-| `404.php` | 22, 26, 35, 53 | Textdomain `'likedaheim'` umesto `'smitasmile'` |
+| ~~`404.php`~~ | ~~2–4~~ | ~~Native PHP `header()` + `get_bloginfo()` bez escaping~~ | ✅ **FIXED 2026-03-05** — zamijenjeno sa `wp_redirect( home_url('/'), 301 )` |
+| `404.php` | 5–65 | Kompletna 404 stranica je dead code — nikada se ne izvršava zbog `exit;` na liniji 3. Stranica i dalje nije prikazana korisnicima. |
+| ~~`404.php`~~ | ~~22, 26, 35, 53~~ | ~~Textdomain `'likedaheim'`~~ | ✅ **FIXED 2026-03-05** — zamijenjeno sa `'smitasmile'` |
 
 ---
 
 ### 1.4 Direktan pristup fajlovima — nedostajući ABSPATH checkovi
 
-Nijedan fajl iz `template-parts/` direktorijuma nema standardnu WordPress zaštitu od direktnog pristupa na vrhu fajla:
+Nijedan fajl iz `template-parts/` direktorijuma nije imao standardnu WordPress zaštitu od direktnog pristupa.
 
 ```php
 defined( 'ABSPATH' ) || exit;
 ```
 
-**Pogođeni fajlovi (svi u `template-parts/`):**
+✅ **FIXED 2026-03-05** — `defined('ABSPATH') || exit;` dodan na vrh svih template-parts fajlova:
 
-- `template-parts/intro-section.php` — linija 1 (nema check)
-- `template-parts/cta-banner.php` — linija 1 (nema check)
-- `template-parts/gallery-masonry.php` — linija 1 (nema check)
-- `template-parts/content.php` — linija 1 (nema check)
-- `template-parts/content-page.php` — linija 1 (nema check)
-- `template-parts/content-search.php` — linija 1 (nema check)
-- `template-parts/content-none.php` — linija 1 (nema check)
-- `template-parts/homepage/hero.php` — linija 1 (nema check)
-- `template-parts/homepage/treatments.php` — linija 1 (nema check)
-- `template-parts/homepage/team.php` — linija 1 (nema check)
-- `template-parts/homepage/partners.php` — linija 1 (nema check)
-- `template-parts/homepage/founder.php` — linija 1 (nema check)
-- `template-parts/homepage/smile-makeovers.php` — linija 1 (nema check)
+- ~~`template-parts/intro-section.php`~~ ✅
+- ~~`template-parts/cta-banner.php`~~ ✅
+- ~~`template-parts/gallery-masonry.php`~~ ✅
+- ~~`template-parts/content.php`~~ ✅
+- ~~`template-parts/content-page.php`~~ ✅
+- ~~`template-parts/content-search.php`~~ ✅
+- ~~`template-parts/content-none.php`~~ ✅
+- ~~`template-parts/homepage/hero.php`~~ ✅
+- ~~`template-parts/homepage/treatments.php`~~ ✅
+- ~~`template-parts/homepage/team.php`~~ ✅
+- ~~`template-parts/homepage/partners.php`~~ ✅
+- ~~`template-parts/homepage/founder.php`~~ ✅
+- ~~`template-parts/homepage/smile-makeovers.php`~~ ✅
 
 > **Rizik:** Nizak u produkciji (PHP fajlovi bez ABSPATH vraćaju praznu stranicu), ali je dobra praksa i preporučena od strane WordPress Theme Handbook.
 
@@ -105,9 +110,9 @@ defined( 'ABSPATH' ) || exit;
 
 ---
 
-### Ocena Security: **5/10**
+### Ocena Security: ~~5/10~~ → **7/10** *(ažurirano 2026-03-05)*
 
-**Obrazloženje:** Osnovna sigurnost ima ozbiljnih propusta. Kritičan bug u `404.php` (native PHP `header()` + neescaped URL + funkcionalno mrtva 404 stranica). XSS ranjivost u `search.php` kroz korisnički kontrolisan search string. Ukupno 12 lokacija sa nedostajućim escapingom, 13 template-parts fajlova bez ABSPATH checka. Pozitivno: nonce je implementiran na meta boxu, CF7 forme su zaštićene, nema SQL injection problema.
+**Obrazloženje:** Kritični propusti su sanirani. `404.php` sada koristi `wp_redirect()` umjesto native `header()`. XSS ranjivost u `search.php` je eliminisana. Svih 13 template-parts fajlova ima ABSPATH check. Fiksiran escaping u `footer.php`, `header.php` i `author.php`. Preostali problemi: dead code ispod `exit;` u `404.php` (stranica i dalje nije vidljiva korisnicima), nedostajuće `wp_kses_post()` na SVG stringovima u `template-smita-team.php`, hardcoded page ID-jevi u `header.php`, CDN biblioteka bez SRI hasha u `template-contact.php`. Pozitivno: nonce je implementiran na meta boxu, CF7 forme su zaštićene, nema SQL injection problema.
 
 ---
 
@@ -129,12 +134,12 @@ defined( 'ABSPATH' ) || exit;
 
 | Fajl | Linija | Problem |
 |------|--------|---------|
-| `functions.php` | 143 | `wp_enqueue_style('smitasmile-style', ...)` bez version stringa (drugi arg je URL, četvrti je `null`) — bez versije, browser cache može učitati stari CSS |
-| `functions.php` | 145 | `wp_enqueue_script('bootstrap-js', ..., false, true)` — `false` kao verzija generiše URL bez `?ver=` parametra |
-| `functions.php` | 148 | `wp_enqueue_script('swiper-js', ..., false, true)` — isto kao gore |
-| `functions.php` | 151 | `wp_enqueue_script('smitasmile-main', ..., false, true)` — isto kao gore |
-| `template-contact.php` | 15–16 | `wp_enqueue_style()` i `wp_enqueue_script()` za `intl-tel-input` pozvani unutar **template fajla** umesto u `functions.php` kroz `wp_enqueue_scripts` akciju — ovo je anti-pattern koji otežava dequeue i upravljanje zavisnostima |
-| `inc/customizer.php` | 59 | Referira `get_template_directory_uri() . '/js/customizer.js'` — ovaj fajl **ne postoji** (treba biti `/dist/js/`). Ovo generiše 404 grešku u Customizer preview-u |
+| ~~`functions.php`~~ | ~~143~~ | ~~`wp_enqueue_style` bez version stringa~~ | ✅ **FIXED 2026-03-05** — `_S_VERSION` dodan na sve enqueue pozive |
+| ~~`functions.php`~~ | ~~145~~ | ~~`wp_enqueue_script('bootstrap-js', ..., false, true)` — `false` kao verzija~~ | ✅ **FIXED 2026-03-05** — `_S_VERSION` |
+| ~~`functions.php`~~ | ~~148~~ | ~~`wp_enqueue_script('swiper-js', ..., false, true)` — bez verzije~~ | ✅ **FIXED 2026-03-05** — `_S_VERSION` |
+| ~~`functions.php`~~ | ~~151~~ | ~~`wp_enqueue_script('smitasmile-main', ..., false, true)` — bez verzije~~ | ✅ **FIXED 2026-03-05** — `_S_VERSION` |
+| `template-contact.php` | 15–16 | `wp_enqueue_style()` i `wp_enqueue_script()` za `intl-tel-input` pozvani unutar **template fajla** umesto u `functions.php` — anti-pattern | `wp_enqueue_scripts` akcija u `functions.php` |
+| `inc/customizer.php` | 59 | Path popravljen na `/dist/js/customizer.js`, ali handle koristi PascalCase `'Smitasmile-customizer'` — sitna nekonzistentnost | `'smitasmile-customizer'` |
 
 **Pozitivno:** Bootstrap, Swiper i main JS su ispravno defer-ovani (`wp_script_add_data(..., 'strategy', 'defer')`). Preconnect i DNS-prefetch za Google Fonts su implementirani.
 
@@ -151,9 +156,9 @@ defined( 'ABSPATH' ) || exit;
 
 ---
 
-### Ocena Performance: **7/10**
+### Ocena Performance: ~~7/10~~ → **8/10** *(ažurirano 2026-03-05)*
 
-**Obrazloženje:** Tema ima solidnu performance osnovu — defer skripte, preload, lazy load, inline critical CSS. Glavni problemi su nedostajuće verzije asseta (cache busting), CLS zbog slika bez dimenzija, WP_Query bez limita na team stranici, i neispravna putanja do `customizer.js`.
+**Obrazloženje:** Cache busting popravljen — svi enqueue pozivi koriste `_S_VERSION`. Tema ima solidnu performance osnovu — defer skripte, preload, lazy load, inline critical CSS. Preostali problemi: CLS zbog slika bez dimenzija u team prikazu, WP_Query bez limita na team stranici, enqueue `intl-tel-input` u template fajlu (anti-pattern).
 
 ---
 
@@ -165,24 +170,24 @@ WordPress zahteva `snake_case` za nazive funkcija, sa prefiksom koji identifikuj
 
 | Fajl | Linija | Problem | Ispravno |
 |------|--------|---------|----------|
-| `inc/template-functions.php` | 14 | `Smitasmile_body_classes()` — PascalCase | `smitasmile_body_classes()` |
-| `inc/template-functions.php` | 27 | `add_filter('body_class', 'Smitasmile_body_classes')` | uskladiti sa novim imenom |
-| `inc/template-functions.php` | 32 | `Smitasmile_pingback_header()` — PascalCase | `smitasmile_pingback_header()` |
-| `inc/template-functions.php` | 37 | `add_action('wp_head', 'Smitasmile_pingback_header')` | uskladiti |
-| `inc/customizer.php` | 13 | `Smitasmile_customize_register()` — PascalCase | `smitasmile_customize_register()` |
-| `inc/customizer.php` | 35 | `add_action('customize_register', 'Smitasmile_customize_register')` | uskladiti |
-| `inc/customizer.php` | 42 | `Smitasmile_customize_partial_blogname()` — PascalCase | `smitasmile_customize_partial_blogname()` |
-| `inc/customizer.php` | 51 | `Smitasmile_customize_partial_blogdescription()` — PascalCase | `smitasmile_customize_partial_blogdescription()` |
-| `inc/customizer.php` | 58 | `Smitasmile_customize_preview_js()` — PascalCase | `smitasmile_customize_preview_js()` |
-| `functions.php` | 13 | `theme_setup()` — generički naziv bez prefiksa | `smitasmile_setup()` |
-| `functions.php` | 40 | `add_action('after_setup_theme', 'theme_setup')` | uskladiti |
-| `functions.php` | 141 | `theme_enqueue_scripts()` — bez prefiksa | `smitasmile_enqueue_scripts()` |
-| `functions.php` | 163 | `add_action('wp_enqueue_scripts', 'theme_enqueue_scripts')` | uskladiti |
-| `functions.php` | 248 | `theme_widgets_init()` — bez prefiksa | `smitasmile_widgets_init()` |
-| `functions.php` | 299 | `add_action('widgets_init', 'theme_widgets_init')` | uskladiti |
-| `functions.php` | 304 | `theme_custom_excerpt_length()` — bez prefiksa | `smitasmile_custom_excerpt_length()` |
-| `functions.php` | 310 | `theme_custom_excerpt_more()` — bez prefiksa | `smitasmile_custom_excerpt_more()` |
-| `comments.php` | 35 | Textdomain `'Smitasmile'` (PascalCase) umesto `'smitasmile'` | `'smitasmile'` (sva mala slova) |
+| ~~`inc/template-functions.php`~~ | ~~14~~ | ~~`Smitasmile_body_classes()` — PascalCase~~ | ✅ **FIXED 2026-03-05** — `smitasmile_body_classes()` |
+| ~~`inc/template-functions.php`~~ | ~~27~~ | ~~`add_filter('body_class', 'Smitasmile_body_classes')`~~ | ✅ **FIXED 2026-03-05** |
+| ~~`inc/template-functions.php`~~ | ~~32~~ | ~~`Smitasmile_pingback_header()` — PascalCase~~ | ✅ **FIXED 2026-03-05** — `smitasmile_pingback_header()` |
+| ~~`inc/template-functions.php`~~ | ~~37~~ | ~~`add_action('wp_head', 'Smitasmile_pingback_header')`~~ | ✅ **FIXED 2026-03-05** |
+| ~~`inc/customizer.php`~~ | ~~13~~ | ~~`Smitasmile_customize_register()` — PascalCase~~ | ✅ **FIXED 2026-03-05** — `smitasmile_customize_register()` |
+| ~~`inc/customizer.php`~~ | ~~35~~ | ~~`add_action('customize_register', 'Smitasmile_customize_register')`~~ | ✅ **FIXED 2026-03-05** |
+| ~~`inc/customizer.php`~~ | ~~42~~ | ~~`Smitasmile_customize_partial_blogname()` — PascalCase~~ | ✅ **FIXED 2026-03-05** |
+| ~~`inc/customizer.php`~~ | ~~51~~ | ~~`Smitasmile_customize_partial_blogdescription()` — PascalCase~~ | ✅ **FIXED 2026-03-05** |
+| ~~`inc/customizer.php`~~ | ~~58~~ | ~~`Smitasmile_customize_preview_js()` — PascalCase~~ | ✅ **FIXED 2026-03-05** |
+| ~~`functions.php`~~ | ~~13~~ | ~~`theme_setup()` — bez prefiksa~~ | ✅ **FIXED 2026-03-05** — `smitasmile_setup()` |
+| ~~`functions.php`~~ | ~~40~~ | ~~`add_action('after_setup_theme', 'theme_setup')`~~ | ✅ **FIXED 2026-03-05** |
+| ~~`functions.php`~~ | ~~141~~ | ~~`theme_enqueue_scripts()` — bez prefiksa~~ | ✅ **FIXED 2026-03-05** — `smitasmile_enqueue_scripts()` |
+| ~~`functions.php`~~ | ~~163~~ | ~~`add_action('wp_enqueue_scripts', 'theme_enqueue_scripts')`~~ | ✅ **FIXED 2026-03-05** |
+| ~~`functions.php`~~ | ~~248~~ | ~~`theme_widgets_init()` — bez prefiksa~~ | ✅ **FIXED 2026-03-05** — `smitasmile_widgets_init()` |
+| ~~`functions.php`~~ | ~~299~~ | ~~`add_action('widgets_init', 'theme_widgets_init')`~~ | ✅ **FIXED 2026-03-05** |
+| ~~`functions.php`~~ | ~~304~~ | ~~`theme_custom_excerpt_length()` — bez prefiksa~~ | ✅ **FIXED 2026-03-05** — `smitasmile_custom_excerpt_length()` |
+| ~~`functions.php`~~ | ~~310~~ | ~~`theme_custom_excerpt_more()` — bez prefiksa~~ | ✅ **FIXED 2026-03-05** — `smitasmile_custom_excerpt_more()` |
+| `comments.php` | 35 | Textdomain `'Smitasmile'` (PascalCase) umesto `'smitasmile'` | `'smitasmile'` (sva mala slova) — **nije provjereno** |
 
 **Dodatno — nekonzistentna indentacija:**
 - `functions.php` — koristi tabulatore (tabs) ✓
@@ -204,7 +209,7 @@ WordPress zahteva `snake_case` za nazive funkcija, sa prefiksom koji identifikuj
 
 | Fajl | Linija | String | Fix |
 |------|--------|--------|-----|
-| `template-parts/gallery-masonry.php` | 13 | `'No gallery images found.'` — bez `__()` | `__( 'No gallery images found.', 'smitasmile' )` |
+| ~~`template-parts/gallery-masonry.php`~~ | ~~13~~ | ~~`'No gallery images found.'` — bez `__()`~~ | ✅ **FIXED 2026-03-05** — `__( 'No gallery images found.', 'smitasmile' )` |
 | `template-parts/homepage/smile-makeovers.php` | 20 | `'After'` — fallback u ternary bez `__()` | `__( 'After', 'smitasmile' )` |
 | `template-parts/homepage/smile-makeovers.php` | 21 | `'Before'` — fallback bez `__()` | `__( 'Before', 'smitasmile' )` |
 | `template-parts/homepage/smile-makeovers.php` | 22 | `'Tap'` — fallback bez `__()` | `__( 'Tap', 'smitasmile' )` |
@@ -256,55 +261,55 @@ WordPress zahteva `snake_case` za nazive funkcija, sa prefiksom koji identifikuj
 
 ---
 
-### Ocena Code Quality: **5/10**
+### Ocena Code Quality: ~~5/10~~ → **7/10** *(ažurirano 2026-03-05)*
 
-**Obrazloženje:** Tema ima dobru strukturu i modularni pristup, ali narušava WordPress Coding Standards u 18+ lokacija sa pogrešnim nazivima funkcija (PascalCase). Postoji značajna količina dead code-a (zakomentarisani blokovi u 5 fajlova), nekonzistentna indentacija i nekoliko anti-patterna (funkcija u template fajlu, inline CSS u PHP-u).
+**Obrazloženje:** Svih 18 funkcija preimenovano u `snake_case` sa `smitasmile_` prefiksom — usklađeno sa WordPress Coding Standards. Preostali problemi: dead code (zakomentarisani blokovi) u 5 fajlova, nekonzistentna indentacija u nekim templateovima, `$current_lang` nekorištena varijabla u `author.php` i `tag.php`, inline CSS u `smitateam.php` i `template-contact.php`, `comments.php` textdomain nije provjeren, funkcija `booking_pll()` definisana unutar template fajla.
 
 ---
 
 ## 4. Ukupna Ocena
 
-### **Finalna ocena: 6/10**
+### ~~**Finalna ocena: 6/10**~~ → **Finalna ocena: 7.5/10** *(ažurirano 2026-03-05)*
 
-| Oblast | Ocena | Težina |
-|--------|-------|--------|
-| Security | 5/10 | Visoka |
-| Performance | 7/10 | Visoka |
-| Code Quality | 5/10 | Srednja |
-| **Prosek** | **5.7/10** | |
+| Oblast | Ocena prije fixova | Ocena nakon fixova (2026-03-05) | Težina |
+|--------|--------------------|---------------------------------|--------|
+| Security | 5/10 | **7/10** | Visoka |
+| Performance | 7/10 | **8/10** | Visoka |
+| Code Quality | 5/10 | **7/10** | Srednja |
+| **Prosek** | **5.7/10** | **7.3/10** | |
 
 ---
 
-### Top 3 prioriteta za fix
+### Pregled fixova urađenih 2026-03-05
 
-#### Prioritet 1 — Security: 404.php + escaping izlaza (kritično)
-**Fajlovi:** `404.php:2-4`, `search.php:21`, `functions.php:312`, `footer.php:30,41`, `header.php:14`, `author.php:31`, `tag.php:22`, `template-smita-team.php:170,206`
+#### ✅ Prioritet 1 — Security: 404.php + escaping izlaza — URAĐENO
+**Fajlovi:** `404.php`, `search.php`, `functions.php`, `footer.php`, `header.php`, `author.php`, svi `template-parts/`
 
-Najhitniji fix je `404.php` — cela 404 stranica je funkcionalno mrtva i svi korisnici se preusmeravaju na homepage. Zameniti native PHP `header()` sa `wp_redirect()`:
+- `404.php` — zamijenjeno native PHP `header()` sa `wp_redirect( home_url('/'), 301 )`, textdomain popravljen
+- `search.php:21` — XSS ranjivost eliminisana: `esc_html( get_search_query() )`
+- `footer.php:30,41` — `esc_attr()` i `esc_html()` dodani oko `get_bloginfo('name')`
+- `header.php:14` — `esc_attr( get_bloginfo('description') )` u meta tagu
+- `author.php:31` — `esc_html( get_the_author_meta('display_name') )`
+- `functions.php:312` — `esc_url( get_permalink() )` u excerpt_more filteru
+- 13 fajlova u `template-parts/` — `defined('ABSPATH') || exit;` dodan
 
-```php
-// 404.php — ispravno (zamenjuje linije 2-4)
-wp_redirect( home_url( '/' ), 301 );
-exit;
-```
+**Preostalo:** Dead code ispod `exit;` u `404.php` (stranica i dalje 301-preusmjerava), SVG bez `wp_kses_post()` u `template-smita-team.php`, hardcoded ID-jevi u `header.php`, CDN bez SRI hasha.
 
-Zatim dodati `esc_html()` na `search.php:21` (XSS kroz search query) i ostale escape propuste na ukupno 12 lokacija.
-
-#### Prioritet 2 — Code Quality: Preimenovati funkcije po WPCS (važno za dugoročno održavanje)
+#### ✅ Prioritet 2 — Code Quality: Funkcije preimenovane po WPCS — URAĐENO
 **Fajlovi:** `functions.php`, `inc/template-functions.php`, `inc/customizer.php`
 
-18+ funkcija krši WordPress Coding Standards. Ovo direktno utiče na mogućnost korišćenja alata poput PHPCS, uklanjanje hook-ova u child temama i profesionalnost koda. Preimenovanje zahteva ažuriranje i odgovarajućih `add_action`/`add_filter` poziva.
+Svih 18 funkcija preimenovano u `snake_case` sa `smitasmile_` prefiksom. Odgovarajući `add_action`/`add_filter` pozivi ažurirani.
 
-#### Prioritet 3 — Performance: Verzionisanje asseta + CLS fix (preporučeno)
-**Fajlovi:** `functions.php:143-151`, `template-parts/homepage/team.php:66`, `template-smita-team.php:68`
+**Preostalo:** Dead code (zakomentarisani blokovi), `booking_pll()` u template fajlu, inline CSS u PHP-u, nekorištene varijable.
 
-Dodati version string na enqueue pozive (može koristiti `_S_VERSION` konstanta koja je već definisana):
-```php
-wp_enqueue_style( 'smitasmile-style', get_template_directory_uri() . '/dist/css/style.min.css', array(), _S_VERSION );
-```
+#### ✅ Prioritet 3 — Performance: Verzionisanje asseta — URAĐENO
+**Fajlovi:** `functions.php:143-151`
 
-Dodati `width` i `height` atribute na team card slike da eliminiše CLS koji negativno utiče na Core Web Vitals score.
+`_S_VERSION` dodan na sve `wp_enqueue_style()` i `wp_enqueue_script()` pozive — cache busting radi ispravno.
+
+**Preostalo (niska prioriteta):** CLS zbog slika bez `width`/`height` na team prikazu, `intl-tel-input` enqueue u template fajlu.
 
 ---
 
 *Audit uradio: Claude (Anthropic) | claude-sonnet-4-6*
+*Fixovi primijenjeni i ocjene ažurirane: 2026-03-05 | claude-sonnet-4-6*

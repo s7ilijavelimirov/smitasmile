@@ -52,7 +52,7 @@ function booking_pll($string)
                     if ($custom_logo_id) {
                         echo wp_get_attachment_image($custom_logo_id, 'medium', false, ['class' => 'booking-logo', 'alt' => get_bloginfo('name')]);
                     } else {
-                        echo '<h1 class="booking-site-name">' . get_bloginfo('name') . '</h1>';
+                        echo '<h1 class="booking-site-name">' . esc_html( get_bloginfo('name') ) . '</h1>';
                     }
                     ?>
                 </div>

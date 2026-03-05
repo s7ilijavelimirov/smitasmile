@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 /**
  * Gallery Masonry Template Part - Modern Redesign
  *
@@ -10,7 +11,7 @@ $gallery_description = get_field('gallery_description');
 $gallery_images = get_field('gallery_images');
 
 if (!$gallery_images) {
-    echo '<div class="gallery-placeholder"><p>No gallery images found.</p></div>';
+    echo '<div class="gallery-placeholder"><p>' . __( 'No gallery images found.', 'smitasmile' ) . '</p></div>';
     return;
 }
 ?>
@@ -44,10 +45,10 @@ if (!$gallery_images) {
                 data-height="<?php echo esc_attr($image_height); ?>"
                 data-ratio="<?php echo esc_attr($aspect_ratio); ?>"
                 data-title="<?php echo esc_attr($title); ?>"
-                data-url="<?php echo $image_url; ?>">
+                data-url="<?php echo esc_url( $image_url ); ?>">
                 <figure class="gallery-figure">
                     <img
-                        src="<?php echo $image_url; ?>"
+                        src="<?php echo esc_url( $image_url ); ?>"
                         alt="<?php echo esc_attr($alt); ?>"
                         title="<?php echo esc_attr($title); ?>"
                         class="gallery-image"

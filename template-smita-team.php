@@ -68,6 +68,8 @@ get_header();
 									<img src="<?php echo esc_url($featured_image); ?>"
 										alt="<?php echo esc_attr(get_the_title()); ?>"
 										class="team-card__image"
+										width="300"
+										height="300"
 										loading="lazy">
 								<?php else : ?>
 									<div class="team-card__placeholder">
@@ -167,7 +169,7 @@ get_header();
 												<div class="team-modal__section">
 													<div class="team-modal__section-header">
 														<span class="team-modal__section-icon">
-															<?php echo $icon_svg; ?>
+															<?php echo wp_kses_post( $icon_svg ); ?>
 														</span>
 														<h4 class="team-modal__section-title"><?php echo esc_html($section_title); ?></h4>
 													</div>
@@ -203,7 +205,7 @@ get_header();
 														rel="noopener noreferrer"
 														class="team-modal__social-link"
 														title="<?php echo esc_attr(ucfirst($platform)); ?>">
-														<?php echo $icon_svg; ?>
+														<?php echo wp_kses_post( $icon_svg ); ?>
 													</a>
 											<?php
 												endif;

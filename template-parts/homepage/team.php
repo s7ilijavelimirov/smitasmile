@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Homepage Team Section
@@ -63,6 +64,8 @@ if (! $team_members) {
                                     src="<?php echo esc_url($member_image); ?>"
                                     alt="<?php echo esc_attr($member->post_title); ?>"
                                     class="img-fluid rounded-4 w-100"
+                                    width="300"
+                                    height="300"
                                     loading="lazy">
                             </div>
                         <?php endif; ?>

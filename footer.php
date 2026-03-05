@@ -27,7 +27,7 @@
 							<a href="<?php echo esc_url(home_url('/')); ?>" class="footer-logo" rel="home">
 								<img
 									src="<?php echo esc_url($logo[0]); ?>"
-									alt="<?php bloginfo('name'); ?>"
+									alt="<?php echo esc_attr( get_bloginfo('name') ); ?>"
 									width="163"
 									height="65"
 									loading="lazy"
@@ -38,7 +38,7 @@
 					} else {
 						?>
 						<a href="<?php echo esc_url(home_url('/')); ?>" class="footer-logo-text" rel="home">
-							<?php bloginfo('name'); ?>
+							<?php echo esc_html( get_bloginfo('name') ); ?>
 						</a>
 					<?php
 					}

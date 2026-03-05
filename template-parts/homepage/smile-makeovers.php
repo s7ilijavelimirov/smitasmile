@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Smile Transformations - Elegant Before/After Cards
@@ -17,9 +18,9 @@ if (!$makeovers || empty($makeovers)) {
 }
 
 // Polylang translations
-$text_after = function_exists('pll__') ? pll__('After') : 'After';
-$text_before = function_exists('pll__') ? pll__('Before') : 'Before';
-$text_tap = function_exists('pll__') ? pll__('Tap') : 'Tap';
+$text_after = function_exists('pll__') ? pll__('After') : __( 'After', 'smitasmile' );
+$text_before = function_exists('pll__') ? pll__('Before') : __( 'Before', 'smitasmile' );
+$text_tap = function_exists('pll__') ? pll__('Tap') : __( 'Tap', 'smitasmile' );
 ?>
 
 <section class="smile-transformations container-fluid pb-lg-8 pb-md-6 pt-0">
@@ -122,7 +123,7 @@ $text_tap = function_exists('pll__') ? pll__('Tap') : 'Tap';
                     <a
                         href="<?php echo esc_url($cta_link['url']); ?>"
                         class="btn btn-secondary"
-                        <?php echo $cta_link['target'] ? 'target="_blank" rel="noopener"' : ''; ?>>
+                        <?php echo $cta_link['target'] ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>>
                         <?php echo esc_html($cta_link['title']); ?>
                     </a>
                 </div>

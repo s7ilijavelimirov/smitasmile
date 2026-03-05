@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 // Uzmi prosleđeni page_id ili izračunaj automatski
 if (isset($args['page_id'])) {
 	$page_id = $args['page_id'];

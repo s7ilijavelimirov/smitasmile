@@ -10,7 +10,7 @@ if (! defined('_S_VERSION')) {
 require_once get_template_directory() . '/inc/smitateam.php';
 
 // Theme Support
-function theme_setup()
+function smitasmile_setup()
 {
 	load_theme_textdomain('smitasmile', get_template_directory() . '/languages');
 
@@ -37,7 +37,7 @@ function theme_setup()
 	// Samo default featured image
 	set_post_thumbnail_size(1200, 800, true);
 }
-add_action('after_setup_theme', 'theme_setup');
+add_action('after_setup_theme', 'smitasmile_setup');
 
 // Disable Gutenberg (Block Editor) - koristi Classic Editor
 add_filter('use_block_editor_for_post', '__return_false');
@@ -138,17 +138,17 @@ add_action('wp_head', function () {
 // ============================================
 // OPTIMIZOVANI ENQUEUE SCRIPTS I STYLES
 // ============================================
-function theme_enqueue_scripts()
+function smitasmile_enqueue_scripts()
 {
-	wp_enqueue_style('smitasmile-style', get_template_directory_uri() . '/dist/css/style.min.css');
+	wp_enqueue_style('smitasmile-style', get_template_directory_uri() . '/dist/css/style.min.css', array(), _S_VERSION);
 
-	wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/dist/js/bootstrap.bundle.min.js', array(), false, true);
+	wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/dist/js/bootstrap.bundle.min.js', array(), _S_VERSION, true);
 	wp_script_add_data('bootstrap-js', 'strategy', 'defer');
 
-	wp_enqueue_script('swiper-js', get_template_directory_uri() . '/dist/js/swiper-bundle.min.js', array(), false, true);
+	wp_enqueue_script('swiper-js', get_template_directory_uri() . '/dist/js/swiper-bundle.min.js', array(), _S_VERSION, true);
 	wp_script_add_data('swiper-js', 'strategy', 'defer');
 
-	wp_enqueue_script('smitasmile-main', get_template_directory_uri() . '/dist/js/main.min.js', array('bootstrap-js', 'swiper-js'), false, true);
+	wp_enqueue_script('smitasmile-main', get_template_directory_uri() . '/dist/js/main.min.js', array('bootstrap-js', 'swiper-js'), _S_VERSION, true);
 	wp_script_add_data('smitasmile-main', 'strategy', 'defer');
 
 	wp_localize_script('smitasmile-main', 'smitasmileAjax', array(
@@ -160,7 +160,7 @@ function theme_enqueue_scripts()
 		wp_enqueue_script('comment-reply');
 	}
 }
-add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
+add_action('wp_enqueue_scripts', 'smitasmile_enqueue_scripts');
 
 // ============================================
 // DISABLE JQUERY MIGRATE - NEMA POTREBE
@@ -245,7 +245,7 @@ require_once get_template_directory() . '/class-slide-push-menu-walker.php';
 // ============================================
 // SIDEBAR-OVI / WIDGETI
 // ============================================
-function theme_widgets_init()
+function smitasmile_widgets_init()
 {
 	register_sidebar(array(
 		'name'          => __('Primarna sidebara', 'smitasmile'),
@@ -296,22 +296,22 @@ function theme_widgets_init()
 		'after_widget'  => '</div>',
 	));
 }
-add_action('widgets_init', 'theme_widgets_init');
+add_action('widgets_init', 'smitasmile_widgets_init');
 
 // ============================================
 // PRILAGOĐENE VELIČINE POSTOVA
 // ============================================
-function theme_custom_excerpt_length()
+function smitasmile_custom_excerpt_length()
 {
 	return 20;
 }
-add_filter('excerpt_length', 'theme_custom_excerpt_length');
+add_filter('excerpt_length', 'smitasmile_custom_excerpt_length');
 
-function theme_custom_excerpt_more()
+function smitasmile_custom_excerpt_more()
 {
-	return ' ... <a href="' . get_permalink() . '">' . __('Read more', 'smitasmile') . '</a>';
+	return ' ... <a href="' . esc_url( get_permalink() ) . '">' . __('Read more', 'smitasmile') . '</a>';
 }
-add_filter('excerpt_more', 'theme_custom_excerpt_more');
+add_filter('excerpt_more', 'smitasmile_custom_excerpt_more');
 
 // ============================================
 // POLYLANG STRINGS REGISTRATION
@@ -458,7 +458,7 @@ function smitasmile_blog_meta_box_html($post)
 	// Prikaži samo na Blog stranici (Posts Page)
 	$posts_page_id = get_option('page_for_posts');
 	if ($post->ID != $posts_page_id) {
-		echo '<p>' . __('This setting is only available on the Posts Page.', 'smitasmile') . '</p>';
+		echo '<p>' . esc_html__('This setting is only available on the Posts Page.', 'smitasmile') . '</p>';
 		return;
 	}
 

@@ -19,7 +19,7 @@ get_header();
                 <div class="intro-content">
                     <!-- H1 - Tag Title for SEO -->
                     <h1 class="intro-title" itemprop="headline">
-                        <?php single_tag_title(); ?>
+                        <?php echo esc_html( single_tag_title('', false) ); ?>
                     </h1>
                 </div>
             </div>
@@ -33,7 +33,6 @@ get_header();
         <div class="row g-4">
             <?php
             $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-            $current_lang = pll_current_language();
 
             if (have_posts()) {
                 while (have_posts()) {

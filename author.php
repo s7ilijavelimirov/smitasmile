@@ -28,7 +28,7 @@ get_header();
 
                     <!-- H1 - Author Name for SEO -->
                     <h1 class="intro-title" itemprop="headline">
-                        <?php the_author_meta('display_name'); ?>
+                        <?php echo esc_html( get_the_author_meta('display_name') ); ?>
                     </h1>
 
                     <!-- Author Bio -->
@@ -49,7 +49,6 @@ get_header();
         <div class="row g-4">
             <?php
             $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-            $current_lang = pll_current_language();
 
             if (have_posts()) {
                 while (have_posts()) {

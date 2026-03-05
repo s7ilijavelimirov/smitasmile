@@ -11,7 +11,7 @@
 <head>
 	<meta charset="<?php bloginfo('charset'); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="<?php bloginfo('description'); ?>">
+	<meta name="description" content="<?php echo esc_attr( get_bloginfo('description') ); ?>">
 	<?php if (is_singular('page')) : ?>
 		<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 	<?php endif; ?>
