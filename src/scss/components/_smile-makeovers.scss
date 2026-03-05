@@ -1,0 +1,300 @@
+// ============================================
+// SMILE TRANSFORMATIONS - ELEGANT BEFORE/AFTER
+// Modern, clean design with gradient overlay
+// ============================================
+
+.smile-transformations,
+.smile-makeovers {
+    background: $primary;
+
+    &__title {
+        font-size: $font-size-h2;
+        color: $secondary;
+        text-align: center;
+        font-weight: 400;
+
+        @media (max-width: $breakpoint-md) {
+            font-size: $font-size-h3;
+        }
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: $font-size-h4;
+        }
+    }
+}
+
+// ============================================
+// TRANSFORMATION CARD
+// Padding only top for title, images edge-to-edge
+// ============================================
+
+.transformation-card,
+.makeover-card {
+    background: $dark-accent;
+    border: 2px solid $accent;
+    border-radius: 16px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.3s ease;
+
+    &:hover {
+        border-color: rgba($secondary, 0.25);
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        border-radius: 12px;
+    }
+}
+
+.transformation-card__title,
+.makeover-card__title {
+    color: $secondary;
+    font-size: 0.9375rem;
+    font-family: $font-family-body;
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+    padding: 1.25rem 1.25rem 1rem;
+    line-height: 1.4;
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: 0.875rem;
+        padding: 1rem 1rem 0.75rem;
+    }
+}
+
+// ============================================
+// IMAGE CONTAINER - Edge to edge
+// ============================================
+
+.transformation-images {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    cursor: pointer;
+    aspect-ratio: 4 / 3;
+    flex: 1;
+
+    // Dark gradient overlay at bottom for badges
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 80px;
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.7) 0%,
+            rgba(0, 0, 0, 0.4) 40%,
+            transparent 100%
+        );
+        z-index: 3;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+
+        @media (max-width: $breakpoint-sm) {
+            height: 60px;
+        }
+    }
+}
+
+// ============================================
+// AFTER IMAGE - Always visible (base layer)
+// ============================================
+
+.transformation-after {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+    }
+}
+
+// ============================================
+// BEFORE IMAGE - Hidden, elegant fade reveal
+// ============================================
+
+.transformation-before {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+    }
+}
+
+// ============================================
+// CLICK STATE - Toggle between states
+// ============================================
+
+// When revealed (showing BEFORE)
+.transformation-card.is-revealed,
+.makeover-card.is-revealed {
+    .transformation-before {
+        opacity: 1;
+    }
+
+    .transformation-after {
+        opacity: 0;
+    }
+
+    .transformation-badge--after {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    .transformation-badge--before {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .transformation-tap-hint {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+}
+
+// Default state (showing AFTER)
+.transformation-card:not(.is-revealed),
+.makeover-card:not(.is-revealed) {
+    .transformation-badge--before {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    .transformation-badge--after {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// ============================================
+// BADGE - Shows current state with icon
+// Left positioned
+// ============================================
+
+.transformation-badge {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba($secondary, 0.12);
+    border-radius: 6px;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+
+    @media (max-width: $breakpoint-sm) {
+        bottom: 10px;
+        left: 10px;
+        padding: 6px 10px;
+        gap: 5px;
+    }
+
+    svg {
+        width: 14px;
+        height: 14px;
+        color: $secondary;
+        opacity: 0.9;
+
+        @media (max-width: $breakpoint-sm) {
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    span {
+        font-size: 0.6875rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: $secondary;
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: 0.5625rem;
+        }
+    }
+}
+
+// ============================================
+// TAP HINT - Same style as badge, right side
+// ============================================
+
+.transformation-tap-hint {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba($secondary, 0.12);
+    border-radius: 6px;
+    opacity: 1;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+
+    @media (max-width: $breakpoint-sm) {
+        bottom: 10px;
+        right: 10px;
+        padding: 6px 10px;
+        gap: 5px;
+    }
+
+    svg {
+        width: 14px;
+        height: 14px;
+        color: $secondary;
+        opacity: 0.9;
+
+        @media (max-width: $breakpoint-sm) {
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    span {
+        font-size: 0.6875rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: $secondary;
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: 0.5625rem;
+        }
+    }
+}
+
+// Hide tap hint after first interaction
+.transformation-card.has-interacted .transformation-tap-hint,
+.makeover-card.has-interacted .transformation-tap-hint {
+    opacity: 0 !important;
+    transform: translateY(8px);
+    pointer-events: none;
+}

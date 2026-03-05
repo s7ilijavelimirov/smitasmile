@@ -1,0 +1,681 @@
+// ============================================
+// SITE HEADER - STICKY
+// ============================================
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    background: transparent;
+    width: 100%;
+    transition:
+        transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 0.3s ease;
+
+    &.header-hidden {
+        transform: translateY(-100%);
+    }
+
+    &.header-visible {
+        transform: translateY(0);
+    }
+
+    // Keep header visible when menu is open
+    body.menu-open & {
+        transform: translateY(0) !important;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+
+    .header-container {
+        padding-top: 1.2vw;
+        padding-bottom: 1.2vw;
+        padding-left: 3vw;
+        padding-right: 3vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between; // ← DODAJ OVO
+        gap: 1rem;
+
+        @media (max-width: $breakpoint-lg) {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        @media (max-width: $breakpoint-md) {
+            padding-top: 0.875rem;
+            padding-bottom: 0.875rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        @media (max-width: $breakpoint-sm) {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            padding-left: 0.875rem;
+            padding-right: 0.875rem;
+        }
+    }
+}
+
+// ============================================
+// NAVBAR BRAND
+// ============================================
+
+.navbar-brand-wrapper {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.navbar-brand {
+    color: $secondary !important;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: $transition-base;
+
+    img {
+        display: block;
+        transition: $transition-base;
+        scale: 1.15;
+        @media (max-width: $breakpoint-2xl) {
+            height: 55px;
+            width: auto;
+        }
+        @media (max-width: $breakpoint-lg) {
+            height: 50px;
+            width: auto;
+        }
+
+        @media (max-width: $breakpoint-md) {
+            height: 50px;
+            width: auto;
+            scale: 1;
+        }
+
+        @media (max-width: $breakpoint-sm) {
+            height: 50px;
+            width: auto;
+            scale: 1;
+        }
+    }
+
+    small {
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+    }
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+// ============================================
+// DESKTOP NAVIGATION
+// ============================================
+
+.navbar-nav-desktop {
+    display: none;
+    flex: 1; /* Centar - uzima dostupan prostor */
+
+    justify-content: center;
+
+    @media (min-width: 993px) {
+        display: flex;
+    }
+}
+.cta-buttons-head {
+    flex-shrink: 0; /* Button ne smanji se */
+    white-space: nowrap; /* Sprečava prelom teksta u multi-linijski */
+    display: flex;
+    min-width: 300px;
+    justify-content: flex-end;
+    @media (max-width: 1420px) {
+        min-width: auto;
+    }
+    @media (max-width: 993px) {
+        min-width: auto;
+        margin-left: auto;
+    }
+}
+.navbar-nav {
+    gap: 1.5rem;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @media (max-width: 992px) {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+    }
+
+    .nav-item {
+        position: relative;
+        list-style: none;
+
+        @media (max-width: 992px) {
+            width: 100%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+        &.dropdown {
+            &:last-of-type {
+                ul.dropdown-menu {
+                    .nav-item {
+                        &:last-of-type {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .nav-link {
+        color: $secondary !important;
+        font-weight: 400;
+        //transition: $transition-base;
+        text-decoration: none;
+        position: relative;
+        @media (max-width: 992px) {
+            display: block;
+            padding: 1rem 1.5rem !important;
+            font-size: 1rem;
+            border-bottom: none;
+        }
+        // @media (max-width: $breakpoint-2xl) {
+        //     padding: 5px !important;
+        //     font-size: 0.95rem;
+        // }
+        @media (max-width: $breakpoint-xl) {
+            font-size: 0.95rem;
+            padding-right: 4px;
+            padding-left: 4px;
+        }
+        @media (max-width: $breakpoint-md) {
+            padding: 0.875rem 1.25rem !important;
+        }
+
+        @media (max-width: $breakpoint-sm) {
+            padding: 0.875rem 1.1rem !important;
+        }
+    }
+    a.nav-link.active {
+        @media (max-width: $breakpoint-lg) {
+            color: $primary !important;
+            background-color: $secondary;
+        }
+    }
+}
+
+// ============================================
+// DROPDOWN TOGGLE - PLUS TO MINUS ANIMATION
+// ============================================
+
+.dropdown-toggle {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0rem;
+    position: relative;
+
+    // Horizontalna linija (ostaje uvek vidljiva)
+    &::before {
+        content: "";
+        position: absolute;
+        right: -9px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 2px;
+        background-color: $secondary;
+        border-radius: 2px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        @media (max-width: 992px) {
+            right: 1rem;
+        }
+    }
+
+    // Vertikalna linija - rotira se u minus
+    &::after {
+        content: "" !important;
+        position: absolute !important;
+        right: -5px;
+        top: 50% !important;
+        transform: translateY(-50%) rotate(0deg) !important;
+        width: 2px !important;
+        height: 10px !important;
+        background-color: $secondary !important;
+        border-radius: 2px !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        vertical-align: 0 !important;
+
+        @media (max-width: 992px) {
+            right: 1.22rem;
+        }
+    }
+
+    // Desktop - hover state
+    @media (min-width: 993px) {
+        &:hover {
+            &::before,
+            &::after {
+                background-color: $accent;
+            }
+
+            &::after {
+                transform: translateY(-50%) rotate(90deg) !important;
+            }
+        }
+    }
+
+    // Kada je dropdown otvoren - svi browseri
+    &[aria-expanded="true"] {
+        &::before {
+        }
+
+        &::after {
+            transform: translateY(-50%) rotate(90deg) !important;
+        }
+    }
+}
+
+// ============================================
+// DROPDOWN MENU
+// ============================================
+
+.dropdown {
+    position: relative;
+
+    // Desktop - hover trigger
+    @media (min-width: 993px) {
+        &:hover > .dropdown-menu {
+            display: block !important;
+            animation: slideDown 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        &:hover > .nav-link {
+            &::before,
+            &::after {
+                background-color: $accent;
+            }
+
+            &::after {
+                transform: translateY(-50%) rotate(90deg) !important;
+            }
+        }
+    }
+
+    // Mobile - Bootstrap .show class
+    @media (max-width: 992px) {
+        &.show > .dropdown-menu {
+            display: block !important;
+            max-height: 500px !important;
+            opacity: 1;
+        }
+
+        &.show > .nav-link {
+            color: $secondary !important;
+
+            &::before,
+            &::after {
+                background-color: $accent;
+            }
+
+            &::after {
+                transform: translateY(-50%) rotate(90deg) !important;
+            }
+        }
+    }
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    background-color: $accent;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: $border-radius;
+    padding: 0;
+    min-width: 220px;
+    margin-top: 0.5rem;
+    overflow: hidden;
+    list-style: none;
+    margin: 0;
+
+    @media (max-width: 992px) {
+        display: block !important;
+        position: static !important;
+        background-color: transparent;
+        box-shadow: none;
+        padding: 0;
+        margin: 0 !important;
+        border-radius: 0;
+        min-width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        inset: auto !important;
+        transform: none !important;
+    }
+
+    .nav-item {
+        list-style: none;
+
+        .nav-link {
+            color: $secondary !important;
+            padding: 0.8rem;
+            font-weight: 400;
+            display: block;
+            white-space: nowrap;
+            transition: $transition-base;
+            font-size: 0.95rem;
+
+            @media (max-width: 992px) {
+                color: $secondary !important;
+                padding: 0.75rem 1.5rem !important;
+                white-space: normal;
+                font-size: 0.9rem;
+            }
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: 0.9rem;
+            }
+
+            &:hover {
+                background-color: $light-gray;
+                color: $accent !important;
+                padding-left: 1rem;
+
+                @media (max-width: 992px) {
+                    background-color: transparent;
+                    padding-left: 1.5rem !important;
+                    color: $accent !important;
+                }
+            }
+        }
+    }
+}
+
+// ============================================
+// MOBILE HAMBURGER
+// ============================================
+
+.navbar-toggler {
+    border: none;
+    padding: 0.25rem 0;
+    transition: $transition-base;
+
+    background-color: $accent;
+    padding: 0.3rem;
+    &:focus {
+        box-shadow: none;
+        outline: 2px solid $secondary;
+        outline-offset: 2px;
+    }
+
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23fff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        width: 32px;
+        height: 32px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: block;
+
+        // @media (max-width: $breakpoint-sm) {
+        //     width: 20px;
+        //     height: 20px;
+        // }
+    }
+}
+
+// ============================================
+// OFFCANVAS MOBILE MENU
+// ============================================
+
+.offcanvas-mobile {
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.98) 0%, rgba(10, 10, 10, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    width: 100% !important;
+
+    @media (min-width: 993px) {
+        display: none !important;
+    }
+
+    .offcanvas-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1rem 1.5rem;
+
+        @media (max-width: $breakpoint-sm) {
+            padding: 0.875rem 1rem;
+        }
+
+        .btn-close {
+            width: 24px;
+            height: 24px;
+            background-color: transparent;
+            border: none;
+            opacity: 1;
+
+            &:focus {
+                box-shadow: none;
+                outline: 2px solid $secondary;
+                outline-offset: 2px;
+            }
+
+            &::after {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%23fff' d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+            }
+        }
+    }
+
+    .offcanvas-body {
+        padding: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        .navbar-nav {
+            width: 100%;
+            gap: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        // Kada se dropdown otvori sa .show klasa
+        .dropdown-menu.show {
+            display: block !important;
+            max-height: 500px !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 1;
+        }
+    }
+
+    .navbar-brand-offcanvas {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        transition: $transition-base;
+
+        img {
+            height: 50px;
+
+            display: block;
+        }
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}
+
+.offcanvas-cta {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    @media (max-width: $breakpoint-sm) {
+        padding: 1rem;
+    }
+
+    .btn {
+        &.phone {
+            background-color: $light-accent;
+            padding: 0rem 1rem;
+            svg {
+                width: 2rem !important;
+                height: 59px !important;
+            }
+        }
+
+        @media (max-width: $breakpoint-sm) {
+        }
+    }
+}
+.mobile-footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+
+    .social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        text-decoration: none;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        border: none;
+
+        .social-icon {
+            width: 22px;
+            height: 22px;
+            filter: brightness(0) invert(1); // bele ikonice unutar obojenih krugova
+        }
+
+        &:hover {
+            transform: translateY(-2px);
+        }
+
+        &.email {
+            background: #5c6bc0; // nova boja (meko plava / profesionalna)
+        }
+
+        &.phone {
+            background: #34a853; // zelena - WhatsApp/call
+        }
+
+        &.facebook {
+            background: #1877f2; // plava
+        }
+
+        &.instagram {
+            background: linear-gradient(135deg, #feda75 0%, #fa7e1e 25%, #d92e7f 50%, #9b36b7 75%, #515bd4 100%);
+        }
+    }
+}
+
+// ============================================
+// CTA BUTTON - DESKTOP
+// ============================================
+.header-container {
+    .d-none.d-lg-flex.gap-1.justify-content-end.flex-shrink-0 {
+        flex: 1;
+    }
+    .btn-outline-light {
+        @media (max-width: $breakpoint-2xl) {
+            // padding: $spacer;
+            font-size: $font-size-small;
+        }
+        @media (max-width: $breakpoint-lg) {
+            padding: 0rem;
+            width: 42px;
+            height: 42px;
+            border: 2px solid $secondary;
+        }
+        &.phone {
+            &:hover {
+                svg {
+                    // stroke: black !important;
+                    // fill: black !important;
+                    path {
+                        stroke: black !important;
+                        // fill: black !important;
+                    }
+                }
+            }
+            svg {
+                scale: 2;
+                width: 1rem;
+                height: auto;
+                @media (max-width: $breakpoint-lg) {
+                    scale: 1.6;
+                }
+                &:hover {
+                    animation: tilt-shaking 0.5s;
+                    animation-iteration-count: infinite;
+                }
+            }
+        }
+    }
+}
+@keyframes tilt-shaking {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(5deg);
+    }
+    50% {
+        transform: rotate(0eg);
+    }
+    75% {
+        transform: rotate(-5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+// ============================================
+// ANIMATIONS
+// ============================================
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

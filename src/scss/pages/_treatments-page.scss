@@ -1,0 +1,156 @@
+section.treatments-page {
+    .content {
+        @media (max-width: $breakpoint-lg) {
+            flex-direction: column-reverse;
+        }
+        h4 {
+            margin: $spacing-xl 0;
+            font-size: $font-size-large;
+
+            @media (max-width: $breakpoint-md) {
+                margin: $spacing-lg 0;
+                font-size: $font-size-h5;
+            }
+
+            @media (max-width: $breakpoint-sm) {
+                margin: $spacing-md 0;
+                font-size: $font-size-h5;
+            }
+        }
+
+        h2 {
+            font-size: $font-size-h3;
+
+            @media (max-width: $breakpoint-md) {
+                font-size: $font-size-h4;
+            }
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: $font-size-h5;
+            }
+        }
+
+        .col-lg-7 {
+            background-color: $dark-accent;
+            padding: $spacing-2xl $spacing-3xl;
+            border-radius: $border-radius-lg;
+            border: 2px solid $accent;
+
+            @media (max-width: $breakpoint-md) {
+                padding: $spacing-xl $spacing-xl;
+                margin-bottom: 0;
+            }
+
+            @media (max-width: $breakpoint-sm) {
+                padding: $spacer;
+                margin-bottom: 0;
+            }
+        }
+
+        .content-text {
+            padding: $spacing-2xl $spacing-3xl;
+            @media (max-width: $breakpoint-xl) {
+                padding: $spacing-xl $spacing-xl;
+            }
+            @media (max-width: $breakpoint-lg) {
+                padding: 0;
+            }
+
+            @media (max-width: $breakpoint-sm) {
+                padding: 0;
+            }
+        }
+
+        .col-lg-5.treatments-images {
+            transform: translateX(80px) translateY(100px);
+            @media (max-width: $breakpoint-lg) {
+                transform: translateX(0) translateY(0);
+                margin-bottom: 0;
+                padding: 0;
+            }
+
+            @media (max-width: $breakpoint-sm) {
+                padding: $spacer 0;
+            }
+
+            img {
+                border: 2px solid $accent;
+
+                @media (max-width: $breakpoint-sm) {
+                    border: 1px solid $accent;
+                }
+            }
+        }
+
+        .col-lg-5.treatments-images.order-lg-2 {
+            transform: translateX(-80px) translateY(100px);
+
+            @media (max-width: $breakpoint-lg) {
+                transform: translateX(0) translateY(0);
+            }
+
+            @media (max-width: $breakpoint-md) {
+                transform: translateX(0) translateY(0);
+                margin-bottom: 0;
+            }
+
+            @media (max-width: $breakpoint-sm) {
+                padding: $spacer 0;
+            }
+        }
+
+        ul {
+            padding-left: $spacing-2xl;
+
+            @media (max-width: $breakpoint-md) {
+                padding-left: $spacing-xl;
+            }
+
+            @media (max-width: $breakpoint-sm) {
+                padding-left: $spacing-lg;
+            }
+
+            li::marker {
+                color: $secondary;
+            }
+
+            li p {
+                margin: 8px 0px;
+
+                @media (max-width: $breakpoint-sm) {
+                    margin: 4px 0px;
+                    font-size: $font-size-small;
+                }
+            }
+        }
+    }
+
+    .accordion {
+        .accordion-button {
+            padding: $spacing-md 0;
+            padding-right: $spacing-md;
+            font-size: $font-size-base;
+
+            @media (max-width: $breakpoint-sm) {
+            }
+
+            &::before {
+                left: auto;
+                right: 0px;
+            }
+
+            &::after {
+                left: auto;
+                right: 7px;
+            }
+        }
+
+        .accordion-body {
+            max-width: 450px;
+
+            @media (max-width: $breakpoint-md) {
+                max-width: 100%;
+            }
+        }
+    }
+}

@@ -1,0 +1,296 @@
+// ============================================
+// CUSTOM FOOTER CONTAINER (1520px)
+// ============================================
+.footer-wrapper {
+    // max-width: 1520px;
+    // margin: 0 auto;
+   
+    width: 100%;
+
+    @media (max-width: $breakpoint-xl) {
+     
+    }
+
+    @media (max-width: $breakpoint-sm) {
+     
+    }
+}
+
+// ============================================
+// SITE FOOTER - MAIN STYLES
+// ============================================
+.site-footer {
+    background-color: #111;
+    color: $secondary;
+ 
+    @media (max-width: $breakpoint-md) {
+     
+     
+    }
+
+    @media (max-width: $breakpoint-sm) {
+     
+       
+    }
+
+    a {
+        color: $secondary;
+        transition: $transition-base;
+
+        &:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+    }
+}
+
+// ============================================
+// FOOTER CONTAINER - GRID LAYOUT
+// ============================================
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+
+    @media (max-width: $breakpoint-lg) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr;
+        .footer-col {
+            a.footer-logo {
+                margin-bottom: 1rem;
+            }
+            h4.footer-title {
+                margin-bottom: 0.8rem;
+                font-size: 1.4rem;
+            }
+            address.footer-address {
+                margin-bottom: 0px;
+                p {
+                    margin-bottom: 0.4rem;
+                    &:last-of-type {
+                        margin-bottom: 0px;
+                    }
+                }
+            }
+            ul.footer-contact-list {
+          
+                li {
+                    margin-bottom: 0.4rem;
+                    &:last-of-type {
+                        margin-bottom: 0px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ============================================
+// FOOTER COLUMNS
+// ============================================
+.footer-col {
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        margin-top: 0;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+// ============================================
+// LOGO SECTION
+// ============================================
+.footer-logo-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+
+    img {
+        display: block;
+    }
+}
+
+.footer-logo-text {
+    font-weight: 700;
+    font-size: $font-size-large;
+    display: block;
+    margin-bottom: 1.5rem;
+    font-family: $font-family-heading;
+}
+
+// ============================================
+// SOCIAL LINKS
+// ============================================
+.textwidget.custom-html-widget {
+    .social-widgets {
+        display: flex;
+        gap: 1rem;
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 100px;
+            border: 1px solid $secondary;
+            background: transparent;
+            transition:
+                background 0.45s ease,
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.4s ease;
+            text-decoration: none;
+            overflow: hidden;
+            position: relative;
+
+            .social-icon {
+                width: 30px;
+                height: 30px;
+                filter: brightness(0) invert(1);
+                transition:
+                    filter 0.45s ease,
+                    transform 0.45s ease;
+                z-index: 2;
+            }
+
+            &:before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: 100px;
+                background: transparent;
+                opacity: 0;
+                transition:
+                    opacity 0.45s ease,
+                    background 0.45s ease;
+                z-index: 1;
+            }
+
+            &:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+                border-color: transparent;
+
+                .social-icon {
+                    filter: none;
+                    transform: scale(1.05);
+                }
+
+                &:before {
+                    opacity: 1;
+                }
+            }
+
+            &.facebook:hover:before {
+                background: #1877f2;
+            }
+
+            &.instagram:hover:before {
+                background: linear-gradient(135deg, #feda75 0%, #fa7e1e 25%, #d92e7f 50%, #9b36b7 75%, #515bd4 100%);
+            }
+        }
+    }
+}
+
+// ============================================
+// FOOTER TITLES & CONTENT
+// ============================================
+.footer-title {
+    font-size: $font-size-large;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    font-family: $font-family-heading;
+    color: $secondary;
+
+    @media (max-width: $breakpoint-md) {
+        margin-bottom: 1.5rem;
+    }
+}
+
+.footer-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        margin-bottom: 1rem;
+        color: $secondary;
+        a {
+            display: block;
+            color: $secondary;
+            text-decoration: none;
+            font-size: 1rem;
+            &:hover {
+                opacity: 0.8;
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.footer-address {
+    font-style: normal;
+    line-height: $line-height-body;
+    color: $secondary;
+    display: flex;
+    flex-direction: column;
+}
+
+// ============================================
+// GOOGLE MAPS WIDGET
+// ============================================
+.footer-maps-widget {
+    iframe {
+        width: 100%;
+        height: 200px;
+        border: none;
+        border-radius: $border-radius-sm;
+        display: block;
+    }
+}
+
+// ============================================
+// WIDGET SPECIFIC STYLING
+// ============================================
+.site-footer {
+    .widget {
+        margin-bottom: 0;
+
+        .widget-title {
+            @extend .footer-title;
+        }
+    }
+
+    .widget ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin-bottom: 0.75rem;
+
+            a {
+                color: $secondary;
+                text-decoration: none;
+                transition: $transition-base;
+
+                &:hover {
+                    opacity: 0.8;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

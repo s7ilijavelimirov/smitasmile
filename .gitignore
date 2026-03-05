@@ -1,0 +1,43 @@
+# Linux, macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Composer
+vendor/
+composer.lock
+
+# Node - NIKADA NE PUSH
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Kompajlirani fajlovi - generiše se automatski
+dist/
+
+# WordPress
+.htaccess
+wp-config.php
+wp-content/uploads/
+wp-content/plugins/
+wp-content/themes/*/node_modules/
+
+# OS
+Thumbs.db
+
+# Misc
+*.zip
+*.rar
+.env
+.env.local
+.env.*.local

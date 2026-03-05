@@ -1,0 +1,168 @@
+// ============================================
+// FOUNDER SECTION - ELEGANT CENTERED CARD
+// Clean, balanced, professional
+// ============================================
+
+.founder-section {
+    background-color: $primary;
+    color: $secondary;
+    position: relative;
+    overflow: hidden;
+}
+
+.founder-section .container {
+    background-color: $dark-accent;
+    border-radius: $border-radius-lg;
+    border: 2px solid $accent;
+    padding: $spacing-3xl;
+
+    @media (max-width: $breakpoint-md) {
+        padding: $spacing-2xl;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        padding: $spacing-xl $spacing-lg;
+    }
+}
+
+// ============================================
+// CONTENT WRAPPER - Centered with max-width
+// ============================================
+
+.founder-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+// ============================================
+// TITLE
+// ============================================
+
+.founder-title {
+    font-family: $font-family-heading;
+    font-size: 1.625rem;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.6;
+    color: $secondary;
+    margin-bottom: $spacing-lg;
+
+    @media (max-width: $breakpoint-md) {
+        font-size: 1.375rem;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: 1.125rem;
+    }
+}
+
+// ============================================
+// DESCRIPTION
+// ============================================
+
+.founder-description {
+    font-family: $font-family-body;
+    font-size: 0.9375rem;
+    line-height: 1.8;
+    color: rgba($secondary, 0.7);
+    margin-bottom: $spacing-xl;
+    max-width: 600px;
+
+    p {
+        margin-bottom: $spacing-sm;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    @media (max-width: $breakpoint-md) {
+        font-size: 0.875rem;
+    }
+}
+
+// ============================================
+// DIVIDER LINE
+// ============================================
+
+.founder-author {
+    position: relative;
+    padding-top: $spacing-xl;
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+
+    // Decorative line above
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, rgba($secondary, 0.3) 50%, transparent 100%);
+    }
+}
+
+// ============================================
+// AVATAR - Small Round Image
+// ============================================
+
+.founder-avatar {
+    flex-shrink: 0;
+    // width: 72px;
+    // height: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba($secondary, 0.15);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top; /* pomera sliku ka gore */
+        display: block;
+        
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        width: 64px;
+        height: 64px;
+    }
+}
+
+// ============================================
+// INFO BLOCK - Signature + Name
+// ============================================
+
+.founder-info {
+    text-align: left;
+}
+
+.founder-signature {
+    img {
+        max-width: 300px;
+        height: auto;
+        display: block;
+        opacity: 1;
+
+        @media (max-width: $breakpoint-sm) {
+            max-width: 150px;
+        }
+    }
+}
+
+.founder-name {
+    font-family: $font-family-body;
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba($secondary, 0.45);
+    margin: 4px 0 0;
+}

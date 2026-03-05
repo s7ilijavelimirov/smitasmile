@@ -1,0 +1,138 @@
+/**
+ * WhatsApp Float Button Styles
+ * @package smitasmile
+ */
+
+// Variables
+$whatsapp-green: #25d366;
+$whatsapp-green-hover: #20ba5a;
+$whatsapp-shadow: rgba(37, 211, 102, 0.4);
+$whatsapp-shadow-hover: rgba(37, 211, 102, 0.6);
+
+// Animation - Pulse glow effect
+@keyframes whatsapp-pulse {
+    0%,
+    100% {
+        box-shadow: 0 4px 12px $whatsapp-shadow;
+    }
+    50% {
+        box-shadow: 0 4px 20px $whatsapp-shadow-hover;
+    }
+}
+
+// Animation - Float up and down (5 sekundi) - PLUTANJE GORE DOLE
+@keyframes whatsapp-float-smooth {
+    0%,
+    100% {
+        transform: translateY(0);
+        box-shadow: 0 4px 12px $whatsapp-shadow;
+    }
+    25% {
+        transform: translateY(-15px);
+        box-shadow: 0 8px 20px $whatsapp-shadow-hover;
+    }
+    50% {
+        transform: translateY(-25px);
+        box-shadow: 0 10px 25px $whatsapp-shadow-hover;
+    }
+    75% {
+        transform: translateY(-15px);
+        box-shadow: 0 8px 20px $whatsapp-shadow-hover;
+    }
+}
+
+// Animation - Quick pulse on hover
+// @keyframes whatsapp-hover-float {
+//     0%,
+//     100% {
+//         transform: translateY(0);
+//     }
+//     50% {
+//         transform: translateY(-8px);
+//     }
+// }
+
+// Button styles
+.whatsapp-float-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: $whatsapp-green;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px $whatsapp-shadow;
+    cursor: pointer;
+    z-index: 999;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    // Glavna animacija - 5 sekundi, beskonačno - PLUTANJE GORE DOLE
+    animation: whatsapp-float-smooth 5s ease-in-out infinite;
+    padding: 0;
+    border: none;
+
+    // Hover state - zaustavi animaciju i primeni hover effect
+    // &:hover {
+    //     background-color: $whatsapp-green-hover;
+    //     animation: whatsapp-hover-float 0.6s ease infinite;
+    //     box-shadow: 0 6px 20px $whatsapp-shadow-hover;
+    //     text-decoration: none;
+    // }
+
+    // Active state
+    &:active {
+        transform: scale(0.95);
+    }
+
+    // SVG styling
+    svg {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 2px;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover svg {
+        transform: rotate(10deg);
+    }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+    .whatsapp-float-btn {
+        bottom: 20px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+
+        svg {
+            // width: 26px;
+            // height: 26px;
+        }
+    }
+}
+
+// Extra small devices
+@media (max-width: 480px) {
+    .whatsapp-float-btn {
+        bottom: 15px;
+        left: 15px;
+        width: 50px;
+        height: 50px;
+
+        svg {
+            // width: 24px;
+            // height: 24px;
+        }
+    }
+}
+
+// Avoid overlap with footer
+@media (max-width: 992px) {
+    body.footer-visible .whatsapp-float-btn {
+        bottom: 100px;
+    }
+}

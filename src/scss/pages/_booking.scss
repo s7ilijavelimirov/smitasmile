@@ -1,0 +1,490 @@
+// ============================================
+// BOOKING PORTAL - Full Page Booking Experience
+// Clean, focused, app-like interface
+// ============================================
+
+.booking-portal {
+    background: $primary;
+    height: 100vh;
+    overflow: hidden;
+
+    @media (max-width: 991px) {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+    }
+}
+
+.booking-portal-wrapper {
+    display: flex;
+    height: 100vh;
+
+    @media (max-width: 991px) {
+        flex-direction: column;
+        height: auto;
+    }
+}
+
+// ============================================
+// LEFT SIDEBAR - Branding & Instructions
+// ============================================
+
+.booking-sidebar {
+    width: 420px;
+    flex-shrink: 0;
+    background: $dark-accent;
+    border-right: 1px solid $accent;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+
+    @media (max-width: 1200px) {
+        width: 360px;
+    }
+
+    @media (max-width: 991px) {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid $accent;
+    }
+}
+
+.booking-sidebar__content {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    @media (max-width: 991px) {
+        padding: 1.5rem;
+    }
+
+    @media (max-width: 576px) {
+        padding: 1.25rem;
+    }
+}
+
+// Back Link
+.booking-sidebar__header {
+    margin-bottom: 2rem;
+
+    @media (max-width: 991px) {
+        margin-bottom: 1.5rem;
+    }
+}
+
+.booking-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba($secondary, 0.6);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: $secondary;
+    }
+
+    svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+// Branding
+.booking-sidebar__branding {
+    margin-bottom: 2rem;
+
+    @media (max-width: 991px) {
+        margin-bottom: 1.5rem;
+    }
+
+    .booking-logo {
+        max-width: 180px;
+        height: auto;
+
+        @media (max-width: 576px) {
+            max-width: 150px;
+        }
+    }
+
+    .booking-site-name {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $secondary;
+        margin: 0;
+    }
+}
+
+// Intro
+.booking-sidebar__intro {
+    margin-bottom: 2.5rem;
+
+    @media (max-width: 991px) {
+        margin-bottom: 1.5rem;
+    }
+}
+
+.booking-sidebar__title {
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: $secondary;
+    margin: 0 0 0.75rem;
+    line-height: 1.3;
+
+    @media (max-width: 576px) {
+        font-size: 1.5rem;
+    }
+}
+
+.booking-sidebar__subtitle {
+    font-size: 0.9375rem;
+    color: rgba($secondary, 0.7);
+    margin: 0;
+    line-height: 1.6;
+}
+
+// ============================================
+// STEPS
+// ============================================
+
+.booking-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    flex: 1;
+
+    @media (max-width: 991px) {
+        gap: 1rem;
+    }
+}
+
+.booking-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.booking-step__number {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba($secondary, 0.08);
+    border: 1px solid rgba($secondary, 0.15);
+    border-radius: 50%;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $secondary;
+
+    @media (max-width: 576px) {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8125rem;
+    }
+}
+
+.booking-step__content {
+    flex: 1;
+    padding-top: 4px;
+}
+
+.booking-step__title {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: $secondary;
+    margin: 0 0 4px;
+
+    @media (max-width: 576px) {
+        font-size: 0.875rem;
+    }
+}
+
+.booking-step__desc {
+    font-size: 0.8125rem;
+    color: rgba($secondary, 0.6);
+    margin: 0;
+    line-height: 1.5;
+
+    @media (max-width: 576px) {
+        font-size: 0.75rem;
+    }
+}
+
+// ============================================
+// LANGUAGE SWITCHER
+// ============================================
+
+.booking-sidebar__lang {
+    margin-top: auto;
+    padding-top: 2rem;
+
+    @media (max-width: 991px) {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+    }
+}
+
+.booking-lang-switcher {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.booking-lang-switcher__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 36px;
+    padding: 0 12px;
+    background: rgba($secondary, 0.05);
+    border: 1px solid rgba($secondary, 0.15);
+    border-radius: 6px;
+    color: rgba($secondary, 0.6);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: rgba($secondary, 0.1);
+        border-color: rgba($secondary, 0.25);
+        color: $secondary;
+    }
+
+    &.is-active {
+        background: rgba($secondary, 0.15);
+        border-color: rgba($secondary, 0.3);
+        color: $secondary;
+    }
+}
+
+// ============================================
+// CONTACT INFO
+// ============================================
+
+.booking-sidebar__contact {
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid rgba($secondary, 0.1);
+
+    @media (max-width: 991px) {
+        padding-top: 1rem;
+        margin-top: 1rem;
+    }
+}
+
+.booking-sidebar__help {
+    font-size: 0.8125rem;
+    color: rgba($secondary, 0.5);
+    margin: 0 0 0.5rem;
+}
+
+.booking-sidebar__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: $secondary;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    svg {
+        width: 18px;
+        height: 18px;
+        opacity: 0.7;
+    }
+}
+
+// ============================================
+// MAIN CONTENT - Booking System
+// ============================================
+
+.booking-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: $primary;
+    height: 100vh;
+    overflow-y: auto;
+
+    @media (max-width: 991px) {
+        height: auto;
+        min-height: auto;
+    }
+}
+
+.booking-main__content {
+    flex: 1;
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 991px) {
+        padding: 1.5rem;
+        justify-content: flex-start;
+    }
+
+    @media (max-width: 576px) {
+        padding: 0.5rem;
+    }
+
+    // Dentalink widget container - compact for portal
+    .dentalink-booking-widget {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 1.5rem 2rem;
+        min-height: auto;
+        border: 2px solid $accent;
+
+        @media (max-width: 991px) {
+            padding: 1.5rem;
+        }
+
+        @media (max-width: 576px) {
+            padding: 1rem;
+        }
+    }
+
+    // Compact title
+    .dentalink-booking-title {
+        font-size: 1.5rem;
+        margin-bottom: 24px;
+    }
+
+    // Compact progress
+    .dentalink-progress {
+        margin-bottom: 30px;
+    }
+
+    // Compact date/time picker - fit viewport
+    .dentalink-datetime-picker {
+        min-height: auto;
+        margin-bottom: 16px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .dentalink-calendar {
+        min-height: auto;
+        padding: 0.75rem;
+    }
+
+    .dentalink-time-slots {
+        max-height: 320px;
+    }
+
+    // Compact step header
+    .dentalink-step h3 {
+        font-size: 1.3rem;
+        margin-bottom: 6px;
+    }
+
+    .dentalink-step .step-description {
+        margin-bottom: 24px;
+        font-size: 14px;
+    }
+
+    // Compact service cards
+    .dentalink-service-options {
+        margin-bottom: 16px;
+    }
+
+    .dentalink-service-card .service-card-content {
+        padding: 16px 14px;
+    }
+
+    // Compact form fields
+    .dentalink-form-fields {
+        padding: 18px;
+    }
+
+    .dentalink-form-group {
+        margin-bottom: 14px;
+    }
+
+    .dentalink-form-group input[type="text"],
+    .dentalink-form-group input[type="tel"],
+    .dentalink-form-group input[type="email"] {
+        padding: 10px 12px;
+    }
+
+    .dentalink-form-group textarea {
+        min-height: 70px;
+    }
+
+    // Compact booking summary
+    .dentalink-booking-summary {
+        padding: 18px;
+    }
+
+    .dentalink-booking-summary .summary-item {
+        padding: 10px 12px;
+        margin-bottom: 6px;
+    }
+    .dentalink-step.active:nth-of-type(2) {
+        .dentalink-step-actions {
+            margin: 1rem auto;
+            max-width: 900px;
+        }
+    }
+
+    // Fallback for any direct child
+    > div,
+    > iframe {
+        flex: 1;
+        width: 100%;
+        max-width: 100%;
+
+        @media (max-width: 991px) {
+            min-height: 500px;
+        }
+    }
+}
+
+// ============================================
+// HIDE DEFAULT ELEMENTS ON BOOKING PORTAL
+// ============================================
+
+.booking-portal {
+    // Hide main header
+    #masthead,
+    .site-header,
+    .header {
+        display: none !important;
+    }
+
+    // Hide footer
+    #colophon,
+    .site-footer,
+    footer {
+        display: none !important;
+    }
+
+    // Hide WhatsApp button
+    .whatsapp-float-btn {
+        display: none !important;
+    }
+
+    // Hide site wrapper if exists
+    .site-wrapper {
+        padding: 0;
+        margin: 0;
+    }
+}

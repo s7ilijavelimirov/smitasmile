@@ -1,0 +1,90 @@
+/* ================================
+   HOMEPAGE TEAM SECTION
+   ================================ */
+
+.homepage-team-section {
+    background-color: $dark-accent;
+    .lead {
+        font-size: $font-size-base;
+        color: $secondary;
+        opacity: 0.9;
+
+        @media (max-width: $breakpoint-md) {
+            font-size: $font-size-small;
+        }
+    }
+}
+
+/* ================================
+   TEAM CARD
+   ================================ */
+
+.team-card {
+    .team-card-image {
+        overflow: hidden;
+        border-radius: $border-radius-lg;
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            transition: $transition-base;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    .team-card-content {
+        .team-card-name {
+            font-family: $font-family-heading;
+            font-size: $font-size-h5;
+            color: $secondary;
+
+            @media (max-width: $breakpoint-md) {
+                font-size: $font-size-h5;
+            }
+        }
+
+        .team-card-title {
+            font-size: $font-size-base;
+            color: $secondary;
+            line-height: $line-height-body;
+            font-style: italic;
+            font-family: $font-family-body;
+
+            @media (max-width: $breakpoint-md) {
+                font-size: $font-size-small;
+            }
+
+            br {
+                margin: $spacing-xs 0;
+            }
+        }
+
+        .btn {
+            font-size: $font-size-small;
+            background-color: $accent;
+            border: none;
+            color: White;
+            padding: $spacing-md $spacing-lg;
+            @media (max-width: $breakpoint-md) {
+                font-size: 0.85rem;
+            }
+        }
+    }
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+
+@media (max-width: $breakpoint-md) {
+    .homepage-team-section {
+        .row.g-4 {
+            gap: 2rem !important;
+        }
+    }
+}

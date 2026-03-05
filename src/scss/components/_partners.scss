@@ -1,0 +1,151 @@
+// ============================================
+// PARTNERS SECTION
+// ============================================
+
+.partners-section {
+    background-color: $primary;
+    color: $secondary;
+    padding: $spacing-3xl 0;
+
+    @media (max-width: $breakpoint-md) {
+        padding: $spacing-2xl 0;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        padding: $spacing-xl 0;
+    }
+}
+
+// ============================================
+// SECTION HEADER
+// ============================================
+
+.partners-header {
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+
+    @media (max-width: $breakpoint-md) {
+        margin-bottom: $spacing-2xl;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        margin-bottom: $spacing-xl;
+    }
+}
+
+.partners-title {
+    font-family: $font-family-heading;
+    font-size: $font-size-h2;
+    font-weight: 400;
+    line-height: $line-height-heading;
+    color: $secondary;
+    margin-bottom: 0;
+
+    @media (max-width: $breakpoint-md) {
+        font-size: $font-size-h3;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: 1.6rem;
+    }
+}
+
+// ============================================
+// PARTNERS GRID - 6 COLUMNS
+// ============================================
+
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: $spacing-xl;
+    align-items: center;
+    justify-items: center;
+
+    @media (max-width: $breakpoint-xl) {
+        grid-template-columns: repeat(6, 1fr);
+        gap: $spacing-sm;
+    }
+
+    @media (max-width: $breakpoint-lg) {
+        grid-template-columns: repeat(3, 1fr);
+        gap: $spacing-md;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        grid-template-columns: repeat(3, 1fr);
+        gap: $spacing-md;
+    }
+
+    @media (max-width: $breakpoint-xs) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: $spacing-sm;
+    }
+}
+
+// ============================================
+// PARTNER ITEM
+// ============================================
+
+.partner-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.partner-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: $transition-base;
+    text-decoration: none;
+    width: 100%;
+
+    &:focus-visible {
+        outline: 2px solid $light-accent;
+        outline-offset: 4px;
+        border-radius: $border-radius;
+    }
+}
+
+.partner-logo {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    max-height: 100px;
+    opacity: 1;
+    transition: $transition-base;
+
+    @media (max-width: $breakpoint-lg) {
+        max-height: 90px;
+    }
+
+    @media (max-width: $breakpoint-md) {
+        max-height: 80px;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        max-height: 60px;
+    }
+
+    @media (max-width: $breakpoint-xs) {
+        max-height: 50px;
+    }
+}
+
+// ============================================
+// HOVER STATE
+// ============================================
+
+.partner-link:hover {
+    .partner-logo {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+.partner-link:active {
+    .partner-logo {
+        transform: scale(0.95);
+    }
+}

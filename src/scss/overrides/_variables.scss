@@ -1,0 +1,340 @@
+// ============================================
+// TIPOGRAFIJA - FONTOVI
+// ============================================
+$font-family-heading: "Lora", serif;
+$font-family-body: "Poppins", sans-serif;
+$font-family-base: $font-family-body;
+
+// ============================================
+// FONT SIZES
+// ============================================
+$font-size-intro: 4rem;
+$font-size-h1: 2.8rem;
+$font-size-h2: 2.5rem;
+$font-size-h3: 2.2rem;
+$font-size-h4: 1.6rem;
+$font-size-h5: 1.4rem;
+$font-size-large: 1.6rem;
+$font-size-base: 1rem;
+$font-size-small: 0.9rem;
+$font-size-medium: 1.4rem;
+// ============================================
+// LINE HEIGHT
+// ============================================
+$line-height-heading: 1.2em;
+$line-height-body: 1.5em;
+$line-height-base: 1.5;
+
+// ============================================
+// BOJE - SMITASMILE (Minimalist Dark/Light)
+// ============================================
+$primary: #000000; // Crna - tekst na svetlom
+$secondary: #ffffff; // Bela - tekst na tamnom
+$accent: #1f1f1f; // Tamno siva - hover/active stanja
+$dark-accent: #111111;
+$light-accent: #e7e7e7; // Svetla siva - borders, backgrounds
+$gray: #999999; // Medium siva
+$light-gray: #f5f5f5; // Vrlo svetla siva - backgrounds
+
+// ============================================
+// SPACING
+// ============================================
+$spacer: 1rem;
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-2xl: 3rem;
+$spacing-3xl: 4rem;
+
+// ============================================
+// BORDER & RADIUS
+// ============================================
+$border-radius: 10px;
+$border-radius-lg: 20px;
+$border-radius-sm: 2px;
+$border-width: 1px;
+
+// ============================================
+// SHADOW
+// ============================================
+$box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+$box-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+// ============================================
+// TRANSITIONS
+// ============================================
+$transition-base: all 0.3s ease-in-out;
+$transition-fade: opacity 0.3s ease-in-out;
+
+// ============================================
+// BREAKPOINTS
+// ============================================
+$breakpoint-xs: 320px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-2xl: 1400px;
+
+// ============================================
+// BOOTSTRAP OVERRIDES
+// ============================================
+$body-font-family: $font-family-body;
+$body-font-size: $font-size-base;
+$body-font-weight: 400;
+$body-line-height: $line-height-body;
+
+// ============================================
+// BODY & TEXT COLORS
+// ============================================
+
+$body-color: $secondary; // #ffffff - bela
+$body-bg: $primary; // #000000 - crna pozadina
+
+// Paragraf boja
+$text-color: $secondary; // #ffffff
+// ============================================
+// BOOTSTRAP CONTAINER OVERRIDES
+// ============================================
+
+// Preispravi Bootstrap container max-widths
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+// Custom container XL - 1520px
+$container-xl-custom: 1620px;
+
+// ============================================
+// CUSTOM CONTAINER CLASS
+// ============================================
+
+.container-xl-custom {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @media (min-width: 576px) {
+    max-width: 540px;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 720px;
+  }
+
+  @media (min-width: 992px) {
+    max-width: 960px;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1200px;
+  }
+
+  @media (min-width: 1400px) {
+    max-width: $container-xl-custom; // 1520px
+  }
+}
+
+// Alternativa - manje typing: .container-xxl
+.container-xxl {
+  max-width: $container-xl-custom !important;
+}
+// ============================================
+// CUSTOM SPACING UTILITIES
+// Extend Bootstrap spacing (m-5 max to m-6, m-7, m-8, m-9)
+// ============================================
+
+// ============================================
+// CUSTOM SPACING UTILITIES (6-9)
+// Extend Bootstrap spacing
+// ============================================
+
+$custom-spacing: (
+  6: 3rem,    // 48px
+  7: 4rem,    // 64px
+  8: 5rem,    // 80px
+  9: 6rem     // 96px
+);
+
+// ============================================
+// DEFAULT - bez breakpoint prefiks (desktop)
+// ============================================
+@each $size, $value in $custom-spacing {
+  .m-#{$size} {
+    margin: $value !important;
+  }
+  .mt-#{$size} {
+    margin-top: $value !important;
+  }
+  .mb-#{$size} {
+    margin-bottom: $value !important;
+  }
+  .ml-#{$size} {
+    margin-left: $value !important;
+  }
+  .mr-#{$size} {
+    margin-right: $value !important;
+  }
+  .mx-#{$size} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+  .my-#{$size} {
+    margin-top: $value !important;
+    margin-bottom: $value !important;
+  }
+
+  .p-#{$size} {
+    padding: $value !important;
+  }
+  .pt-#{$size} {
+    padding-top: $value !important;
+  }
+  .pb-#{$size} {
+    padding-bottom: $value !important;
+  }
+  .pl-#{$size} {
+    padding-left: $value !important;
+  }
+  .pr-#{$size} {
+    padding-right: $value !important;
+  }
+  .px-#{$size} {
+    padding-left: $value !important;
+    padding-right: $value !important;
+  }
+  .py-#{$size} {
+    padding-top: $value !important;
+    padding-bottom: $value !important;
+  }
+}
+
+// ============================================
+// RESPONSIVE BREAKPOINT KLASE
+// ============================================
+
+// LG - Desktop (992px+)
+@each $size, $value in $custom-spacing {
+  .py-lg-#{$size} {
+    padding-top: $value !important;
+    padding-bottom: $value !important;
+  }
+  .pt-lg-#{$size} {
+    padding-top: $value !important;
+  }
+  .pb-lg-#{$size} {
+    padding-bottom: $value !important;
+  }
+  .px-lg-#{$size} {
+    padding-left: $value !important;
+    padding-right: $value !important;
+  }
+  .my-lg-#{$size} {
+    margin-top: $value !important;
+    margin-bottom: $value !important;
+  }
+  .mt-lg-#{$size} {
+    margin-top: $value !important;
+  }
+  .mb-lg-#{$size} {
+    margin-bottom: $value !important;
+  }
+}
+
+// MD - Tablet (768px - 991px)
+@media (max-width: 991px) {
+  @each $size, $value in $custom-spacing {
+    .py-md-#{$size} {
+      padding-top: $value !important;
+      padding-bottom: $value !important;
+    }
+    .pt-md-#{$size} {
+      padding-top: $value !important;
+    }
+    .pb-md-#{$size} {
+      padding-bottom: $value !important;
+    }
+    .px-md-#{$size} {
+      padding-left: $value !important;
+      padding-right: $value !important;
+    }
+    .my-md-#{$size} {
+      margin-top: $value !important;
+      margin-bottom: $value !important;
+    }
+    .mt-md-#{$size} {
+      margin-top: $value !important;
+    }
+    .mb-md-#{$size} {
+      margin-bottom: $value !important;
+    }
+  }
+}
+
+// SM - Mobile (576px - 767px)
+@media (max-width: 767px) {
+  @each $size, $value in $custom-spacing {
+    .py-sm-#{$size} {
+      padding-top: $value !important;
+      padding-bottom: $value !important;
+    }
+    .pt-sm-#{$size} {
+      padding-top: $value !important;
+    }
+    .pb-sm-#{$size} {
+      padding-bottom: $value !important;
+    }
+    .px-sm-#{$size} {
+      padding-left: $value !important;
+      padding-right: $value !important;
+    }
+    .my-sm-#{$size} {
+      margin-top: $value !important;
+      margin-bottom: $value !important;
+    }
+    .mt-sm-#{$size} {
+      margin-top: $value !important;
+    }
+    .mb-sm-#{$size} {
+      margin-bottom: $value !important;
+    }
+  }
+}
+
+// XS - Mali mobilni (< 576px)
+@media (max-width: 575px) {
+  @each $size, $value in $custom-spacing {
+    .py-xs-#{$size} {
+      padding-top: $value !important;
+      padding-bottom: $value !important;
+    }
+    .pt-xs-#{$size} {
+      padding-top: $value !important;
+    }
+    .pb-xs-#{$size} {
+      padding-bottom: $value !important;
+    }
+    .px-xs-#{$size} {
+      padding-left: $value !important;
+      padding-right: $value !important;
+    }
+    .my-xs-#{$size} {
+      margin-top: $value !important;
+      margin-bottom: $value !important;
+    }
+    .mt-xs-#{$size} {
+      margin-top: $value !important;
+    }
+    .mb-xs-#{$size} {
+      margin-bottom: $value !important;
+    }
+  }
+}
